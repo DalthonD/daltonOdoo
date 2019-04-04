@@ -1,0 +1,4 @@
+[submodule "robertogracias/odoosv"]
+	path = robertogracias/odoosv
+	url = git@github.com:robertogracias/odoosv.git
+	branch = 12.0
