@@ -4,18 +4,6 @@ from odoo import models, fields, api
 from odoo.osv import expression
 from odoo.exceptions import ValidationError
 
-# class reportesv(models.Model):
-#     _name = 'reportesv.reportesv'
-
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         self.value2 = float(self.value) / 100
-
 class sv_purchase_report(models.Model):
     _name = 'strategiksv_reportesv_purchase_report'
     _inherit =
@@ -224,6 +212,8 @@ class sv_purchase_report(models.Model):
         and am.state='posted') S order by s.Fecha, s.Factura)
         "")
 
+# class reportesv(models.Model):
+#     _name = 'reportesv.reportesv'
 
 #     name = fields.Char()
 #     value = fields.Integer()
