@@ -2,12 +2,12 @@
 {
     'name': "Reporte-SV",
 
-    'summary': "
+    'summary': """
         Short (1 phrase/line) summary of the module's purpose, used as
         subtitle on modules listing or apps.openerp.com"",
 
     'description': "Creación de Reportes para COmpras, Ventas Contribuyentes y  Ventas Consumidores"
-        Long description of module's purpose,
+        Long description of module's purpose""",
 
     'author': "Dalton Díaz",
     'website': "http://www.yourcompany.com",
