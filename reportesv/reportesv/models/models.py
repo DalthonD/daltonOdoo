@@ -5,15 +5,17 @@ from odoo import models, fields, api, tools
 
 class sv_purchase_report(models.Model):
     _name = 'strategiksv.reportesv.purchase.report'
+    _description = "Reporte de Compras"
     _auto = False
+
     name = fields.Char("Reporte de Compras")
-    description = field.Char("Reporte Compras")
-    company_id=fileds.Many2one('res_company.id', string="Company", help="Company")
-    fecha = fields.Date("Fecha de la Factura")
+    description = fields.Char("Reporte Compras")
+    company_id=fields.Many2one('res_company.id', string="Company", help="Company")
+    nrc = fields.Many2one('res_partner.vat', string="NRC", help="NRC")
     factura = fields.Many2one('account_invoice.reference', string="Factura", help="Número de referencia de factura")
+    fecha = fields.Date("Fecha de la Factura")
     proveedor = fields.Char("Nombre del proveedor")
     #proveedor = fields.Char('')
-    nrc = fields.Many2one('res_partner.vat', string="NRC", help="NRC")
     importacion = fields.Boolean("Importación")
     gravado = fields.Float("Compras Gravadas")
     exento = fields.Float("Compras Exentas")
