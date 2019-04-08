@@ -1,12 +1,16 @@
 <odoo>
-  <report id="action_purchase_sql_report"
-    string="Purchase SQL Report"
-    model="strategiksv_reportesv_purchase_report"
-    report_type="qweb-html"
-    name="library_app.report_purchase_sql"
+  <report id="strategiksv.purchase_report"
+    string="Purchase Report"
+    model="strategiksv.reportesv.purchase.report"
+    report_type="qweb-pdf"
+    name="strategiksv.purchase_report_view"
+    file="strategiksv.purchase_report"
+    attachment_use="True"
+    attachment="Reporte_De_Compras.pdf"
   />
 
-  <template id="report_purchase_sql">
+  <template id="report_purchase_sql_view">
+    <t t-name="report_purchase_view">
     <t t-call="web.html_container">
       <t t-call="web.external_layout">
         <div class="page">
@@ -34,6 +38,7 @@
         </table>
         </div>
       </t>
+    </t>
     </t>
   </template>
 </odoo>

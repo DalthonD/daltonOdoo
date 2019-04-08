@@ -12,7 +12,9 @@ class sv_purchase_report(models.Model):
     description = fields.Char("Reporte Compras")
     company_id=fields.Many2one('res_company.id', string="Company", help="Company")
     nrc = fields.Many2one('res_partner.vat', string="NRC", help="NRC")
+    #nrc = fields.Char("NRC")
     factura = fields.Many2one('account_invoice.reference', string="Factura", help="Número de referencia de factura")
+    #factura = fields.Char("Factura", help="Número de referencia de factura")
     fecha = fields.Date("Fecha de la Factura")
     proveedor = fields.Char("Nombre del proveedor")
     #proveedor = fields.Char('')
@@ -217,6 +219,7 @@ select aml.date as fecha
  	left join res_partner rp on aml.partner_id=rp.id
  where atg.name='percepcion' and not exists (select id from account_invoice ai where ai.move_id=am.id)
 	and am.state='posted') S order by s.Fecha, s.Factura)""")
+
 
 
 # class reportesv(models.Model):
