@@ -1,83 +1,40 @@
 <odoo>
   <data>
 
-    <record model="ir.ui.view" id="strategiksv.reportesv.purchase_list">
-      <field name="name">strategiksv purchase report tree</field>
+    <record model="ir.ui.view" id="purchase_report_sql_tree">
+      <field name="name">strategiksv purchase report sql tree</field>
       <field name="model">strategiksv.reportesv.purchase.report</field>
       <field name="arch" type="xml">
         <tree string="Compras">
-          <field name="Fecha"/>
-          <field name="Facturas"/>
+          <field name="description"/>
+          <!--field name="Facturas"/>
           <field name="Proveedor"/>
           <field name="NRC"/>
           <field name="Importación"/>
           <field name="Gravado"/>
           <field name="Exento"/>
           <field name="IVA"/>
-          <field name="Retenido"/>
+          <field name="Retenido"/-->
         </tree>
       </field>
     </record>
 
-  <record model="ir.actions.act_window" id="sv_action_reporteCompra">
+  <!--record model="ir.actions.act_window" id="sv_action_reporteCompras">
 		<field name="name">Administracion Reporte de Compras</field>
-		<field name="res_model">trategiksv.reportesv.purchase.report</field>
+		<field name="res_model">strategiksv.reportesv.purchase.report</field>
 		<field name="view_type">form</field>
 		<field name="view_mode">tree,form</field>
 		<field name="help" type="html">
 			<p class="oe_view_nocontent_create">Administracion de Reporte de Compras</p>
 		</field>
-	</record>
+	</record-->
 
 
-    <menuitem name="Administracion de Reporte de Compras"
+    <!--menuitem name="Administracion de Reporte de Compras"
 		parent="account.menu_finance_entries"
 		id="strategiksv.purchasereportsv"
 		sequence="31"
 		action="sv_action_compras"
-		groups="account.group_account_manager"/>
-
-
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="reportesv.action_window">
-      <field name="name">reportesv window</field>
-      <field name="res_model">reportesv.reportesv</field>
-      <field name="view_mode">tree,form</field>
-    </record>
-    -->
-
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="reportesv.action_server">
-      <field name="name">reportesv server</field>
-      <field name="model_id" ref="model_reportesv_reportesv"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
-
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="reportesv" id="reportesv.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="reportesv.menu_1" parent="reportesv.menu_root"/>
-    <menuitem name="Menu 2" id="reportesv.menu_2" parent="reportesv.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="reportesv.menu_1_list" parent="reportesv.menu_1"
-              action="reportesv.action_window"/>
-    <menuitem name="Server to list" id="reportesv" parent="reportesv.menu_2"
-              action="reportesv.action_server"/>
-    -->
+		groups="account.group_account_manager"/-->
   </data>
 </odoo>

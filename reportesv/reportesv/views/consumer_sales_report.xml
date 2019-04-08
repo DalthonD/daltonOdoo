@@ -1,5 +1,5 @@
 <odoo>
-  <report id="strategiksv.purchase_report"
+  <report id="strategiksv.sales_consumer_report"
     string="Consumer Sales Report"
     model="strategiksv.reportesv.sales_consumer.report"
     report_type="qweb-pdf"

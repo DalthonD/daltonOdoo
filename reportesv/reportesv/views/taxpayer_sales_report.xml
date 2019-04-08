@@ -1,5 +1,5 @@
 <odoo>
-  <report id="strategiksv.sales_taxpayer.report"
+  <report id="strategiksv.sales_taxpayer_report"
     string="Taxpayer Sales Report"
     model="strategiksv.reportesv.sales_taxpayer.report"
     report_type="qweb-pdf"
