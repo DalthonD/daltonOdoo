@@ -3,15 +3,14 @@
     string="Consumer Sales Report"
     model="strategiksv.reportesv.sales_consumer.report"
     report_type="qweb-pdf"
-    name="strategiksv.consumer_sales_report_view"
-    file="strategiksv.consumer_sales_report"
+    name="strategiksv.sales_consumer_report_view"
+    file="strategiksv.sales_consumer_report"
     attachment_use="True"
-    attachment="Reporte_De_Ventas_a_consumirdores.pdf"
-  />
+    attachment="Reporte_De_Ventas_a_consumirdores.pdf"/>
 
   <template id="report_consumer_sales_sql_view">
     <t t-name="report_consumer_sales_view">
-    <  <t t-call="web.html_container">
+      <t t-call="web.html_container">
         <t foreach="docs" t-as="o">
           <t t-call="web.external_layout">
             <div class="page">
@@ -22,5 +21,6 @@
           </t>
         </t>
       </t>
+    </t>
   </template>
 </odoo>

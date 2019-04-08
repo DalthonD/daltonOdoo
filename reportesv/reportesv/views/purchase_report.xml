@@ -6,8 +6,7 @@
     name="strategiksv.purchase_report_view"
     file="strategiksv.purchase_report"
     attachment_use="True"
-    attachment="Reporte_De_Compras.pdf"
-  />
+    attachment="Reporte_De_Compras.pdf"/>
 
   <template id="report_purchase_sql_view">
     <t t-name="report_purchase_view">
@@ -22,5 +21,6 @@
           </t>
         </t>
       </t>
+    </t>
   </template>
 </odoo>

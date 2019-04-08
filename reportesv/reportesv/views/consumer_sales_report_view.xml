@@ -1,0 +1,59 @@
+<odoo>
+  <data>
+
+    <!--record model="ir.ui.view" id="strategiksv.reportesv.purchase_list">
+      <field name="name">strategiksv purchase report tree</field>
+      <field name="model">strategiksv.reportesv.purchase.report</field>
+      <field name="arch" type="xml">
+        <tree string="Compras">
+          <field name="name"/>
+          <field name="value"/>
+          <field name="value2"/>
+        </tree>
+      </field>
+    </record-->
+
+
+    <!-- actions opening views on models -->
+    <!--
+    <record model="ir.actions.act_window" id="reportesv.action_window">
+      <field name="name">reportesv window</field>
+      <field name="res_model">reportesv.reportesv</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+    -->
+
+    <!-- server action to the one above -->
+    <!--
+    <record model="ir.actions.server" id="reportesv.action_server">
+      <field name="name">reportesv server</field>
+      <field name="model_id" ref="model_reportesv_reportesv"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": self._name,
+        }
+      </field>
+    </record>
+    -->
+
+    <!-- Top menu item -->
+    <!--
+    <menuitem name="reportesv" id="reportesv.menu_root"/>
+    -->
+    <!-- menu categories -->
+    <!--
+    <menuitem name="Menu 1" id="reportesv.menu_1" parent="reportesv.menu_root"/>
+    <menuitem name="Menu 2" id="reportesv.menu_2" parent="reportesv.menu_root"/>
+    -->
+    <!-- actions -->
+    <!--
+    <menuitem name="List" id="reportesv.menu_1_list" parent="reportesv.menu_1"
+              action="reportesv.action_window"/>
+    <menuitem name="Server to list" id="reportesv" parent="reportesv.menu_2"
+              action="reportesv.action_server"/>
+    -->
+  </data>
+</odoo>

@@ -341,7 +341,108 @@ class sv_consumer_sales_report(models.Model):
 
     @api.model_cr
     def init(self):
-        self.env.cr.execute("""CREATE OR REPLACE VIEW sv_taxpayer_sales_report AS ()""")
+        self.env.cr.execute("""CREATE OR REPLACE VIEW sv_consumer_sales_report AS (Select
+	SS.Fecha
+	,SS.grupo
+	,min(SS.Factura) as DELNum
+	,max(SS.Factura) as ALNum
+	,sum(SS.exento) as Exento
+	,sum(SS.GravadoLocal) as GravadoLocal
+	,sum(SS.GravadoExportacion) as GravadoExportacion
+	,Sum(SS.ivaLocal) as IvaLocal
+	,Sum(SS.ivaexportacion) as IvaExportacion
+	,Sum(SS.retenido) as Retenido
+	,estado
+FROM (
+select S.fecha
+	,S.factura
+	,S.estado
+	,S.grupo
+	,S.exento
+	,case
+		when S.sv_region='Local' then S.Gravado
+		else 0.00 end as GravadoLocal
+	,case
+		when S.sv_region!='Local' then S.Gravado
+		else 0.00 end as GravadoExportacion
+	,case
+		when S.sv_region='Local' then S.Iva
+		else 0.00 end as IvaLocal
+	,case
+		when S.sv_region!='Local' then S.Iva
+		else 0.00 end as IvaExportacion
+	,S.Retenido
+from(
+select ai.date_invoice as fecha
+	,coalesce(ai.reference,ai.number) as factura
+	,'valid' as estado
+	,FG.grupo
+	,afp.sv_region
+	,/*Calculando el gravado (todo lo que tiene un impuesto aplicado de iva)*/
+     (select coalesce(sum(price_subtotal_signed),0.00)
+      from account_invoice_line ail
+      where invoice_id=ai.id
+	      and exists(select ailt.tax_id
+					from account_invoice_line_tax ailt
+				        inner join account_tax atx on ailt.tax_id=atx.id
+				        inner join account_tax_group atg on atx.tax_group_id=atg.id
+			         where ailt.invoice_line_id=ail.id and atg.name='iva')
+      ) as Gravado,
+      /*Calculando el excento que no tiene iva*/
+     (Select coalesce(sum(price_subtotal_signed),0.00)
+      from account_invoice_line ail
+      where invoice_id=ai.id
+	      and not exists(select ailt.tax_id
+						 from account_invoice_line_tax ailt
+				             inner join account_tax atx on ailt.tax_id=atx.id
+				             inner join account_tax_group atg on atx.tax_group_id=atg.id
+			             where ailt.invoice_line_id=ail.id and atg.name='iva')
+      ) as Exento
+      ,/*Calculando el iva*/
+      (Select coalesce(sum(ait.amount),0.00)
+       from account_invoice_tax ait
+ 	       inner join account_tax atx on ait.tax_id=atx.id
+	       inner join account_tax_group atg on atx.tax_group_id=atg.id
+       where invoice_id=ai.id
+	       and atg.name='iva'
+       ) as Iva
+	   ,/*Calculando el retenido*/
+      (Select coalesce(sum(ait.amount),0.00)
+       from account_invoice_tax ait
+ 	       inner join account_tax atx on ait.tax_id=atx.id
+	       inner join account_tax_group atg on atx.tax_group_id=atg.id
+       where invoice_id=ai.id
+	       and atg.name='retencion'
+       ) as Retenido
+from account_invoice ai
+	inner join res_partner rp on ai.partner_id=rp.id
+	inner join (select * from FacturasAgrupadas( 1, 1 , 2018 , 5 )) FG on ai.id=FG.invoice_id
+	left join account_fiscal_position afp on ai.fiscal_position_id=afp.id
+where ai.type='out_invoice'
+	and ((ai.sv_no_tax is null ) or (ai.sv_no_tax=false))
+	and afp.sv_contribuyente=False
+	and ai.state in ('open','paid')
+
+union
+
+select ai.date_invoice as fecha
+	,coalesce(ai.reference,ai.number) as factura
+	,ai.state as estado
+	,FG.grupo
+	,afp.sv_region
+	,0.0 as Gravado
+	,0.0 as Exento
+    ,0.0 as Iva
+	,0.0 as Retenido
+from account_invoice ai
+	inner join res_partner rp on ai.partner_id=rp.id
+	inner join (select * from FacturasAgrupadas( 1 , 1, 2018 , 5)) FG on ai.id=FG.invoice_id
+	left join account_fiscal_position afp on ai.fiscal_position_id=afp.id
+where ai.type='out_invoice'
+	and ((ai.sv_no_tax is null ) or (ai.sv_no_tax=false))
+	and afp.sv_contribuyente=False
+	and ai.state in ('cancel')
+)S )SS group by SS.fecha, SS.Grupo,SS.estado order by SS.fecha, SS.Grupo)""")
 
 # class reportesv(models.Model):
 #     _name = 'reportesv.reportesv'
