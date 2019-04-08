@@ -11,34 +11,16 @@
 
   <template id="report_purchase_sql_view">
     <t t-name="report_purchase_view">
-    <t t-call="web.html_container">
-      <t t-call="web.external_layout">
-        <div class="page">
+      <t t-call="web.html_container">
+        <t foreach="docs" t-as="o">
+          <t t-call="web.external_layout">
+            <div class="page">
 
-        <!--Report page content-->
-        <table class="table table-stripped">
-          <tr>
-            <th>Title</th>
-            <th>Publisher</th>
-            <th>Date</th>
-          </tr>
-          <t foreach="docs" t-as="o">
-            <tr>
-              <td class="col-xs-6">
-                <span t-filed="o.name"/>
-              </td>
-              <td class="col-xs-3">
-                <span t-filed="o.publisher_id"/>
-              </td>
-              <td class="col-xs-6">
-                <span t-field="o.date_published" t-options="{'widget':'date'}"/>
-              </td>
-            </tr>
+              <!--Report page content-->
+
+            </div>
           </t>
-        </table>
-        </div>
+        </t>
       </t>
-    </t>
-    </t>
   </template>
 </odoo>

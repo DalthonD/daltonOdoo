@@ -27,6 +27,8 @@
         'views/views.xml',
         'views/templates.xml',
         'views/purchase_report.xml',
+        'views/consumer_sales_report.xml',
+        'views/taxpayer_sales_report.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
