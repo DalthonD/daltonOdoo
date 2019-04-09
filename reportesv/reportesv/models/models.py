@@ -8,21 +8,21 @@ class sv_purchase_report(models.Model):
     _description = "Reporte de Compras"
     _auto = False
 
-    name = fields.Char("Reporte de Compras")
-    description = fields.Char("Reporte Compras")
-    company_id=fields.Many2one('res_company.id', string="Company", help="Company")
-    nrc = fields.Char("NRC")
-    factura = fields.Char("Factura", help="Número de referencia de factura")
-    fecha = fields.Date("Fecha de Factura")
-    proveedor = fields.Char("Proveedor")
-    importacion = fields.Boolean("Importación")
-    gravado = fields.Float("Compras Gravadas")
-    exento = fields.Float("Compras Exentas")
-    iva = fields.Float("IVA")
-    retenido = fields.Float("Anticipo a Cuenta de IVA Retenido")
-    percibido = fields.Float("Anticipo a Cuenta de IVA Percibido")
-    excluido = fields.Float("Compras a Sujetos Excluidos")
-    retencion3 = fields.Float("Retención a Terceros")
+    name = fields.Char("Reporte de Compras", readonly=True)
+    description = fields.Char("Reporte Compras", readonly=True)
+    company_id=fields.Many2one('res_company.id', string="Company", help="Company", readonly=True)
+    nrc = fields.Char("NRC", readonly=True)
+    factura = fields.Char("Factura", help="Número de referencia de factura", readonly=True)
+    fecha = fields.Date("Fecha de Factura", readonly=True)
+    proveedor = fields.Char("Proveedor", readonly=True)
+    importacion = fields.Boolean("Importación", readonly=True)
+    gravado = fields.Float("Compras Gravadas", readonly=True)
+    exento = fields.Float("Compras Exentas", readonly=True)
+    iva = fields.Float("IVA", readonly=True)
+    retenido = fields.Float("Anticipo a Cuenta de IVA Retenido", readonly=True)
+    percibido = fields.Float("Anticipo a Cuenta de IVA Percibido", readonly=True)
+    excluido = fields.Float("Compras a Sujetos Excluidos", readonly=True)
+    retencion3 = fields.Float("Retención a Terceros", readonly=True)
 
     @api.model_cr
     def init(self):

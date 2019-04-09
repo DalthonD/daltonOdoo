@@ -1,59 +1,43 @@
 <odoo>
   <data>
-
-    <!--record model="ir.ui.view" id="strategiksv.reportesv.purchase_list">
-      <field name="name">strategiksv purchase report tree</field>
-      <field name="model">strategiksv.reportesv.purchase.report</field>
+    <record model="ir.ui.view" id="consumer_sales_report_sql_tree">
+      <field name="name">strategiksv consumer sales report sql tree</field>
+      <field name="res_model">strategiksv.reportesv.sales_consumer.report</field>
       <field name="arch" type="xml">
-        <tree string="Compras">
-          <field name="name"/>
-          <field name="value"/>
-          <field name="value2"/>
+        <tree string="Ventas-Consumidores-list">
+          <field name="company_id"/>
+          <field name="fecha"/>
+          <field name="grupo"/>
+          <field name="delnum"/>
+          <field name="alnum"/>
+          <field name="exento"/>
+          <field name="gravadolocal"/>
+          <field name="gravadoexportacion"/>
+          <field name="ivalocal"/>
+          <field name="ivaexportacion"/>
+          <field name="retenido"/>
+          <field name="estado"/>
         </tree>
       </field>
-    </record-->
-
-
-    <!-- actions opening views on models -->
-    <!--
-    <record model="ir.actions.act_window" id="reportesv.action_window">
-      <field name="name">reportesv window</field>
-      <field name="res_model">reportesv.reportesv</field>
-      <field name="view_mode">tree,form</field>
     </record>
-    -->
 
-    <!-- server action to the one above -->
-    <!--
-    <record model="ir.actions.server" id="reportesv.action_server">
-      <field name="name">reportesv server</field>
-      <field name="model_id" ref="model_reportesv_reportesv"/>
-      <field name="state">code</field>
-      <field name="code">
-        action = {
-          "type": "ir.actions.act_window",
-          "view_mode": "tree,form",
-          "res_model": self._name,
-        }
-      </field>
-    </record>
-    -->
+  <record model="ir.actions.act_window" id="sv_action_reporteVentasConsumidores">
+		<field name="name">Ventas a Consumidores</field>
+		<field name="res_model">strategiksv.reportesv.sales_consumer.report</field>
+		<field name="view_type">tree</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="oe_view_nocontent_create">Ventas a Consumidores</p>
+		</field>
+	</record>
 
-    <!-- Top menu item -->
-    <!--
-    <menuitem name="reportesv" id="reportesv.menu_root"/>
-    -->
-    <!-- menu categories -->
-    <!--
-    <menuitem name="Menu 1" id="reportesv.menu_1" parent="reportesv.menu_root"/>
-    <menuitem name="Menu 2" id="reportesv.menu_2" parent="reportesv.menu_root"/>
-    -->
-    <!-- actions -->
-    <!--
-    <menuitem name="List" id="reportesv.menu_1_list" parent="reportesv.menu_1"
-              action="reportesv.action_window"/>
-    <menuitem name="Server to list" id="reportesv" parent="reportesv.menu_2"
-              action="reportesv.action_server"/>
-    -->
+
+    <menuitem id="main_strategiksv_consumersalesreportsv_menu" name="Administracion de Reporte de Ventas a Consumidores"/>
+    <menuitem id="consumer_sales_reportsv_menu" name="Reporte de Ventas"
+      parent="main_strategiksv_consumersalesreportsv_menu"/>
+    <menuitem id="reporteVentasCons_menu" name="Ventas_Consumidores"
+        parent="consumer_sales_reportsv_menu"
+        action="sv_action_reporteVentasConsumidores"/>
+
   </data>
 </odoo>
