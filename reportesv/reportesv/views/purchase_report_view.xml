@@ -2,11 +2,12 @@
   <data>
     <record model="ir.ui.view" id="purchase_report_sql_tree">
       <field name="name">strategiksv purchase report sql tree</field>
-      <field name="res_model">strategiksv.reportesv.purchase.report</field>
+      <field name="model">strategiksv.reportesv.purchase.report</field>
       <field name="arch" type="xml">
-        <p>Compras</p>
         <tree string="Compras-list">
           <field name="company_id"/>
+          <!--field name="anio"/>
+          <field name="mes"/-->
           <field name="fecha"/>
           <field name="factura"/>
           <field name="proveedor"/>
@@ -20,7 +21,7 @@
       </field>
     </record>
 
-  <record model="ir.actions.act_window" id="sv_action_reporteCompras">
+  <!--record model="ir.actions.act_window" id="sv_action_reporteCompras">
 		<field name="name">Compras</field>
 		<field name="res_model">strategiksv.reportesv.purchase.report</field>
 		<field name="view_type">tree</field>
@@ -28,15 +29,15 @@
 		<field name="help" type="html">
 			<p class="oe_view_nocontent_create">Compras</p>
 		</field>
-	</record>
+	</record-->
 
 
-    <menuitem id="main_strategiksv_purchasereportsv_menu" name="Administracion de Reporte de Compras"/>
+    <!--menuitem id="main_strategiksv_purchasereportsv_menu" name="Reporte de Compras"/>
     <menuitem id="purchasereportsv_menu" name="Reporte de Compras"
       parent="main_strategiksv_purchasereportsv_menu"/>
-    <menuitem id="reporteCompras_menu" name="Compras"
+    <menuitem id="reporteCompras_menu" name="Compras Retención"
         parent="purchasereportsv_menu"
-        action="sv_action_reporteCompras"/>
+        action="sv_action_reporteCompras"/-->
 
   </data>
 </odoo>

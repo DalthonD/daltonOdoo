@@ -2,7 +2,7 @@
   <data>
     <record model="ir.ui.view" id="consumer_sales_report_sql_tree">
       <field name="name">strategiksv consumer sales report sql tree</field>
-      <field name="res_model">strategiksv.reportesv.sales_consumer.report</field>
+      <field name="model">strategiksv.reportesv.sales_consumer.report</field>
       <field name="arch" type="xml">
         <tree string="Ventas-Consumidores-list">
           <field name="company_id"/>
@@ -21,7 +21,7 @@
       </field>
     </record>
 
-  <record model="ir.actions.act_window" id="sv_action_reporteVentasConsumidores">
+  <!--record model="ir.actions.act_window" id="sv_action_reporteVentasConsumidores">
 		<field name="name">Ventas a Consumidores</field>
 		<field name="res_model">strategiksv.reportesv.sales_consumer.report</field>
 		<field name="view_type">tree</field>
@@ -29,15 +29,15 @@
 		<field name="help" type="html">
 			<p class="oe_view_nocontent_create">Ventas a Consumidores</p>
 		</field>
-	</record>
+	</record-->
 
 
-    <menuitem id="main_strategiksv_consumersalesreportsv_menu" name="Administracion de Reporte de Ventas a Consumidores"/>
+    <!--menuitem id="main_strategiksv_consumersalesreportsv_menu" name="Reporte de Ventas a Consumidores"/>
     <menuitem id="consumer_sales_reportsv_menu" name="Reporte de Ventas"
       parent="main_strategiksv_consumersalesreportsv_menu"/>
-    <menuitem id="reporteVentasCons_menu" name="Ventas_Consumidores"
+    <menuitem id="reporteVentasCons_menu" name="Ventas Consumidores"
         parent="consumer_sales_reportsv_menu"
-        action="sv_action_reporteVentasConsumidores"/>
+        action="sv_action_reporteVentasConsumidores"/-->
 
   </data>
 </odoo>

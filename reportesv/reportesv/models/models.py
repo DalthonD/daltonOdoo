@@ -8,26 +8,31 @@ class sv_purchase_report(models.Model):
     _description = "Reporte de Compras"
     _auto = False
 
-    name = fields.Char("Reporte de Compras", readonly=True)
-    description = fields.Char("Reporte Compras", readonly=True)
-    company_id=fields.Many2one('res_company.id', string="Company", help="Company", readonly=True)
-    nrc = fields.Char("NRC", readonly=True)
-    factura = fields.Char("Factura", help="Número de referencia de factura", readonly=True)
-    fecha = fields.Date("Fecha de Factura", readonly=True)
-    proveedor = fields.Char("Proveedor", readonly=True)
-    importacion = fields.Boolean("Importación", readonly=True)
-    gravado = fields.Float("Compras Gravadas", readonly=True)
-    exento = fields.Float("Compras Exentas", readonly=True)
-    iva = fields.Float("IVA", readonly=True)
-    retenido = fields.Float("Anticipo a Cuenta de IVA Retenido", readonly=True)
-    percibido = fields.Float("Anticipo a Cuenta de IVA Percibido", readonly=True)
-    excluido = fields.Float("Compras a Sujetos Excluidos", readonly=True)
-    retencion3 = fields.Float("Retención a Terceros", readonly=True)
+    name = fields.Char("Reporte de Compras")
+    company_id=fields.Many2one('res_company.id', string="Company", help="Company")
+    mes = fields.Integer("Mes", help="Mes de facturación")
+    anio = fields.Integer("Año", help="Año de facturación")
+    nrc = fields.Char("NRC")
+    factura = fields.Char("Factura", help="Número de referencia de factura")
+    fecha = fields.Date("Fecha")
+    proveedor = fields.Char("Proveedor")
+    importacion = fields.Boolean("Importación")
+    gravado = fields.Float("Compras Gravadas")
+    exento = fields.Float("Compras Exentas")
+    iva = fields.Float("IVA")
+    retenido = fields.Float("Anticipo a Cuenta de IVA Retenido")
+    percibido = fields.Float("Anticipo a Cuenta de IVA Percibido")
+    excluido = fields.Float("Compras a Sujetos Excluidos")
+    retencion3 = fields.Float("Retención a Terceros")
 
     @api.model_cr
     def init(self):
-        self.env.cr.execute("""CREATE OR REPLACE VIEW sv_purchase_report AS (select * from (
-select ai.date_invoice as fecha
+        self.env.cr.execute("""CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (
+select 10000000+ai.id as id
+    ,ai.company_id as company_id
+    ,date_part('year',COALESCE(ai.sv_fecha_tax,ai.date_invoice)) as anio
+    ,date_part('month',COALESCE(ai.sv_fecha_tax,ai.date_invoice)) as mes
+    ,ai.date_invoice as fecha
 	,ai.reference as factura
 	,rp.name as proveedor
 	,rp.vat as NRC
@@ -104,7 +109,11 @@ where ai.type='in_invoice'
 
 union all
 
-select min(SI.fecha) as fecha
+select 20000000+SI.id as id
+			   ,SI.company_id as company_id
+               ,SI.mes as mes
+               ,SI.anio as anio
+			   ,min(SI.fecha) as fecha
                ,SI.sv_importacion_number as factura
                ,'DGT' as proveedor
                ,'DGT' as NRC
@@ -117,7 +126,11 @@ select min(SI.fecha) as fecha
                ,sum (SI.Excluido) as  Excluido
                ,sum (SI.retencion3) as  retencion3
 from (
-select ai.date_invoice as fecha
+select ai.id as id
+    ,ai.company_id as company_id
+    ,date_part('year',COALESCE(ai.sv_fecha_tax,ai.date_invoice)) as anio
+    ,date_part('month',COALESCE(ai.sv_fecha_tax,ai.date_invoice)) as mes
+	,ai.date_invoice as fecha
 	,ai.reference as factura
 	,ai.sv_importacion_number
 	,rp.name as proveedor
@@ -193,11 +206,15 @@ where ai.type='in_invoice'
 	and ai.state in ('open','paid')
 	and ((ai.sv_importacion_number is not null) or (trim(ai.sv_importacion_number)!=''))
 ) SI
-group by   SI.sv_importacion_number
+group by   SI.sv_importacion_number, SI.id, SI.anio, SI.mes, SI.company_id
 
 union all
 
-select aml.date as fecha
+select 30000000+aml.id as id
+               ,am.company_id as company_id
+               ,date_part('year', am.date) as anio
+               ,date_part('month', am.date) as mes
+			   ,aml.date as fecha
                ,am.ref as factura
                ,rp.name as proveedor
                ,rp.vat as NRC
@@ -223,12 +240,13 @@ class sv_taxpayer_sales_report(models.Model):
     _auto = False
 
     name = fields.Char("Reporte de Ventas a Contribuyentes")
-    description = fields.Char("Reporte de Ventas a Contribuyentes")
     company_id=fields.Many2one('res_company.id', string="Company", help="Company")
-    nrc = fields.Char("NRC")
-    factura = fields.Char("Factura", help="Número de referencia de factura")
+    anio = fields.Integer("Año")
+    mes = fields.Integer("Mes")
     fecha = fields.Date("Fecha de Factura")
+    factura = fields.Char("Factura", help="Número de referencia de factura")
     cliente = fields.Char("Cliente")
+    nrc = fields.Char("NRC")
     estado = fields.Char("Estado")
     gravado = fields.Float("Gravado")
     exento = fields.Float("Exento")
@@ -238,8 +256,12 @@ class sv_taxpayer_sales_report(models.Model):
 
     @api.model_cr
     def init(self):
-        self.env.cr.execute("""CREATE OR REPLACE VIEW sv_taxpayer_sales_report AS (select * from(
-select ai.date_invoice as fecha
+        self.env.cr.execute("""CREATE OR REPLACE VIEW strategiksv_reportesv_sales_taxpayer_report AS (select * from(
+select 10000000+ai.id as id
+	,ai.company_id as company_id
+	,date_part('year',COALESCE(ai.sv_fecha_tax,ai.date_invoice)) as anio
+	,date_part('month',COALESCE(ai.sv_fecha_tax,ai.date_invoice)) as mes
+	,ai.date_invoice as fecha
 	,ai.reference as factura
 	,rp.name as cliente
 	,rp.vat as NRC
@@ -298,7 +320,11 @@ where ((ai.type='out_invoice') or (ai.type='out_refund'))
 
 union
 
-select ai.date_invoice as fecha
+select 20000000+ai.id as id
+	,ai.company_id as company_id
+	,date_part('year',COALESCE(ai.sv_fecha_tax,ai.date_invoice)) as anio
+	,date_part('month',COALESCE(ai.sv_fecha_tax,ai.date_invoice)) as mes
+	,ai.date_invoice as fecha
 	,ai.reference as factura
 	,'Anulado' as cliente
 	,rp.vat as NRC
@@ -323,7 +349,6 @@ class sv_consumer_sales_report(models.Model):
     _auto = False
 
     name = fields.Char("Reporte de Ventas a Consumidores")
-    description = fields.Char("Reporte de Ventas a Consumidores")
     company_id=fields.Many2one('res_company.id', string="Company", help="Company")
     fecha = fields.Date("Fecha de Factura")
     grupo = fields.Integer("Grupo")
@@ -339,8 +364,9 @@ class sv_consumer_sales_report(models.Model):
 
     @api.model_cr
     def init(self):
-        self.env.cr.execute("""CREATE OR REPLACE VIEW sv_consumer_sales_report AS (Select
-	SS.Fecha
+        self.env.cr.execute("""CREATE OR REPLACE VIEW strategiksv_reportesv_sales_consumer_report AS (Select
+    10000000+SS.id as id
+    ,SS.Fecha
 	,SS.grupo
 	,min(SS.Factura) as DELNum
 	,max(SS.Factura) as ALNum
@@ -352,7 +378,8 @@ class sv_consumer_sales_report(models.Model):
 	,Sum(SS.retenido) as Retenido
 	,estado
 FROM (
-select S.fecha
+select 20000000+S.id as id
+    ,S.fecha
 	,S.factura
 	,S.estado
 	,S.grupo
@@ -371,7 +398,7 @@ select S.fecha
 		else 0.00 end as IvaExportacion
 	,S.Retenido
 from(
-select ai.date_invoice as fecha
+select 30000000+ai.id as id, ai.date_invoice as fecha
 	,coalesce(ai.reference,ai.number) as factura
 	,'valid' as estado
 	,FG.grupo
@@ -423,7 +450,7 @@ where ai.type='out_invoice'
 
 union
 
-select ai.date_invoice as fecha
+select 40000000+ai.id as id, ai.date_invoice as fecha
 	,coalesce(ai.reference,ai.number) as factura
 	,ai.state as estado
 	,FG.grupo
@@ -440,16 +467,4 @@ where ai.type='out_invoice'
 	and ((ai.sv_no_tax is null ) or (ai.sv_no_tax=false))
 	and afp.sv_contribuyente=False
 	and ai.state in ('cancel')
-)S )SS group by SS.fecha, SS.Grupo,SS.estado order by SS.fecha, SS.Grupo)""")
-
-# class reportesv(models.Model):
-#     _name = 'reportesv.reportesv'
-
-#     name = fields.Char()
-#     value = fields.Integer()
-#     value2 = fields.Float(compute="_value_pc", store=True)
-#     description = fields.Text()
-#
-#     @api.depends('value')
-#     def _value_pc(self):
-#         self.value2 = float(self.value) / 100
+)S )SS group by SS.fecha, SS.Grupo,SS.estado, SS.id order by SS.fecha, SS.Grupo)""")

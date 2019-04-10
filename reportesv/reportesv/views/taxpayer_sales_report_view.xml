@@ -3,7 +3,7 @@
 
     <record model="ir.ui.view" id="taxpayer_sales_report_sql_tree">
       <field name="name">strategiksv taxpayer sales report sql tree</field>
-      <field name="res_model">strategiksv.reportesv.sales_taxpayer.report</field>
+      <field name="model">strategiksv.reportesv.sales_taxpayer.report</field>
       <field name="arch" type="xml">
         <tree string="Ventas-Contribuyentes-list">
           <field name="company_id"/>
@@ -21,7 +21,7 @@
       </field>
     </record>
 
-  <record model="ir.actions.act_window" id="sv_action_reporteVentasContribuyentes">
+  <!--record model="ir.actions.act_window" id="sv_action_reporteVentasContribuyentes">
 		<field name="name">Ventas a Contribuyentes</field>
 		<field name="res_model">strategiksv.reportesv.sales_taxpayer.report</field>
 		<field name="view_type">tree</field>
@@ -29,14 +29,14 @@
 		<field name="help" type="html">
 			<p class="oe_view_nocontent_create">Ventas a Contribuyentes</p>
 		</field>
-	</record>
+	</record-->
 
 
-    <menuitem id="main_strategiksv_taxpayersalesreportsv_menu" name="Administracion de Reporte de Ventas a Contribuyentes"/>
-    <menuitem id="taxpayer_sales_reportsv_menu" name="Reporte de Compras"
+    <!--menuitem id="main_strategiksv_taxpayersalesreportsv_menu" name="Reporte de Ventas a Contribuyentes"/>
+    <menuitem id="taxpayer_sales_reportsv_menu" name="Reporte de Ventas"
       parent="main_strategiksv_taxpayersalesreportsv_menu"/>
-    <menuitem id="reporteVentasCont_menu" name="Ventas_Contribuyentes"
+    <menuitem id="reporteVentasCont_menu" name="Ventas Contribuyentes"
         parent="taxpayer_sales_reportsv_menu"
-        action="sv_action_reporteVentasContribuyentes"/>
+        action="sv_action_reporteVentasContribuyentes"/-->
   </data>
 </odoo>
