@@ -6,8 +6,8 @@
       <field name="arch" type="xml">
         <tree string="Compras-list">
           <field name="company_id"/>
-          <!--field name="anio"/>
-          <field name="mes"/-->
+          <field name="anio"/>
+          <field name="mes"/>
           <field name="fecha"/>
           <field name="factura"/>
           <field name="proveedor"/>

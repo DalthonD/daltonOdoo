@@ -1,6 +1,5 @@
 <odoo>
   <data>
-
     <record model="ir.ui.view" id="taxpayer_sales_report_sql_tree">
       <field name="name">strategiksv taxpayer sales report sql tree</field>
       <field name="model">strategiksv.reportesv.sales_taxpayer.report</field>
