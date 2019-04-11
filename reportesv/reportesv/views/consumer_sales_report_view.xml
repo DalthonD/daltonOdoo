@@ -1,43 +1,37 @@
 <odoo>
-  <data>
     <record model="ir.ui.view" id="consumer_sales_report_sql_tree">
-      <field name="name">strategiksv consumer sales report sql tree</field>
-      <field name="model">strategiksv.reportesv.sales_consumer.report</field>
+      <field name="name">Strategiksv Consumer Sales Report</field>
+      <field name="model">strategiksv_reportesv_sales_consumer_report.wizard</field>
       <field name="arch" type="xml">
-        <tree string="Ventas-Consumidores-list">
-          <field name="company_id"/>
-          <field name="fecha"/>
-          <field name="grupo"/>
-          <field name="delnum"/>
-          <field name="alnum"/>
-          <field name="exento"/>
-          <field name="gravadolocal"/>
-          <field name="gravadoexportacion"/>
-          <field name="ivalocal"/>
-          <field name="ivaexportacion"/>
-          <field name="retenido"/>
-          <field name="estado"/>
-        </tree>
+        <form>
+          <group>
+            <field name=""/>
+          <group/>
+          <group col="4">
+            <field name=""/>
+            <field name=""/>
+          <group/>
+          <footer>
+            <button name="check_report" string="Imprimir" type="object" default_focus="1" class="oe_highlight"/>
+            or
+            <button string="Cancelar" class="oe_link" special="cancel"/>
+          <footer/>
+        <form/>
       </field>
     </record>
 
-  <!--record model="ir.actions.act_window" id="sv_action_reporteVentasConsumidores">
-		<field name="name">Ventas a Consumidores</field>
-		<field name="res_model">strategiksv.reportesv.sales_consumer.report</field>
-		<field name="view_type">tree</field>
-		<field name="view_mode">tree,form</field>
+  <record model="ir.actions.act_window" id="action_consumersalesreport_wizard">
+		<field name="name">Ventas a Consumidores(Reporte)</field>
+		<field name="res_model">strategiksv_reportesv_sales_consumer_report.wizard</field>
+    <field name="type">ir.actions.act_window</field>
+    <field name="view_type">form</field>
+		<field name="view_mode">form</field>
+    <field name="view_id" ref="consumer_sales_report_view"/>
+    <field name="target">new</field>
 		<field name="help" type="html">
-			<p class="oe_view_nocontent_create">Ventas a Consumidores</p>
-		</field>
-	</record-->
+	</record>
 
 
-    <!--menuitem id="main_strategiksv_consumersalesreportsv_menu" name="Reporte de Ventas a Consumidores"/>
-    <menuitem id="consumer_sales_reportsv_menu" name="Reporte de Ventas"
-      parent="main_strategiksv_consumersalesreportsv_menu"/>
-    <menuitem id="reporteVentasCons_menu" name="Ventas Consumidores"
-        parent="consumer_sales_reportsv_menu"
-        action="sv_action_reporteVentasConsumidores"/-->
-
-  </data>
+    <menuitem id="sales_pdf_report" name="PDF Reportes" parent="sales_team.menu_sale_report" sequence="20"/>
+      <menuitem id="sale_consumer_report" name="ConsumerReport" action="action_consumersalesreport_wizard" parent="sales_report.sale_pdf_report" sequence="10"/>
 </odoo>

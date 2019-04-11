@@ -468,3 +468,21 @@ where ai.type='out_invoice'
 	and afp.sv_contribuyente=False
 	and ai.state in ('cancel')
 )S )SS group by SS.fecha, SS.Grupo,SS.estado, SS.id order by SS.fecha, SS.Grupo)""")
+
+class sv_consumer_sales_reportWizard(models.TransientModel):
+    _name = "strategiksv_reportesv_sales_consumer_report.wizard"
+    _description = "Wizard para reporte de consumidores"
+
+    company_id = fields.Many2one('res_company.id', string='Nombre de la Compañía', required=True)
+    date_month = fields.Selection([('1','Enero'),('2','Febrero'),('3','Marzo'),('4','Abril'),('5','Mayo'),('6','Junio'),('7','Julio'),('8','Agosto'),('9','Septiembre'),('10','Octubre'),('11','Noviembre'),('12','Diciembre')],string='Mes de facturación',required=True)
+    date_year = fields.Integer("Año", string = 'Año de facturación', requiered=True)
+
+    @api.multi
+    def check_report(self):
+        data = {}
+        data['form'] = self.read(['company_id', 'date_month', 'date_year'])[0]
+        return self._print_report(data)
+
+    def _print_report(self, data):
+        data['form'].update(self.read(['company_id','date_month','date_year'])[0])
+        return self.env['report'].get_action(self, 'strategiksv.reportesv.sales_consumer.report', data=data)
