@@ -5,18 +5,18 @@
       <field name="arch" type="xml">
         <form>
           <group>
-            <field name=""/>
-          <group/>
+            <field name="company_id"/>
+          </group>
           <group col="4">
-            <field name=""/>
-            <field name=""/>
-          <group/>
+            <field name="date_month"/>
+            <field name="date_year"/>
+          </group>
           <footer>
             <button name="check_report" string="Imprimir" type="object" default_focus="1" class="oe_highlight"/>
             or
             <button string="Cancelar" class="oe_link" special="cancel"/>
-          <footer/>
-        <form/>
+          </footer>
+        </form>
       </field>
     </record>
 
