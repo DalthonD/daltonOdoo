@@ -9,7 +9,7 @@
     attachment="Reporte_De_Ventas_a_Contribuyentes.pdf"
     menu="True"/>
 
-  <template id="strategiksv.sales_taxpayer_report_view">
+  <template id="strategiksv.sales_taxpayer_report_sql">
     <t t-name="report_taxpayer_sales_view">
       <t t-call="web.html_container">
         <t foreach="docs" t-as="o">
