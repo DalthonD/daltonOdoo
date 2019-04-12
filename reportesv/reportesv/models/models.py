@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import time
 from odoo import tools
-from odoo import models, fields, api, tools
+from odoo import models, fields, api, report.report_sxw
 from dateutil.parser import parse
 from odoo.exceptions import UserError
 
@@ -487,4 +487,4 @@ class sv_consumer_sales_reportWizard(models.TransientModel):
 
     def _print_report(self, data):
         data['form'].update(self.read(['company_id','date_month','date_year'])[0])
-        return self.env['report'].get_action(self, 'strategiksv.reportesv.sales_consumer.report', data=data)
+        return self.env['strategiksv.reportesv.sales_consumer.report']
