@@ -29,7 +29,6 @@
         'views/purchase_report.xml',
         'views/purchase_report_view.xml',
         'views/consumer_sales_report.xml',
-        'views/consumer_sales_report_template.xml',
         'views/consumer_sales_report_view.xml',
         'views/taxpayer_sales_report.xml',
         'views/taxpayer_sales_report_view.xml',
