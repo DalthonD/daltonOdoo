@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import time
-from odoo.report import report._sxw
+from odoo import report._sxw
 from odoo import tools
 from odoo import models, fields, api, tools
 from dateutil.parser import parse
@@ -369,7 +369,7 @@ class sv_consumer_sales_report(models.Model):
     estado = fields.Char("Estado")
 
     @api.model_cr
-    def init(self):
+    def init(self,data):
         self.env.cr.execute("""CREATE OR REPLACE VIEW strategiksv_reportesv_sales_consumer_report AS (Select
     10000000+SS.id as id
     ,SS.Fecha
