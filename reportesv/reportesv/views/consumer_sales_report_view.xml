@@ -2,7 +2,7 @@
   <data>
     <record model="ir.ui.view" id="consumer_sales_report_sql_tree">
       <field name="name">Strategiksv Consumer Sales Report</field>
-      <field name="model">strategiksv_reportesv_sales_consumer_report.wizard</field>
+      <field name="model">sales_consumer_report.wizard</field>
       <field name="arch" type="xml">
         <form>
           <group>
@@ -23,7 +23,7 @@
 
   <record model="ir.actions.act_window" id="action_consumersalesreport_wizard">
 		<field name="name">Ventas a Consumidores(Reporte)</field>
-		<field name="res_model">strategiksv_reportesv_sales_consumer_report.wizard</field>
+		<field name="res_model">sales_consumer_report.wizard</field>
     <field name="type">ir.actions.act_window</field>
     <field name="view_type">form</field>
 		<field name="view_mode">form</field>

@@ -472,7 +472,7 @@ where ai.type='out_invoice'
 )S )SS group by SS.fecha, SS.Grupo,SS.estado, SS.id order by SS.fecha, SS.Grupo)""")
 
 class sv_consumer_sales_reportWizard(models.TransientModel):
-    _name = "strategiksv_reportesv_sales_consumer_report.wizard"
+    _name = "sales_consumer_report.wizard"
     _description = "Wizard para reporte de consumidores"
 
     company_id=fields.Many2one('res.company', string="Company", help='Company',default=lambda self: self.env.user.company_id.id)
