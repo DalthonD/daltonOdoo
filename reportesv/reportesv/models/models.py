@@ -463,14 +463,14 @@ select 40000000+ai.id as id, ai.date_invoice as fecha
 	,0.0 as Retenido
 from account_invoice ai
 	inner join res_partner rp on ai.partner_id=rp.id
-
+    inner join (select * from facturasAgrupadas( 1 , 1, 2018 , 5)) FG on ai.id=FG.invoice_id
 	left join account_fiscal_position afp on ai.fiscal_position_id=afp.id
 where ai.type='out_invoice'
 	and ((ai.sv_no_tax is null ) or (ai.sv_no_tax=false))
 	and afp.sv_contribuyente=False
 	and ai.state in ('cancel')
 )S )SS group by SS.fecha, SS.Grupo,SS.estado, SS.id order by SS.fecha, SS.Grupo)""")
-#inner join (select * from facturasAgrupadas( 1 , 1, 2018 , 5)) FG on ai.id=FG.invoice_id
+
 class sv_consumer_sales_reportWizard(models.TransientModel):
     _name = "strategiksv_reportesv_sales_consumer_report.wizard"
     _description = "Wizard para reporte de consumidores"
