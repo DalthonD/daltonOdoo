@@ -33,6 +33,6 @@
 
 
     <menuitem id="sales_pdf_report" name="PDF Reportes"/>
-      <menuitem id="sale_consumer_report" name="ConsumerReport" action="action_consumersalesreport_wizard" parent="sale_pdf_report" sequence="10"/>
+      <menuitem id="sale_consumer_report" name="ConsumerReport" action="action_consumersalesreport_wizard" parent="sales_pdf_report" sequence="10"/>
   </data>
 </odoo>
