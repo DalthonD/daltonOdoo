@@ -1,7 +1,7 @@
 <odoo>
   <data>
     <record model="ir.ui.view" id="consumer_sales_report_sql_tree">
-      <field name="name">Strategiksv Consumer Sales Report</field>
+      <field name="name">consumer.sales.report.sql.tree</field>
       <field name="model">sales_consumer_report.wizard</field>
       <field name="arch" type="xml">
         <form>
@@ -27,7 +27,7 @@
     <field name="type">ir.actions.act_window</field>
     <field name="view_type">form</field>
 		<field name="view_mode">form</field>
-    <field name="view_id" ref="consumer_sales_report_view"/>
+    <field name="view_id" ref="consumer_sales_report_sql_tree"/>
     <field name="target">Nuevo</field>
 		<!--field name="help" type="html"-->
 	</record>
