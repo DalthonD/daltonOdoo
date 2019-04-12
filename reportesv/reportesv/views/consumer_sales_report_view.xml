@@ -28,12 +28,11 @@
     <field name="view_type">form</field>
 		<field name="view_mode">form</field>
     <field name="view_id" ref="consumer_sales_report_sql_tree"/>
-    <field name="target">Nuevo</field>
-		<!--field name="help" type="html"-->
+    <field name="target">new</field>
 	</record>
 
 
-    <menuitem id="sales_pdf_report" name="PDF Reportes" parent="sales_team.menu_sale_report" sequence="20"/>
-      <menuitem id="sale_consumer_report" name="ConsumerReport" action="action_consumersalesreport_wizard" parent="sales_report.sale_pdf_report" sequence="10"/>
+    <menuitem id="sales_pdf_report" name="PDF Reportes"/>
+      <menuitem id="sale_consumer_report" name="ConsumerReport" action="action_consumersalesreport_wizard" parent="sale_pdf_report" sequence="10"/>
   </data>
 </odoo>
