@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import time
 from odoo import tools
-from odoo import models, fields, api, report_sxw
+from odoo import models, fields, api
 from dateutil.parser import parse
 from odoo.exceptions import UserError
 
