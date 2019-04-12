@@ -9,6 +9,7 @@ from odoo.exceptions import UserError
 class sv_purchase_report(models.Model):
     _name = 'strategiksv.reportesv.purchase.report'
     _description = "Reporte de Compras"
+    _template = "trategiksv.purchase_report"
     _auto = False
 
     name = fields.Char("Reporte de Compras")
@@ -240,6 +241,7 @@ select 30000000+aml.id as id
 class sv_taxpayer_sales_report(models.Model):
     _name = 'strategiksv.reportesv.sales_taxpayer.report'
     _description = "Reporte de Ventas a Contribuyentes"
+    _template = "strategiksv.sales_taxpayer_report"
     _auto = False
 
     name = fields.Char("Reporte de Ventas a Contribuyentes")
@@ -349,6 +351,7 @@ where ai.type='out_invoice'
 class sv_consumer_sales_report(models.Model):
     _name = 'strategiksv.reportesv.sales_consumer.report'
     _description = "Reporte de Ventas a Consumidores"
+    _template = "strategiksv.sales_consumer_report"
     _auto = False
 
     name = fields.Char("Reporte de Ventas a Consumidores")
