@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 import time
-from odoo import report._sxw
 from odoo import tools
 from odoo import models, fields, api, tools
 from dateutil.parser import parse
@@ -9,7 +8,6 @@ from odoo.exceptions import UserError
 class sv_purchase_report(models.Model):
     _name = 'strategiksv.reportesv.purchase.report'
     _description = "Reporte de Compras"
-    _template = "trategiksv.purchase_report"
     _auto = False
 
     name = fields.Char("Reporte de Compras")
@@ -241,7 +239,6 @@ select 30000000+aml.id as id
 class sv_taxpayer_sales_report(models.Model):
     _name = 'strategiksv.reportesv.sales_taxpayer.report'
     _description = "Reporte de Ventas a Contribuyentes"
-    _template = "strategiksv.sales_taxpayer_report"
     _auto = False
 
     name = fields.Char("Reporte de Ventas a Contribuyentes")
@@ -351,7 +348,6 @@ where ai.type='out_invoice'
 class sv_consumer_sales_report(models.Model):
     _name = 'strategiksv.reportesv.sales_consumer.report'
     _description = "Reporte de Ventas a Consumidores"
-    _template = "strategiksv.sales_consumer_report"
     _auto = False
 
     name = fields.Char("Reporte de Ventas a Consumidores")
@@ -369,7 +365,7 @@ class sv_consumer_sales_report(models.Model):
     estado = fields.Char("Estado")
 
     @api.model_cr
-    def init(self,data):
+    def init(self):
         self.env.cr.execute("""CREATE OR REPLACE VIEW strategiksv_reportesv_sales_consumer_report AS (Select
     10000000+SS.id as id
     ,SS.Fecha
@@ -491,4 +487,4 @@ class sv_consumer_sales_reportWizard(models.TransientModel):
 
     def _print_report(self, data):
         data['form'].update(self.read(['company_id','date_month','date_year'])[0])
-        return self.env['strategiksv.reportesv.sales_consumer.report']
+        return self.env['report'].get_action(self, 'strategiksv.reportesv.sales_consumer.report', data=data)
