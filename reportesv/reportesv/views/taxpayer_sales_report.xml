@@ -6,8 +6,7 @@
     name="strategiksv.sales_taxpayer_report"
     file="strategiksv.sales_taxpayer_report"
     attachment_use="True"
-    attachment="Reporte_De_Ventas_a_Contribuyentes.pdf"
-    menu="True"/>
+    attachment="Reporte_De_Ventas_a_Contribuyentes.pdf"/>
 
   <template id="strategiksv.sales_taxpayer_report">
     <t t-name="report_taxpayer_sales_view">
