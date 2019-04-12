@@ -487,4 +487,4 @@ class sv_consumer_sales_reportWizard(models.TransientModel):
 
     def _print_report(self, data):
         data['form'].update(self.read(['company_id','date_month','date_year'])[0])
-        return self.env['strategiksv.reportesv.sales_consumer.report'].get_action(self, 'init', data=data)
+        return self.env['strategiksv.reportesv.sales_consumer.report']
