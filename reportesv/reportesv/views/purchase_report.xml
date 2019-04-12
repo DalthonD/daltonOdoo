@@ -6,9 +6,10 @@
     name="strategiksv.purchase_report_view"
     file="strategiksv.purchase_report"
     attachment_use="True"
-    attachment="Reporte_De_Compras.pdf"/>
+    attachment="Reporte_De_Compras.pdf"
+    menu="True"/>
 
-  <template id="report_purchase_sql_view">
+  <template id="strategiksv.purchase_report_view">
     <t t-name="report_purchase_view">
       <t t-call="web.html_container">
         <t foreach="docs" t-as="o">

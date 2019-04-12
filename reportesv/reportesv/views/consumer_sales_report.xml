@@ -6,5 +6,6 @@
       name="strategiksv.sales_consumer_report"
       file="strategiksv.sales_consumer_report"
       attachment_use="True"
-      attachment="Reporte_De_Ventas_a_consumirdores.pdf"/>
+      attachment="Reporte_De_Ventas_a_consumirdores.pdf"
+      menu="True"/>
 </odoo>
