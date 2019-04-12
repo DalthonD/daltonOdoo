@@ -475,9 +475,9 @@ class sv_consumer_sales_reportWizard(models.TransientModel):
     _name = "strategiksv_reportesv_sales_consumer_report.wizard"
     _description = "Wizard para reporte de consumidores"
 
-    company_id=fields.Many2one('res.company',string="Company",help='Company',default=lambda self: self.env.user.company_id.id)
+    company_id=fields.Many2one('res.company', string="Company", help='Company',default=lambda self: self.env.user.company_id.id)
     date_month = fields.Selection([('1','Enero'),('2','Febrero'),('3','Marzo'),('4','Abril'),('5','Mayo'),('6','Junio'),('7','Julio'),('8','Agosto'),('9','Septiembre'),('10','Octubre'),('11','Noviembre'),('12','Diciembre')],string='Mes de facturación',required=True)
-    date_year = fields.Integer("Año", string ="Año de facturación", requiered=True)
+    date_year = fields.Integer("Año de facturación", requiered=True)
 
     @api.multi
     def check_report(self):
