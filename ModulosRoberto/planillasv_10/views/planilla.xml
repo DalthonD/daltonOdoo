@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<openerp>
+    <data>
+
+		<record id="hr_view_sv_payslip" model="ir.ui.view">
+            <field name="name">hr.view.sv.payslip.form</field>
+            <field name="model">hr.payslip</field>
+            <field name="inherit_id" ref="hr_payroll.view_hr_payslip_form"/>
+            <field name="arch" type="xml">
+				<xpath expr="//field[@name='credit_note']" position="after">
+					<field name="sv_apply_isr"/>
+					<field name="sv_isr"/>
+					<field name="sv_he_diurna"/>
+					<field name="sv_he_nocturna"/>
+				</xpath>
+
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_sv_banco_form">
+            <field name="name">planillasv_10.banco.form</field>
+            <field name="model">planillasv_10.banco</field>
+            <field name="arch" type="xml">
+                <form string="Instituciones financieras-Prestamos en planilla">
+					<header>
+
+                    </header>
+                    <sheet>
+                            <group name="main" >
+									<field name="name" />
+									<field name="code" />
+									<field name="comment" />
+                               
+                            </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        
+        
+       
+        
+        <record model="ir.ui.view" id="view_sv_banco_tree">
+            <field name="name">vi.hr.banco.tree</field>
+            <field name="model">planillasv_10.banco</field>
+            <field name="arch" type="xml">
+                <tree string="Instituciones financieras-Prestamos en planilla" >
+                    <field name="name"/>
+                    <field name="code" />
+                    <field name="comment" />
+                    
+                </tree>
+            </field>
+        </record>
+        
+        
+        <record model="ir.actions.act_window" id="sv_banco_action">
+            <field name="name">Instituciones financieras-Prestamos en planilla</field>
+            <field name="res_model">planillasv_10.banco</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Instituciones financieras para registrar prestamos en planilla</p>
+            </field>
+        </record>
+ 
+        <menuitem name="Bancos -Prestamos " 
+			parent="hr_payroll.menu_hr_payroll_configuration" 
+			id="planillasv_10.banco" 
+			sequence="30" 
+			action="sv_banco_action"
+			/>
+			
+			
+			
+			
+			
+			
+		<record model="ir.ui.view" id="view_sv_prestamos_form">
+            <field name="name">vi.hr.prestamo.form</field>
+            <field name="model">planillasv_10.prestamo</field>
+            <field name="arch" type="xml">
+                <form string="Prestamos a Instituciones financieras-Prestamos">
+					<header>
+
+                    </header>
+                    <sheet>
+						<group name="main" >
+							<field name="name" />
+							<field name="comment" />
+                            <field name="employee_id" />
+							<field name="banco_id" />
+							<field name="sv_monto" />
+							<field name="sv_cuota" />
+							<field name="sv_fecha" />
+							<field name="sv_fecha_inicio" />
+							<field name="sv_fecha_fin" />
+							<field name="sv_day" />
+							<field name="sv_cuotas" />
+							<field name="sv_filename" invisible="1"/>
+							<field name="sv_documento"  filename="sv_filename" widget="pdfviewer"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_sv_prestamo_tree">
+            <field name="name">vi.hr.prestamo.tree</field>
+            <field name="model">planillasv_10.prestamo</field>
+            <field name="arch" type="xml">
+                <tree string="Prestamos bancarios o descuenstos de otras instituciones" >
+                    <field name="name"/>
+                    <field name="employee_id" />
+                    <field name="banco_id" />
+                    <field name="sv_monto" />
+                    <field name="sv_cuota" />
+                </tree>
+            </field>
+        </record>
+        
+        
+        <record model="ir.actions.act_window" id="sv_prestamo_action">
+            <field name="name">Prestamos a  Instituciones financieras</field>
+            <field name="res_model">planillasv_10.prestamo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Prestamos a instituciones financieras</p>
+            </field>
+        </record>
+ 
+        <menuitem name="Prestamos a instituciones " 
+			parent="hr_payroll.menu_hr_payroll_root" 
+			id="planillasv_10.prestamo" 
+			sequence="30" 
+			action="sv_prestamo_action"
+			/>
+
+        <record model="ir.ui.view" id="view_sv_bono_form">
+            <field name="name">vi.hr.bono.form</field>
+            <field name="model">planillasv_10.bono</field>
+            <field name="arch" type="xml">
+                <form string="Bonos a empleados">
+					<header>
+
+                    </header>
+                    <sheet>
+						<group name="main" >
+							<field name="name" />
+							<field name="comment" />
+                            <field name="employee_id" />
+							<field name="sv_monto" />
+							<field name="sv_fecha" />
+							<field name="sv_pagado" string="Pagado"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_sv_bono_tree">
+            <field name="name">vi.hr.bono.tree</field>
+            <field name="model">planillasv_10.bono</field>
+            <field name="arch" type="xml">
+                <tree string="Bonos a empleados" >
+                    <field name="name"/>
+                    <field name="employee_id" />
+                    <field name="comment" />
+                    <field name="sv_fecha" />
+                </tree>
+            </field>
+        </record>
+        
+        
+        <record model="ir.actions.act_window" id="sv_bono_action">
+            <field name="name">Bonos a empleados</field>
+            <field name="res_model">planillasv_10.bono</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Bonos a empleados</p>
+            </field>
+        </record>
+ 
+        <menuitem name="Bonos a empleados " 
+			parent="hr_payroll.menu_hr_payroll_root" 
+			id="planillasv_10.bono" 
+			sequence="40" 
+			action="sv_bono_action"
+			/>
+        
+        
+        
+        <record model="ir.ui.view" id="view_sv_incapacidad_form">
+            <field name="name">vi.hr.incapacidad.form</field>
+            <field name="model">planillasv_10.incapacidad</field>
+            <field name="arch" type="xml">
+                <form string="Registro de incapacidades">
+					<header>
+
+                    </header>
+                    <sheet>
+						<group name="main" >
+							<field name="name" />
+							<field name="comment" />
+                            <field name="employee_id" />
+							<field name="sv_dias_pago_completo" />
+							<field name="sv_dias_pago_parcial" />
+							<field name="sv_fecha" />
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.ui.view" id="view_sv_incapacidad_tree">
+            <field name="name">vi.hr.incapacidad.tree</field>
+            <field name="model">planillasv_10.incapacidad</field>
+            <field name="arch" type="xml">
+                <tree string="Registro de incapcidades" >
+                    <field name="name"/>
+                    <field name="employee_id" />
+                    <field name="sv_fecha" />
+                    <field name="sv_dias_pago_completo" />
+                    <field name="sv_dias_pago_parcial" />
+                </tree>
+            </field>
+        </record>
+        
+        
+        <record model="ir.actions.act_window" id="sv_incapacidad_action">
+            <field name="name">Registro de incapacidades</field>
+            <field name="res_model">planillasv_10.incapacidad</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">Registro de incapacidades</p>
+            </field>
+        </record>
+ 
+        <menuitem name="Registro de incapacidades " 
+			parent="hr_payroll.menu_hr_payroll_root" 
+			id="planillasv_10.incapacidad" 
+			sequence="30" 
+			action="sv_incapacidad_action"
+			/>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+       
+    </data>
+</openerp>

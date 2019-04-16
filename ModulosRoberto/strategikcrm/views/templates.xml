@@ -1,0 +1,9 @@
+<odoo>
+    <data>
+        <template id="assets" inherit_id="web.assets_backend">
+          <xpath expr="." position="inside">
+              <script type="text/javascript" src="/strategikcrm/static/js/openwindows.js"></script>
+          </xpath>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,75 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="strategikcrm.quotation_format_tree">
+      <field name="name">strategikcrm.format_tree</field>
+      <field name="model">strategikcrm.quotation_format</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+        </tree>
+      </field>
+    </record>
+
+	  <record model="ir.ui.view" id="strategikcrm.quotation_format_form">
+      <field name="name">strategikcrm.format_form</field>
+      <field name="model">strategikcrm.quotation_format</field>
+      <field name="arch" type="xml">
+		<form >
+                <sheet>
+					<group>
+                            <field name="name" />
+                            <field name="show_detail" />
+                            <field name="pre_content" widget="html" />
+                            <field name="post_content" widget="html" />
+                        </group>
+                </sheet>
+                </form>
+       </field>
+    </record>
+    
+    
+    <record model="ir.actions.act_window" id="strategikcrm.quotation_format_act">
+		<field name="name">Formatos de cotizaciones</field>
+		<field name="res_model">strategikcrm.quotation_format</field>
+		<field name="view_type">form</field>
+		<field name="view_mode">tree,form</field>
+		<field name="help" type="html">
+			<p class="oe_view_nocontent_create">Formatos a utilizar en las cotizaciones</p>
+		</field>
+	</record>
+
+    
+    <menuitem name="Formatos de cotizacion" 
+		parent="sales_team.menu_sales" 
+		id="strategikcrm.quotation_format_mnu" 
+		sequence="31" 
+		action="strategikcrm.quotation_format_act">
+  </menuitem>
+  
+  
+  <record model="ir.ui.view" id="strategikcrm.quotation_form">
+	  <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="name">strategikcrm quotation form</field>
+      <field name="model">sale.order</field>
+      <field name="arch" type="xml">
+		  <xpath expr="//field[@name='payment_term_id']" position="after">
+			<field name="company_id" invisible="1"/>
+			<field name="quotation_format_id" domain="[('company_id', '=', company_id)]" options="{'no_create': True}"/>
+          </xpath>
+          <xpath expr="//sheet/notebook" position="inside">
+			<page>
+			<group>
+				<field name="pre_content" widget="html"/>
+				<field name="post_content" widget="html"/>
+				<field name="inside_content" widget="html"/>
+			</group>
+			</page>
+          </xpath>
+       </field>
+    </record>
+    
+    
+
+  </data>
+</odoo>
