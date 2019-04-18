@@ -12,3 +12,8 @@
 	path = robertogracias/aspl
 	url = git@github.com:robertogracias/reportspos.git
 	branch = master
+
+[submodule "robertogracias/cryo3"]
+	path = robertogracias/cryo3
+	url = git@github.com:robertogracias/cryo3.git
+	branch = copiaBase
