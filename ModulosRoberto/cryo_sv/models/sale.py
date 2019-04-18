@@ -25,5 +25,7 @@ class CryoCustomer(models.Model):
                 raise ValidationError("Debe ingresar el telefono mobil del cliente")
             if(self.city==False):
                 raise ValidationError("Debe ingresar la ciudad del cliente")
-
+            if(self.email==False):
+                raise ValidationError("Debe ingresar el email del cliente")
     
+
