@@ -17,3 +17,8 @@
 	path = robertogracias/cryo3
 	url = git@github.com:robertogracias/cryo3.git
 	branch = copiaBase
+
+[submodule "robertogracias/wallet"]
+	path = robertogracias/wallet
+	url = git@github.com:robertogracias/wallet.git
+	branch = master
