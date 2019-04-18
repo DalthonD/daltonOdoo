@@ -2,3 +2,8 @@
 	path = robertogracias/odoosv
 	url = git@github.com:robertogracias/odoosv.git
 	branch = 12.0
+
+[submodule "robertogracias/reportspos"]
+	path = robertogracias/reportspos
+	url = git@github.com:robertogracias/reportspos.git
+	branch = master
