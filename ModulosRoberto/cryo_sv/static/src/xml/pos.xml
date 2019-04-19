@@ -2,9 +2,9 @@
 <templates id="template" xml:space="preserve">
 	<t t-name="posticketsv">
 		<div class="pos-sale-ticket">
-			
-			
-			
+
+
+
 			<t t-if="widget.get_iswallet()==true">
 				<div class="pos-center-align">
 					<t t-esc="order.formatted_validation_date"/>
@@ -31,8 +31,8 @@
 						<td>
 							<t t-esc="orderline.get_product().display_name"/>
 							<t t-if="orderline.get_discount() > 0">
-								<div class="pos-disc-font"> with a 
-									<t t-esc="orderline.get_discount()"/>% discount 
+								<div class="pos-disc-font"> with a
+									<t t-esc="orderline.get_discount()"/>% discount
 								</div>
 							</t>
 						</td>
@@ -106,11 +106,7 @@
 					</div>
 				</t>
 			</t>
-			
-			
-			
-			
-			
+
 			<t t-if="widget.get_iswallet()==false">
 				<div class="pos-center-align">
 					<t t-esc="order.formatted_validation_date"/>
@@ -137,8 +133,8 @@
 						<td >
 							<t t-esc="orderline.get_product().display_name"/>
 							<t t-if="orderline.get_discount() > 0">
-								<div class="pos-disc-font"> with a 
-									<t t-esc="orderline.get_discount()"/>% discount 
+								<div class="pos-disc-font"> with a
+									<t t-esc="orderline.get_discount()"/>% discount
 								</div>
 							</t>
 						</td>
@@ -212,10 +208,6 @@
 					</div>
 				</t>
 			</t>
-			
-			
-			
-			
 		</div>
 	</t>
 </templates>
