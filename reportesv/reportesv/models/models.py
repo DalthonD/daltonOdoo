@@ -4,12 +4,12 @@ from odoo import models, fields, api, tools
 from dateutil.parser import parse
 from odoo.exceptions import UserError
 
-class purchase_report_pdf(models.AbstractModel):
+class purchase_report_pdf(models.Model):
     _name = 'report.purchase_report.strategiksv_purchase_report_pdf'
     _auto = False
 
-    @api.model_cr
-    def __init__(self, company_id, date_year, date_month=1):
+    @api.model
+    def __init__(self, company_id, date_year, date_month):
         self._companyId = company_id
         self._sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
     ,ai.reference as factura
@@ -229,20 +229,19 @@ select aml.date as fecha
         }
         return header
 
-    @api.model
-    def render_html(self, ids, data=None, context=None):
+    def render_html(self):
         report_obj = self.pool['report']
         report = report_obj._get_report_from_name(uid, 'purchase_report.strategiksv_purchase_report_pdf')
         docargs = {
-            'doc_ids': ids,
+            'doc_ids': self.ids,
             'doc_model': report.model,
             'docs': create_view(),
             'time': time,
         }
-        return report_obj.render(uid, ids, 'purchase_report.strategiksv_purchase_report_pdf', docargs, context=context)
+        return report_obj.render('purchase_report.strategiksv_purchase_report_pdf', docargs)
 
 
-class sv_repor_reportWizard(models.TransientModel):
+class sv_report_reportWizard(models.TransientModel):
     _name = "report_wizard"
     _description = "Wizard para reporte de consumidores"
 
