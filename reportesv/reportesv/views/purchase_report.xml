@@ -1,26 +1,9 @@
 <odoo>
-  <report id="strategiksv.purchase_report"
-    string="Purchase Report"
-    model="strategiksv.reportesv.purchase.report"
+  <report id="purchase_report_pdf"
+    string=" Strateg-k Purchase Report"
+    model="report.purchase_report.strategiksv_purchase_report_pdf"
     report_type="qweb-pdf"
-    name="strategiksv.purchase_report_view"
+    name="purchase_report.strategiksv_purchase_report_pdf"
     file="strategiksv.purchase_report"
     attachment_use="True"
     attachment="Reporte_De_Compras.pdf"/>
-
-  <template id="report_purchase_sql_view">
-    <t t-name="report_purchase_view">
-      <t t-call="web.html_container">
-        <t foreach="docs" t-as="o">
-          <t t-call="web.external_layout">
-            <div class="page">
-
-              <!--Report page content-->
-
-            </div>
-          </t>
-        </t>
-      </t>
-    </t>
-  </template>
-</odoo>

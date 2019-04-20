@@ -19,17 +19,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','account','purchase','stock'],
+    'depends': ['base','account','purchase','stock', 'strategiksv'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
         'views/purchase_report_view.xml',
-        'views/consumer_sales_report_view.xml',
-
-        'views/taxpayer_sales_report_view.xml',
+        'views/wizard.xml',
 
     ],
     # only loaded in demonstration mode
@@ -37,8 +33,6 @@
         'demo/demo.xml',
     ],
     'qweb': [
-        'views/taxpayer_sales_report.xml',
         'views/purchase_report.xml',
-        'views/consumer_sales_report.xml',
     ],
 }
