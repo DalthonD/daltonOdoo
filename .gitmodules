@@ -22,3 +22,8 @@
 	path = robertogracias/wallet
 	url = git@github.com:robertogracias/wallet.git
 	branch = master
+
+[submodule "robertogracias/odoosv"]
+	path = robertogracias/odoosv
+	url = git@github.com:robertogracias/odoosv.git
+	branch = 12.0
