@@ -4,11 +4,11 @@ from odoo import models, fields, api, tools
 from dateutil.parser import parse
 from odoo.exceptions import UserError
 
-class purchase_report_pdf(models.abstractModel):
+class purchase_report_pdf(models.AbstractModel):
     _name = 'report.purchase_report.strategiksv_purchase_report_pdf'
     _auto = False
 
-    def __init__(self, company_id, date_month, date_year,):
+    def __init__(self, company_id, date_year, date_month):
         self._companyId = company_id
         self._sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
     ,ai.reference as factura
@@ -81,8 +81,8 @@ class purchase_report_pdf(models.abstractModel):
 from account_invoice ai
     inner join res_partner rp on ai.partner_id=rp.id
 where ai.company_id= {0}
-    and date_part('year',COALESCE(ai.sv_fecha_tax,ai.date_invoice))=  {2}
-    and date_part('month',COALESCE(ai.sv_fecha_tax,ai.date_invoice))=  {1}
+    and date_part('year',COALESCE(ai.sv_fecha_tax,ai.date_invoice))=  {1}
+    and date_part('month',COALESCE(ai.sv_fecha_tax,ai.date_invoice))=  {2}
     and ai.type='in_invoice'
     and ((ai.sv_no_tax is null ) or (ai.sv_no_tax=false))
     and ai.state in ('open','paid')
@@ -174,8 +174,8 @@ from (select ai.date_invoice as fecha
 from account_invoice ai
     inner join res_partner rp on ai.partner_id=rp.id
 where ai.company_id= {0}
-    and date_part('year',COALESCE(ai.sv_fecha_tax,ai.date_invoice))= {2}
-    and date_part('month',COALESCE(ai.sv_fecha_tax,ai.date_invoice))= {1}
+    and date_part('year',COALESCE(ai.sv_fecha_tax,ai.date_invoice))= {1}
+    and date_part('month',COALESCE(ai.sv_fecha_tax,ai.date_invoice))= {2}
     and ai.type='in_invoice'
     and ((ai.sv_no_tax is null ) or (ai.sv_no_tax=false))
     and ai.state in ('open','paid')
@@ -202,10 +202,10 @@ select aml.date as fecha
      inner join account_tax_group atg on at.tax_group_id=atg.id
      left join res_partner rp on aml.partner_id=rp.id
  where atg.name='percepcion' and not exists (select id from account_invoice ai where ai.move_id=am.id and ai.company_id= {0} )
-     and date_part('year',am.date)= {2}
-    and date_part('month',am.date)= {1}
+     and date_part('year',am.date)= {1}
+    and date_part('month',am.date)= {2}
     and am.company_id= {0}
-    and am.state='posted') S order by s.Fecha, s.Factura)""".format(company_id,date_month,date_year)
+    and am.state='posted') S order by s.Fecha, s.Factura)""".format(company_id,date_year,date_month)
 
     @api.model_cr
     def create_view(self):

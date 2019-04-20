@@ -1,7 +1,4 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 
-strategiksv_reportesv_purchase_report,access.strategiksv.reportesv.purchase.report,model_report_purchase_report_strategiksv_purchase_report_pdf,account.group_account_manager,1,1,1,1
-all_strategiksv_reportesv_purchase_report,access.strategiksv.reportesv.purchase.report,model_report_purchase_report_strategiksv_purchase_report_pdf,base.group_user,1,0,0,0
-
 strategiksv_reportesv_report_wizard,acces.strategiksv_reportesv.report.wizard,model_report_wizard,account.group_account_manager,1,1,1,1
 all_strategiksv_reportesv_report_wizard,acces.strategiksv_reportesv.report.wizard,model_report_wizard,base.group_user,1,0,0,0
