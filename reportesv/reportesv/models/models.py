@@ -10,7 +10,7 @@ class purchase_report_pdf(models.abstractModel):
 
     def __init__(self, company_id, date_month, date_year,):
         self._companyId = company_id
-        self._sql = """select * from (select ai.date_invoice as fecha
+        self._sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
     ,ai.reference as factura
     ,rp.name as proveedor
     ,rp.vat as NRC
@@ -205,12 +205,12 @@ select aml.date as fecha
      and date_part('year',am.date)= {2}
     and date_part('month',am.date)= {1}
     and am.company_id= {0}
-    and am.state='posted') S order by s.Fecha, s.Factura""".format(company_id,date_month,date_year)
+    and am.state='posted') S order by s.Fecha, s.Factura)""".format(company_id,date_month,date_year)
 
     @api.model_cr
     def create_view(self):
         try:
-            self.env.cr.execute("""CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS ("""_sql""")"""
+            self.env.cr.execute(self._sql)
             data = list(self.env.cr.fetchall())
         except (ValueError, TypeError, UserError):
             print("Error occured when creating view")
@@ -221,7 +221,7 @@ select aml.date as fecha
         compania_info = self.env['res_company']
         id_needed = compania_info.search([('company_id', '=', _companyId)], limit=1).id
         compania = compania_info.browse(id_needed)
-        header { 'name' : compania.name,
+        header = { 'name' : compania.name,
             'nit': compania.sv_nit,
             'nrc': compania.sv_nrc,
             'contador': compania.sv_revisa_partida,
