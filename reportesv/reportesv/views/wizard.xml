@@ -36,7 +36,7 @@
 	</record>
 
 
-    <menuitem id="sales_pdf_report" name="PDF Reportes"/>
-      <menuitem id="sale_consumer_report" name="ConsumerReport" action="action_consumersalesreport_wizard" parent="sales_pdf_report" sequence="10"/>
+    <menuitem id="pdf_report" name="Reportes PDF"/>
+      <menuitem id="púrchase_report" name="PurchaseReport" action="action_report_wizard" parent="pdf_report" sequence="10"/>
   </data>
 </odoo>
