@@ -1,5 +1,4 @@
-<odoo>
-  <report id="purchase_report_pdf"
+<report id="purchase_report_pdf"
     string=" Strateg-k Purchase Report"
     model="report.purchase_report.strategiksv_purchase_report_pdf"
     report_type="qweb-pdf"
