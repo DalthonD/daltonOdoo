@@ -38,7 +38,7 @@
 
     <menuitem id="pdf_report" name="Reportes PDF"/>
       <menuitem id="púrchase_report" name="Purchase_Report" action="action_report_wizard" parent="pdf_report" sequence="10"/>
-      <menuitem id="taxpayer_report" name="Taxpayer_Sales_Report" action="" parent="pdf_reports" sequence="11"/>
-      <menuitem id="consumer_report" name="Consumer_Sales_Report" action="" parent="pdf_reports" sequence="12"/>
+      <menuitem id="taxpayer_report" name="Taxpayer_Sales_Report" parent="pdf_reports" sequence="11"/>
+      <menuitem id="consumer_report" name="Consumer_Sales_Report" parent="pdf_reports" sequence="12"/>
   </data>
 </odoo>
