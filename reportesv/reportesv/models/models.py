@@ -236,7 +236,7 @@ class sv_reportWizard(models.TransientModel):
             'month': wizard_info["date_month"],
         }"""
         data = {}
-        data['form'] = self.read(['company_id','date_year','date_month'])[0]
+        data['form'] = self.read(['company_id','date_year','date_month'])
         if data:
             sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
             ,ai.reference as factura
@@ -432,7 +432,7 @@ class sv_reportWizard(models.TransientModel):
          and date_part('year',am.date)= {1}
         and date_part('month',am.date)= {2}
         and am.company_id= {0}
-        and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][1],data['form'][2],data['form'][3])
+        and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][0],data['form'][1],data['form'][0])
         else:
             raise UserError("No data sent")
 
