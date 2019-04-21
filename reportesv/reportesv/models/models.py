@@ -236,7 +236,7 @@ class sv_reportWizard(models.TransientModel):
         and date_part('month',am.date)= {2}
         and am.company_id= {0}
         and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
-        self._companyId = data['form'][0]['company_id'][0]
+            self._companyId = data['form'][0]['company_id'][0]
         else:
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
 
@@ -246,6 +246,7 @@ class sv_reportWizard(models.TransientModel):
         reg = list(self.env.cr.fetchall())
         return reg
 
+    @api.multi
     def get_header_info(self):
         compania_info = self.env['res_company']
         id_needed = compania_info.search([('company_id', '=', self._companyId)], limit=1).id
