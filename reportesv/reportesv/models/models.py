@@ -37,7 +37,7 @@ class sv_reportWizard(models.TransientModel):
         data = {}
         data['form'] = self.read(['company_id','date_year','date_month'])[0:]
         if len(data['form'])>0:
-            sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
+            self._sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
             ,ai.reference as factura
             ,rp.name as proveedor
             ,rp.vat as NRC
@@ -232,7 +232,7 @@ class sv_reportWizard(models.TransientModel):
         and date_part('month',am.date)= {2}
         and am.company_id= {0}
         and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
-            reporte = sv_purchase_report.init(sql)
+            reporte = sv_purchase_report.init(self._sql)
         else:
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
 
