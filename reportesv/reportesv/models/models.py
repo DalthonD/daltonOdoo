@@ -13,8 +13,8 @@ class sv_purchase_report(models.AbstractModel):
 
     @staticmethod
     def init(*args):
-        if len(args)>=3:
-            sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
+        #if len(args)>=3:
+        sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
         ,ai.reference as factura
         ,rp.name as proveedor
         ,rp.vat as NRC
@@ -209,8 +209,8 @@ select aml.date as fecha
     and date_part('month',am.date)= {2}
     and am.company_id= {0}
     and am.state='posted') S order by s.Fecha, s.Factura)""".format(args[0],args[1],args[2])
-        else:
-            raise NameError(args[0:])
+        #else:
+        #    raise NameError(args[0:])
 
 
 
