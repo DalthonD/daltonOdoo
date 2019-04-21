@@ -426,7 +426,8 @@ class sv_reportWizard(models.TransientModel):
         and am.company_id= {0}
         and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][1],data['form'][2],data['form'][3])
         else:
-            raise UserError("No data sent")
+            raise NameError(data['form'])
+            raise UserError("No data sent %s ", len(data['form']))
 
     def _print_report(self, data):
         data['form'].update(self.read(['company_id','date_year','date_month'])[0])
