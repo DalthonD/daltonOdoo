@@ -19,9 +19,9 @@ from odoo.exceptions import UserError
 
 class sv_purchase_report(models.AbstractModel):
     _name = 'report.purchase_report.strategiksv_purchase_report_pdf'
-    _inherit = 'report.abstract_report'
+    #_inherit = 'report.abstract_report'
     _template = 'strategiksv_purchase_report_pdf'
-    _wrapped_report_class = report_parser
+    #_wrapped_report_class = report_parser
     _description = "Reporte de Compras"
     _auto = False
 
@@ -244,7 +244,7 @@ class sv_reportWizard(models.TransientModel):
             self._companyId = data['form'][0]['company_id'][0]
         else:
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
-        return self.pool['report'].get_action(self,'strategiksv_purchase_report_pdf')
+        return self.env['report'].get_action(self,'strategiksv_purchase_report_pdf')
 
     @api.model_cr
     def create_view(self):
