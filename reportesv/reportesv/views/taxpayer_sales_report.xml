@@ -1,5 +1,4 @@
-<odoo>
-  <report id="strategiksv.sales_taxpayer_report"
+<report id="strategiksv.sales_taxpayer_report"
     string="Taxpayer Sales Report"
     model="strategiksv.reportesv.sales_taxpayer.report"
     report_type="qweb-pdf"
@@ -7,20 +6,3 @@
     file="strategiksv.sales_taxpayer_report"
     attachment_use="True"
     attachment="Reporte_De_Ventas_a_Contribuyentes.pdf"/>
-
-  <template id="report_taxpayer_sales_sql_view">
-    <t t-name="report_taxpayer_sales_view">
-      <t t-call="web.html_container">
-        <t foreach="docs" t-as="o">
-          <t t-call="web.external_layout">
-            <div class="page">
-
-              <!--Report page content-->
-
-            </div>
-          </t>
-        </t>
-      </t>
-    </t>
-  </template>
-</odoo>

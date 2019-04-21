@@ -1,5 +1,4 @@
-<odoo>
-    <report id="action_report_consumersales"
+<report id="action_report_consumersales"
       string="Consumer Sales Report"
       model="strategiksv.reportesv.sales_consumer.report"
       report_type="qweb-pdf"
@@ -7,23 +6,3 @@
       file="strategiksv.sales_consumer_report"
       attachment_use="True"
       attachment="Reporte_De_Ventas_a_consumirdores.pdf"/>
-
-      <template id="report_consumer_sales">
-        <t t-name="report_consumer_sales_view">
-          <t t-call="web.html_container">
-            <t foreach="docs" t-as="o">
-              <t t-call="report.internal_layout">
-                <div class="page">
-
-                  <!--Report page content-->
-                  <div>
-                    <span style="font-size: 18px;">Reporte de Ventas consumidores</span> : <span style="font-size: 16px;"/>
-                  </div>
-
-                </div>
-              </t>
-            </t>
-          </t>
-        </t>
-      </template>
-</odoo>

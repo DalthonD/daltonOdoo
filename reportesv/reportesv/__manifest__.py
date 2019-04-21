@@ -26,7 +26,6 @@
         'security/ir.model.access.csv',
         'views/purchase_report_view.xml',
         'views/wizard.xml',
-        'views/taxpayer_sales_report_view.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
@@ -34,5 +33,7 @@
     ],
     'qweb': [
         'views/purchase_report.xml',
+        'views/taxpayer_sales_report.xml',
+        'views/consumer_sales_report.xml',
     ],
 }
