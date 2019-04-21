@@ -236,18 +236,35 @@ class sv_reportWizard(models.TransientModel):
         and date_part('month',am.date)= {2}
         and am.company_id= {0}
         and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
-            sv_purchase_report.init(self._sql)
+        self._companyId = data['form'][0]['company_id'][0]
         else:
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
 
     @api.model_cr
-    def create_view(self, sql):
-        self.env.cr.execute(sql)
+    def create_view(self):
+        self.env.cr.execute(self._sql)
         reg = list(self.env.cr.fetchall())
         return reg
 
-    def _print_report(self, data):
-        data['form'].update(self.read(['company_id','date_year','date_month'])[0])
-        #data['form'][0],data['form'][1],data['form'][2]
-        #return self.env['strategiksv.reportesv.sales_consumer.report']
-        #reporte = sv_purchase_report.init(data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
+    def get_header_info(self):
+        compania_info = self.env['res_company']
+        id_needed = compania_info.search([('company_id', '=', self._companyId)], limit=1).id
+        compania = compania_info.browse(id_needed)
+        header = { 'name' : compania.name,
+            'nit': compania.sv_nit,
+            'nrc': compania.sv_nrc,
+            'contador': compania.sv_revisa_partida,
+        }
+        return header
+
+    @api.model
+    def render_html(self):
+        report_obj = self.pool['report']
+        report = report_obj._get_report_from_name(uid, 'purchase_report.strategiksv_purchase_report_pdf')
+        docargs = {
+            'doc_ids': self.ids,
+            'doc_model': report.model,
+            'docs': create_view(),
+            'time': time,
+        }
+        return report_obj.render('purchase_report.strategiksv_purchase_report_pdf', docargs)
