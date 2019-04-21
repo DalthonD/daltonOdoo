@@ -18,7 +18,7 @@ from odoo.exceptions import UserError
         self.localcontext['objects'] = objects"""
 
 class sv_purchase_report(models.AbstractModel):
-    _name = 'report.purchase_report.strategiksv_purchase_report_pdf'
+    _name = 'purchase_report'
     #_inherit = 'report.abstract_report'
     _template = 'strategiksv_purchase_report_pdf'
     #_wrapped_report_class = report_parser
