@@ -23,7 +23,7 @@
 
     # always loaded
     'data': [
-        'views/purchase_report.xml',
+        'views/reports.xml',
         'views/purchase_report_view.xml',
         'views/wizard.xml',
         'security/ir.model.access.csv',
