@@ -6,17 +6,6 @@ from collections import defaultdict
 from dateutil.parser import parse
 from odoo.exceptions import UserError
 
-"""class report_parser(object):
-    def __init__(self, cr, uid, name, context):
-        self.localcontext = {
-            'next_seq': 'value',
-            'select_value': self._function,
-        }
-
-    def set_context(self, objects, data, ids, report_type = None):
-        self.localcontext['data'] = data
-        self.localcontext['objects'] = objects"""
-
 class sv_purchase_report(models.AbstractModel):
     _name = 'purchase_report'
     #_inherit = 'report.abstract_report'
