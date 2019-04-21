@@ -4,7 +4,7 @@
       <field name="name">Asistente de Reportes</field>
       <field name="model">report_wizard</field>
       <field name="arch" type="xml">
-        <form>
+        <form string="Asistente">
           <group>
             <field name="company_id"/>
           </group>

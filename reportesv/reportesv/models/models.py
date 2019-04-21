@@ -375,11 +375,16 @@ class sv_reportWizard(models.TransientModel):
 
     @api.multi
     def check_report(self):
-        data = {}
-        data['form'] = self.read(['company_id', 'date_year', 'date_month', 'serie_lenght', 'show_serie'])[0]
-        list_args = list(data.get('form'))
-        reporte = sv_purchase_report.init(list_args[0],list_args[1],list_args[2])
-        return self._print_report(data)
+        wizard_info = self.browse()
+        data = {
+            'company_id': wizard_info.company_id,
+            'year': wizard_info.date_year,
+            'month': wizard_info.date_month,
+        }
+        #data['form'] = self.read(['company_id', 'date_year', 'date_month', 'serie_lenght', 'show_serie'])[0]
+        #list_args = list(data.get('form'))
+        reporte = sv_purchase_report.init(data.get('company_id'),data.get('year'),data.get('month'))
+        #return self._print_report(data)
 
     def _print_report(self, data):
         data['form'].update(self.read(['company_id','date_year','date_month'])[0])
