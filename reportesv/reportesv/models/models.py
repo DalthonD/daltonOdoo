@@ -6,27 +6,10 @@ from collections import defaultdict
 from dateutil.parser import parse
 from odoo.exceptions import UserError
 
-class sv_purchase_report(models.Model):
+class sv_purchase_report(models.AbstractModel):
     _name = 'strategiksv.reportesv.purchase.report'
     _description = "Reporte de Compras"
     _auto = False
-
-    name = fields.Char("Reporte de Compras")
-    company_id=fields.Many2one('res_company.id', string="Company", help="Company")
-    mes = fields.Integer("Mes", help="Mes de facturación")
-    anio = fields.Integer("Año", help="Año de facturación")
-    nrc = fields.Char("NRC")
-    factura = fields.Char("Factura", help="Número de referencia de factura")
-    fecha = fields.Date("Fecha")
-    proveedor = fields.Char("Proveedor")
-    importacion = fields.Boolean("Importación")
-    gravado = fields.Float("Compras Gravadas")
-    exento = fields.Float("Compras Exentas")
-    iva = fields.Float("IVA")
-    retenido = fields.Float("Anticipo a Cuenta de IVA Retenido")
-    percibido = fields.Float("Anticipo a Cuenta de IVA Percibido")
-    excluido = fields.Float("Compras a Sujetos Excluidos")
-    retencion3 = fields.Float("Retención a Terceros")
 
     @staticmethod
     @api.model
@@ -375,15 +358,17 @@ class sv_reportWizard(models.TransientModel):
 
     @api.multi
     def check_report(self):
-        wizard_info = self.browse()
+        wizard_info = self
         data = {
             'company_id': wizard_info.company_id,
             'year': wizard_info.date_year,
             'month': wizard_info.date_month,
         }
         #data['form'] = self.read(['company_id', 'date_year', 'date_month', 'serie_lenght', 'show_serie'])[0]
-        #list_args = list(data.get('form'))
-        reporte = sv_purchase_report.init(data.get('company_id'),data.get('year'),data.get('month'))
+        if data:
+            reporte = sv_purchase_report.init(data['company_id'], data['year'], data['month'])
+        else:
+            raise UserError("No data sent")
         #return self._print_report(data)
 
     def _print_report(self, data):
