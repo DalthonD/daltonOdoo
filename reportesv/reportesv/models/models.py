@@ -231,9 +231,9 @@ class sv_reportWizard(models.TransientModel):
     def check_report(self):
         wizard_info = dict(self.env.context)
         data = {
-            'company_id': wizard_info['company_id'],
-            'year': wizard_info['date_year'],
-            'month': wizard_info['date_month'],
+            'company_id': wizard_info["company_id"],
+            'year': wizard_info["date_year"],
+            'month': wizard_info["date_month"],
         }
         #data['form'] = self.read(['company_id', 'date_year', 'date_month', 'serie_lenght', 'show_serie'])[0]
         if data:
