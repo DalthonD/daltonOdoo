@@ -13,20 +13,17 @@
           <field name="name">Reportes</field>
           <field name="default" eval="True"/>
           <field name="format">A4</field>
-          <!--field name="page_height">297</field>
-          <field name="page_width">80</field>
+          <name="page_height">297</field>
+          <field name="page_width">210</field>
           <field name="orientation">Portrait</field>
-          <field name="margin_top">1</field>
-          <field name="margin_bottom">1</field>
-          <field name="margin_left">1</field>
-          <field name="margin_right">1</field>
+          <field name="margin_top">40</field>
+          <field name="margin_bottom">28</field>
+          <field name="margin_left">7</field>
+          <field name="margin_right">7</field>
           <field name="header_line" eval="False" />
-          <field name="header_spacing">0</field>
-          <field name="dpi">90</field-->
-          <field name="report_ids" eval="[(6,0,[ref('purchase_report.purchase_report_pdf')])]"/>
-
-
-
+          <field name="header_spacing">35</field>
+          <field name="dpi">90</field>
+          <field name="report_ids" eval="[ref('purchase_report.purchase_report_pdf')]"/>
       </record>
   </data>
 </odoo>
