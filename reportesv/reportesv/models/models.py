@@ -14,8 +14,10 @@ class sv_purchase_report(models.AbstractModel):
     @staticmethod
     @api.multi
     def init(*args):
-        s = args[0] if args[0] else "sql"
-        raise NameError(args)
+        try:
+            s = args[0] if args[0] else "sql"
+        except:
+            raise IndexError(args)
         #return create_view(s)
 
     @api.model_cr
