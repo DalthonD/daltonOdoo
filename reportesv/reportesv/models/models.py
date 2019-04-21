@@ -11,8 +11,8 @@ class sv_purchase_report(models.AbstractModel):
     _description = "Reporte de Compras"
     _auto = False
 
-    @staticmethod
-    def init(sql):
+    #@staticmethod
+    def __init__(self,sql):
         s = sql
         return create_view(s)
 
@@ -232,7 +232,7 @@ class sv_reportWizard(models.TransientModel):
         and date_part('month',am.date)= {2}
         and am.company_id= {0}
         and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
-            reporte = sv_purchase_report.init(self._sql)
+            reporte = sv_purchase_report(self._sql)
         else:
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
 
