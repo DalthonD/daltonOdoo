@@ -11,6 +11,10 @@ class sv_purchase_report(models.AbstractModel):
     _description = "Reporte de Compras"
     _auto = False
 
+    def __init__(self):
+        super(sv_purchase_report,self).__init__(_name,self)
+
+
     @staticmethod
     def init(*args):
         s = args[0] if args else "sql"
