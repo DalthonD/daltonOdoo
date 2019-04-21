@@ -207,7 +207,8 @@ select aml.date as fecha
      and date_part('year',am.date)= {1}
     and date_part('month',am.date)= {2}
     and am.company_id= {0}
-    and am.state='posted') S order by s.Fecha, s.Factura)"""
+    and am.state='posted') S order by s.Fecha, s.Factura)""".format(args[0],args[1],args[2])
+    return create_view(sql)
 
     @api.model_cr
     def create_view(self, sql):
@@ -228,8 +229,8 @@ class sv_reportWizard(models.TransientModel):
     @api.multi
     def check_report(self):
         data = {}
-        data['form'] = self.read(['company_id','date_year','date_month'])[0:]
-        if len(data['form'])>=2:
+        data['form'] = self.read(['company_id','date_year','date_month'])[1:]
+        if len(data['form'])>=0:
             sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
             ,ai.reference as factura
             ,rp.name as proveedor
@@ -424,10 +425,10 @@ class sv_reportWizard(models.TransientModel):
          and date_part('year',am.date)= {1}
         and date_part('month',am.date)= {2}
         and am.company_id= {0}
-        and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][1],data['form'][2],data['form'][3])
+        and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
+            reporte = sv_purchase_report.init(data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
         else:
             raise NameError(data['form'])
-            raise UserError("No data sent %s ", len(data['form']))
 
     def _print_report(self, data):
         data['form'].update(self.read(['company_id','date_year','date_month'])[0])
