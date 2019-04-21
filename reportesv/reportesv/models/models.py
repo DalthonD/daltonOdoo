@@ -13,10 +13,8 @@ class sv_purchase_report(models.AbstractModel):
 
     @staticmethod
     def init(sql):
-        #if len(args)>=3:
-        sql = sql
-
-
+        s = sql
+        return create_view(s)
 
     @api.model_cr
     def create_view(self, sql):
