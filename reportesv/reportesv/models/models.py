@@ -244,7 +244,7 @@ class sv_reportWizard(models.TransientModel):
             self._companyId = data['form'][0]['company_id'][0]
         else:
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
-        return self.env.ref('purchase_report.strategiksv_purchase_report_pdf').report_action(self, data=create_view())
+        return self.env.ref('purchase_report.purchase_report_pdf').report_action(self, data=create_view()) #purchase_report.strategiksv_purchase_report_pdf
 
     @api.model_cr
     def create_view(self):
