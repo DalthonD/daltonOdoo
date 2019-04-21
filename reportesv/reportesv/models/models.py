@@ -7,17 +7,15 @@ from dateutil.parser import parse
 from odoo.exceptions import UserError
 
 class sv_purchase_report(models.AbstractModel):
-    _name = 'strategiksv.reportesv.purchase.report'
+    _name = 'report.purchase_report.strategiksv_purchase_report_pdf'
     _description = "Reporte de Compras"
     _auto = False
 
-    def __init__(self):
-        super(sv_purchase_report,self).__init__(_name,self)
-
-
     @staticmethod
+    @api.multi
     def init(*args):
-        s = args[0] if args else "sql"
+        s = args[0] if args[0] else "sql"
+        raise NameError(args)
         #return create_view(s)
 
     @api.model_cr
@@ -236,9 +234,15 @@ class sv_reportWizard(models.TransientModel):
         and date_part('month',am.date)= {2}
         and am.company_id= {0}
         and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
-            #reporte = sv_purchase_report(self._sql)
+            reporte = sv_purchase_report(self._sql)
         else:
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
+
+    @api.model_cr
+    def create_view(self, sql):
+        self.env.cr.execute(sql)
+        reg = list(self.env.cr.fetchall())
+        return reg
 
     def _print_report(self, data):
         data['form'].update(self.read(['company_id','date_year','date_month'])[0])
