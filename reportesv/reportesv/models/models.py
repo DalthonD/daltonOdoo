@@ -424,7 +424,7 @@ class sv_reportWizard(models.TransientModel):
          and date_part('year',am.date)= {1}
         and date_part('month',am.date)= {2}
         and am.company_id= {0}
-        and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][0],data['form'][1],data['form'][2])
+        and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][1],data['form'][2],data['form'][3])
         else:
             raise UserError("No data sent")
 
