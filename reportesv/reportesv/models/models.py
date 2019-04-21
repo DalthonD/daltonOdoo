@@ -367,7 +367,7 @@ class sv_reportWizard(models.TransientModel):
     _name = 'report_wizard'
     _description = "Wizard para reportes"
 
-    company_id=fields.Many2one('res.company', string="Company", help='Company',default=lambda self: self.env.user.company_id.id)
+    company_id = fields.Many2one('res.company', string="Company", help='Company',default=lambda self: self.env.user.company_id.id)
     date_month = fields.Selection([('1','Enero'),('2','Febrero'),('3','Marzo'),('4','Abril'),('5','Mayo'),('6','Junio'),('7','Julio'),('8','Agosto'),('9','Septiembre'),('10','Octubre'),('11','Noviembre'),('12','Diciembre')],string='Mes de facturación', default='1',required=True)
     date_year = fields.Integer("Año de facturación", default=2018 ,requiered=True)
     show_serie = fields.Boolean("Ventas a Consumidor")
@@ -377,11 +377,11 @@ class sv_reportWizard(models.TransientModel):
     def check_report(self):
         data = {}
         data['form'] = self.read(['company_id', 'date_year', 'date_month', 'serie_lenght', 'show_serie'])[0]
+        list_args = list(data.get('form'))
+        reporte = sv_purchase_report.init(list_args[0],list_args[1],list_args[2])
         return self._print_report(data)
 
     def _print_report(self, data):
-        data['form'].update(self.read(['company_id','date_year','date_month','serie_lenght', 'show_serie'])[0])
-        list_args = list(data.get('form'))
-        reporte = sv_purchase_report.init(list_args[0],list_args[1],list_args[2])
+        data['form'].update(self.read(['company_id','date_year','date_month'])[0])
         #data['form'][0],data['form'][1],data['form'][2]
         #return self.env['strategiksv.reportesv.sales_consumer.report']
