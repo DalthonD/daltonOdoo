@@ -31,33 +31,32 @@ class sv_purchase_report(models.AbstractModel):
     @classmethod
     def create_view(cls, company_id, date_year, date_month):
         sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
-    ,ai.reference as factura
-    ,rp.name as proveedor
-    ,rp.vat as NRC
-    ,case
+        ,ai.reference as factura
+        ,rp.name as proveedor
+        ,rp.vat as NRC
+        ,case
         when rp.country_id=211 then False
         when rp.country_id is null then False
         else True end as Importacion
-    ,/*Calculando el gravado (todo lo que tiene un impuesto aplicado de iva)*/
-     (select coalesce(sum(price_subtotal_signed),0.00)
-      from account_invoice_line ail
-      where invoice_id=ai.id
+        ,/*Calculando el gravado (todo lo que tiene un impuesto aplicado de iva)*/
+        (select coalesce(sum(price_subtotal_signed),0.00)
+        from account_invoice_line ail
+        where invoice_id=ai.id
           and exists(select ailt.tax_id
                     from account_invoice_line_tax ailt
                         inner join account_tax atx on ailt.tax_id=atx.id
                         inner join account_tax_group atg on atx.tax_group_id=atg.id
                      where ailt.invoice_line_id=ail.id and atg.name='iva')
-      ) as Gravado,
-      /*Calculando el excento que no tiene iva*/
-     (Select coalesce(sum(price_subtotal_signed),0.00)
-      from account_invoice_line ail
-      where invoice_id=ai.id
+                     ) as Gravado,
+                     /*Calculando el excento que no tiene iva*/
+                     (Select coalesce(sum(price_subtotal_signed),0.00)
+                     from account_invoice_line ail
+                     where invoice_id=ai.id
           and not exists(select ailt.tax_id
                          from account_invoice_line_tax ailt
                              inner join account_tax atx on ailt.tax_id=atx.id
                              inner join account_tax_group atg on atx.tax_group_id=atg.id
-                         where ailt.invoice_line_id=ail.id and atg.name='iva')
-      ) as Exento
+                         where ailt.invoice_line_id=ail.id and atg.name='iva')) as Exento
       ,/*Calculando el iva*/
       (Select coalesce(sum(ait.amount),0.00)
        from account_invoice_tax ait
@@ -216,18 +215,19 @@ select aml.date as fecha
                ,aml.debit as  Percibido
                ,0.0  as  Excluido
                ,0.0 as  retencion3
- from account_move_line aml
+               from account_move_line aml
      inner join account_move am on aml.move_id=am.id
      inner join account_tax at on aml.account_id=at.account_id
      inner join account_tax_group atg on at.tax_group_id=atg.id
      left join res_partner rp on aml.partner_id=rp.id
- where atg.name='percepcion' and not exists (select id from account_invoice ai where ai.move_id=am.id and ai.company_id= {0} )
+     where atg.name='percepcion' and not exists (select id from account_invoice ai where ai.move_id=am.id and ai.company_id= {0} )
      and date_part('year',am.date)= {1}
     and date_part('month',am.date)= {2}
     and am.company_id= {0}
     and am.state='posted') S order by s.Fecha, s.Factura)""".format(company_id,date_year,date_month)
     self.env.cr.execute(sql)
-    return self.env.cr.fetchall()
+    data = list(self.env.cr.fetchall())
+    return data
 
 class sv_taxpayer_sales_report(models.Model):
     _name = 'strategiksv.reportesv.sales_taxpayer.report'
