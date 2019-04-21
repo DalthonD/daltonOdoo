@@ -6,7 +6,7 @@ from collections import defaultdict
 from dateutil.parser import parse
 from odoo.exceptions import UserError
 
-class sv_purchase_report(models.AbstractModel):
+class sv_purchase_report(models.Model):
     _name = 'strategiksv.reportesv.purchase.report'
     _description = "Reporte de Compras"
     _auto = False
@@ -29,8 +29,7 @@ class sv_purchase_report(models.AbstractModel):
     retencion3 = fields.Float("Retención a Terceros")
 
     @api.model_cr
-    @classmethod
-    def create_view(cls, company_id, date_year, date_month):
+    def create_view(self, company_id, date_year, date_month):
         sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
         ,ai.reference as factura
         ,rp.name as proveedor
@@ -227,8 +226,8 @@ select aml.date as fecha
     and am.company_id= {0}
     and am.state='posted') S order by s.Fecha, s.Factura)""".format(company_id,date_year,date_month)
         self.env.cr.execute(sql)
-        data = list(self.env.cr.fetchall())
-        return data
+        reg = list(self.env.cr.fetchall())
+        return reg
 
 class sv_taxpayer_sales_report(models.Model):
     _name = 'strategiksv.reportesv.sales_taxpayer.report'
@@ -376,6 +375,7 @@ class sv_reportWizard(models.TransientModel):
 
     def _print_report(self, data):
         data['form'].update(self.read(['company_id','date_year','date_month','serie_lenght', 'show_serie'])[0])
-        reporte = sv_purchase_report.create_view(1,2018,1)
+        reporte = sv_purchase_report()
+        info = reporte.create_view(data['form'][0],data['form'][1],data['form'][2])
         #data['form'][0],data['form'][1],data['form'][2]
         #return self.env['strategiksv.reportesv.sales_consumer.report']
