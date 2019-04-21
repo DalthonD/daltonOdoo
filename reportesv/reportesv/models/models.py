@@ -375,7 +375,7 @@ class sv_reportWizard(models.TransientModel):
 
     def _print_report(self, data):
         data['form'].update(self.read(['company_id','date_year','date_month','serie_lenght', 'show_serie'])[0])
-        reporte = sv_purchase_report()
+        reporte = sv_purchase_report.__new__()
         info = reporte.create_view(data['form'][0],data['form'][1],data['form'][2])
         #data['form'][0],data['form'][1],data['form'][2]
         #return self.env['strategiksv.reportesv.sales_consumer.report']
