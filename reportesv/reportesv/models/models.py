@@ -208,7 +208,7 @@ select aml.date as fecha
      and date_part('year',am.date)= {1}
     and date_part('month',am.date)= {2}
     and am.company_id= {0}
-    and am.state='posted') S order by s.Fecha, s.Factura)""".format(args[0],args[1],args[2])
+    and am.state='posted') S order by s.Fecha, s.Factura)"""#.format(args[0],args[1],args[2])
         #else:
         #    raise NameError(args[0:])
 
@@ -430,7 +430,7 @@ class sv_reportWizard(models.TransientModel):
         and date_part('month',am.date)= {2}
         and am.company_id= {0}
         and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
-            reporte = sv_purchase_report.init(data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
+            #reporte = sv_purchase_report.init(data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
         else:
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
 
