@@ -2,6 +2,7 @@
 import time
 from odoo import tools
 from odoo import models, fields, api
+from collections import defaultdict
 from dateutil.parser import parse
 from odoo.exceptions import UserError
 
@@ -374,6 +375,6 @@ class sv_reportWizard(models.TransientModel):
         return self._print_report(data)
 
     def _print_report(self, data):
-        data['form'].update(self.read(['company_id','date_month','date_year','serie_lenght', 'show_serie'])[0])
-        reporte = sv_purchase_report.create_view(data['form'][0],data['form'][2],data['form'][1])
+        data['form'].update(self.read(['company_id','date_year','date_month','serie_lenght', 'show_serie'])[0])
+        reporte = sv_purchase_report.create_view(data['form'][0],data['form'][1],data['form'][2])
         #return self.env['strategiksv.reportesv.sales_consumer.report']
