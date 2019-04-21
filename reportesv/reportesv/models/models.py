@@ -208,7 +208,7 @@ select aml.date as fecha
     and date_part('month',am.date)= {2}
     and am.company_id= {0}
     and am.state='posted') S order by s.Fecha, s.Factura)"""
-        return create_view(sql)
+        
 
 
     @api.model_cr
