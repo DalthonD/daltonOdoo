@@ -221,11 +221,14 @@ class sv_reportWizard(models.TransientModel):
     _name = 'report_wizard'
     _description = "Wizard para reportes"
 
-    company_id = fields.Many2one('res.company', string="Company", help='Company',default=lambda self: self.env.user.company_id.id)
-    date_month = fields.Selection([('1','Enero'),('2','Febrero'),('3','Marzo'),('4','Abril'),('5','Mayo'),('6','Junio'),('7','Julio'),('8','Agosto'),('9','Septiembre'),('10','Octubre'),('11','Noviembre'),('12','Diciembre')],string='Mes de facturación', default='1',required=True)
-    date_year = fields.Integer("Año de facturación", default=2018 ,requiered=True)
-    show_serie = fields.Boolean("Ventas a Consumidor")
-    serie_lenght = fields.Integer("Agrupación de facturas", default = 1)
+    _fields = {
+        'company_id' = fields.Many2one('res.company', string="Company", help='Company',default=lambda self: self.env.user.company_id.id)
+        'date_month' = fields.Selection([('1','Enero'),('2','Febrero'),('3','Marzo'),('4','Abril'),('5','Mayo'),('6','Junio'),('7','Julio'),('8','Agosto'),('9','Septiembre'),('10','Octubre'),('11','Noviembre'),('12','Diciembre')],string='Mes de facturación', default='1',required=True)
+        'date_year' = fields.Integer("Año de facturación", default=2018 ,requiered=True)
+        'show_serie' = fields.Boolean("Ventas a Consumidor")
+        'serie_lenght' = fields.Integer("Agrupación de facturas", default = 1)
+    }
+
 
     @api.multi
     def check_report(self):
