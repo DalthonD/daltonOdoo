@@ -12,8 +12,8 @@ class sv_purchase_report(models.AbstractModel):
     _auto = False
 
     @staticmethod
-    def init(*sql):
-        s = sql[0]
+    def init(*args):
+        s = args[0] if args else "sql"
         #return create_view(s)
 
     @api.model_cr
