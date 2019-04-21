@@ -11,15 +11,6 @@ class sv_purchase_report(models.AbstractModel):
     _description = "Reporte de Compras"
     _auto = False
 
-    @staticmethod
-    @api.multi
-    def init(*args):
-        try:
-            s = args[0] if args[0] else "sql"
-        except:
-            raise IndexError(list(args))
-        #return create_view(s)
-
     @api.model_cr
     def create_view(self, sql):
         self.env.cr.execute(sql)
