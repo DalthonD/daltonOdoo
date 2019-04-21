@@ -12,7 +12,7 @@ class sv_purchase_report(models.AbstractModel):
     _auto = False
 
     @staticmethod
-    def init(company_id,date_year,date_month):
+    def init(*args):
         sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
         ,ai.reference as factura
         ,rp.name as proveedor
@@ -207,8 +207,8 @@ select aml.date as fecha
      and date_part('year',am.date)= {1}
     and date_part('month',am.date)= {2}
     and am.company_id= {0}
-    and am.state='posted') S order by s.Fecha, s.Factura)""".format(company_id,date_year,date_month)
-        return create_view(sql)
+    and am.state='posted') S order by s.Fecha, s.Factura)"""
+
 
     @api.model_cr
     def create_view(self, sql):
@@ -426,7 +426,7 @@ class sv_reportWizard(models.TransientModel):
         and date_part('month',am.date)= {2}
         and am.company_id= {0}
         and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
-            reporte = sv_purchase_report.init(data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
+            #reporte = sv_purchase_report.init(data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
         else:
             raise NameError(data['form'])
 
