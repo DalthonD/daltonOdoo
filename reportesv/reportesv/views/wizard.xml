@@ -1,8 +1,8 @@
 <odoo>
   <data>
     <record model="ir.ui.view" id="report_wizard_view">
-      <field name="name">consumer.sales.report.sql.tree</field>
-      <field name="model">sales_consumer_report.wizard</field>
+      <field name="name">Asistente de Reportes</field>
+      <field name="model">report_wizard</field>
       <field name="arch" type="xml">
         <form>
           <group>
@@ -37,6 +37,8 @@
 
 
     <menuitem id="pdf_report" name="Reportes PDF"/>
-      <menuitem id="púrchase_report" name="PurchaseReport" action="action_report_wizard" parent="pdf_report" sequence="10"/>
+      <menuitem id="púrchase_report" name="Purchase_Report" action="action_report_wizard" parent="pdf_report" sequence="10"/>
+      <menuitem id="taxpayer_report" name="Taxpayer_Sales_Report" action="" parent="pdf_reports" sequence="11"/>
+      <menuitem id="consumer_report" name="Consumer_Sales_Report" action="" parent="pdf_reports" sequence="12"/>
   </data>
 </odoo>
