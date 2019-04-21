@@ -210,7 +210,7 @@ select aml.date as fecha
     and am.company_id= {0}
     and am.state='posted') S order by s.Fecha, s.Factura)""".format(args[0],args[1],args[2])
         else:
-            raise UserError(args[0:]
+            raise UserError(args[0:])
 
 
 
