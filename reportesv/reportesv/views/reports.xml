@@ -20,7 +20,7 @@
           <field name="print_report_name">'Reporte de Compras(PDF)'</field>
       </record>
 
-      <record id="paperformat_session_receipt_pdf" model="report.paperformat">
+      <!--record id="paperformat_session_receipt_pdf" model="report.paperformat">
           <field name="name">Reportes PDF</field>
           <field name="default" eval="True"/>
           <field name="format">custon</field>
@@ -35,6 +35,6 @@
           <field name="header_spacing">35</field>
           <field name="dpi">90</field>
           <field name="report_ids" eval="[(6,0,[ref('purchase_report.purchase_report_pdf')])]"/>
-      </record>
+      </record-->
   </data>
 </odoo>
