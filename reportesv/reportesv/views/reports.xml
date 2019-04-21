@@ -5,8 +5,28 @@
       model="report.purchase_report.strategiksv_purchase_report_pdf"
       report_type="qweb-pdf"
       name="purchase_report.strategiksv_purchase_report_pdf"
-      file="strategiksv_purchase_report"
+      file="purchase_report.strategiksv_purchase_report_pdf"
       attachment_use="True"
       attachment="Reporte_De_Compras.pdf"/>
+
+      <record id="paperformat_reporte_pdf" model="report.paperformat">
+          <field name="name">Reportes</field>
+          <field name="default" eval="True"/>
+          <field name="format">A4</field>
+          <!--field name="page_height">297</field>
+          <field name="page_width">80</field>
+          <field name="orientation">Portrait</field>
+          <field name="margin_top">1</field>
+          <field name="margin_bottom">1</field>
+          <field name="margin_left">1</field>
+          <field name="margin_right">1</field>
+          <field name="header_line" eval="False" />
+          <field name="header_spacing">0</field>
+          <field name="dpi">90</field-->
+          <field name="report_ids" eval="[(6,0,[ref('purchase_report.purchase_report_pdf')])]"/>
+
+
+
+      </record>
   </data>
 </odoo>
