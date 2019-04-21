@@ -29,6 +29,7 @@ class sv_purchase_report(models.Model):
     retencion3 = fields.Float("Retención a Terceros")
 
     @staticmethod
+    @api.model
     def init(*args):
         sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
         ,ai.reference as factura
@@ -381,7 +382,6 @@ class sv_reportWizard(models.TransientModel):
     def _print_report(self, data):
         data['form'].update(self.read(['company_id','date_year','date_month','serie_lenght', 'show_serie'])[0])
         list_args = list(data.get('form'))
-        list_args = list(map(str,list_args))
         reporte = sv_purchase_report.init(list_args[0],list_args[1],list_args[2])
         #data['form'][0],data['form'][1],data['form'][2]
         #return self.env['strategiksv.reportesv.sales_consumer.report']

@@ -8,13 +8,13 @@
           <group>
             <field name="company_id"/>
           </group>
-          <group>
+          <group col="4">
             <field name="date_month"/>
             <field name="date_year"/>
             <field name="show_serie"/>
           </group>
-          <group attrs="{'invisible': [('show_serie', '=', 'False')]}">
-            <field name="serie_lenght"/>
+          <group col="2">
+            <field name="serie_lenght"  attrs="{'invisible': [('show_serie', '=', 'False')]}"/>
           </group>
           <footer>
             <button name="check_report" string="Imprimir" type="object" default_focus="1" class="oe_highlight"/>
