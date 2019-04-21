@@ -17,7 +17,7 @@ class sv_purchase_report(models.AbstractModel):
         try:
             s = args[0] if args[0] else "sql"
         except:
-            raise IndexError(args)
+            raise IndexError(list(args))
         #return create_view(s)
 
     @api.model_cr
