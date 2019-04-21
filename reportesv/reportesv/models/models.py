@@ -228,7 +228,7 @@ class sv_reportWizard(models.TransientModel):
         and am.company_id= {0}
         and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
             self._companyId = data['form'][0]['company_id'][0]
-            self.env['report'].get_action(self,'purchase_report.strategiksv_purchase_report_pdf')
+            self.pool['report'].get_action(self,'purchase_report.strategiksv_purchase_report_pdf')
         else:
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
 
