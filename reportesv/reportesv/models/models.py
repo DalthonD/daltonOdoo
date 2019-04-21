@@ -225,9 +225,9 @@ select aml.date as fecha
     and date_part('month',am.date)= {2}
     and am.company_id= {0}
     and am.state='posted') S order by s.Fecha, s.Factura)""".format(company_id,date_year,date_month)
-    self.env.cr.execute(sql)
-    data = list(self.env.cr.fetchall())
-    return data
+        self.env.cr.execute(sql)
+        data = list(self.env.cr.fetchall())
+        return data
 
 class sv_taxpayer_sales_report(models.Model):
     _name = 'strategiksv.reportesv.sales_taxpayer.report'
