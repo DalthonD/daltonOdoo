@@ -12,7 +12,6 @@ class sv_purchase_report(models.AbstractModel):
     _auto = False
 
     @staticmethod
-    @api.model
     def init(company_id,date_year,date_month):
         sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
         ,ai.reference as factura
@@ -366,6 +365,7 @@ class sv_reportWizard(models.TransientModel):
         }
         #data['form'] = self.read(['company_id', 'date_year', 'date_month', 'serie_lenght', 'show_serie'])[0]
         if data:
+            print("Getiing info")
             #reporte = sv_purchase_report.init(data['company_id'], data['year'], data['month'])
         else:
             raise UserError("No data sent")
