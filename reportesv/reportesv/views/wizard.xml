@@ -8,12 +8,12 @@
           <group>
             <field name="company_id"/>
           </group>
-          <group col="4">
+          <group>
             <field name="date_month"/>
             <field name="date_year"/>
             <field name="show_serie"/>
           </group>
-          <group col="2" attrs="{'invisible': [('show_serie', '!=', 'True')]}">
+          <group attrs="{'invisible': [('show_serie', '=', 'False')]}">
             <field name="serie_lenght"/>
           </group>
           <footer>
@@ -38,8 +38,8 @@
 
     <menuitem id="pdf_report" name="Reportes PDF"/>
       <menuitem id="reports_menu" name="Reportes" parent="pdf_report" sequence="10"/>
-      <menuitem id="purchase_report" name="Reporte de Compras" action="action_report_wizard" parent="reports_menu" sequence="10"/>
-      <menuitem id="purchase_report" name="Reporte de Contribuyentes" action="action_report_wizard" parent="reports_menu" sequence="11"/>
-      <menuitem id="purchase_report" name="Reporte de Consumidores" action="action_report_wizard" parent="reports_menu" sequence="12"/>
+        <menuitem id="purchase_report" name="Reporte de Compras" action="action_report_wizard" parent="reports_menu"/>
+        <menuitem id="purchase_report" name="Reporte de Contribuyentes" action="action_report_wizard" parent="reports_menu"/>
+        <menuitem id="purchase_report" name="Reporte de Consumidores" action="action_report_wizard" parent="reports_menu"/>
   </data>
 </odoo>
