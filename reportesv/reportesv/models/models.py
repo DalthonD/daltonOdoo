@@ -363,7 +363,7 @@ class sv_consumer_sales_report(models.Model):
     estado = fields.Char("Estado")
 
 class sv_reportWizard(models.TransientModel):
-    _name = "report_wizard"
+    _name = 'report_wizard'
     _description = "Wizard para reportes"
 
     company_id=fields.Many2one('res.company', string="Company", help='Company',default=lambda self: self.env.user.company_id.id)
