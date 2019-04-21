@@ -30,6 +30,7 @@ class sv_purchase_report(models.AbstractModel):
 
 class sv_reportWizard(models.TransientModel):
     _name = 'report_wizard'
+    _inherit = 'ir.actions.report'
     _description = 'qweb-pdf'
 
     company_id = fields.Many2one('res.company', string='Company', required=True, default=lambda self: self.env.user.company_id.id)
@@ -37,6 +38,14 @@ class sv_reportWizard(models.TransientModel):
     date_year = fields.Integer("Año de facturación", default=2018 ,requiered=True)
     show_serie = fields.Boolean("Ventas a Consumidor")
     serie_lenght = fields.Integer("Agrupación de facturas", default = 1)
+
+    @api.model
+    def get_html_report(self, id, report_name):
+        report = self._get_report_from_name(report_name)
+        document = report.render_qweb_html([id], data={})
+        if document:
+            return document
+        return False
 
     @api.multi
     def check_report(self):
