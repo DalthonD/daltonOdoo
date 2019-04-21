@@ -1,13 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
   <data>
-    <report id="purchase_report_pdf"
+    <report
+      id="purchase_report_pdf"
       string=" Strateg-k Purchase Report"
       model="report_wizard"
       report_type="qweb-pdf"
       name="purchase_report.strategiksv_purchase_report_pdf"
       file="purchase_report.strategiksv_purchase_report_pdf"
       attachment_use="True"
-      attachment="Reporte_De_Compras.pdf"/>
+      attachment="Reporte_De_Compras.pdf"
+      />
 
       <record id="purchase_report_action" model="ir.actions.report">
           <field name="name">Reporte de Compras</field>
@@ -17,7 +20,7 @@
           <field name="print_report_name">'Reporte de Compras'</field>
       </record>
 
-      <record id="paperformat_reporte_pdf" model="report.paperformat">
+      <record id="paperformat_reportes_pdf" model="report.paperformat">
           <field name="name">Reportes</field>
           <field name="default" eval="True"/>
           <field name="format">A4</field>
