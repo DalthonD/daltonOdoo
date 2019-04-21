@@ -1,7 +1,7 @@
 <odoo>
   <data>
-    <record model="ir.ui.view" id="report_wizard_view">
-      <field name="name">Asistente.de.Reportes</field>
+    <record id="report_wizard_view" model="ir.ui.view">
+      <field name="name">Asistente de Reportes</field>
       <field name="model">report_wizard</field>
       <field name="arch" type="xml">
         <form>

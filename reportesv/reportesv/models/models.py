@@ -357,7 +357,7 @@ class sv_consumer_sales_report(models.Model):
     retenido = fields.Float("Retenido")
     estado = fields.Char("Estado")
 
-class sv_consumer_sales_reportWizard(models.TransientModel):
+class sv_reportWizard(models.TransientModel):
     _name = "report_wizard"
     _description = "Wizard para reportes"
 
