@@ -23,7 +23,7 @@
           <field name="header_line" eval="False" />
           <field name="header_spacing">35</field>
           <field name="dpi">90</field>
-          <field name="report_ids" eval="[ref('purchase_report.purchase_report_pdf')]"/>
+          <field name="report_ids" eval="[(6,0,[ref('purchase_report.purchase_report_pdf')])]"/>
       </record>
   </data>
 </odoo>
