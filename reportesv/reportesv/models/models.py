@@ -208,7 +208,7 @@ select aml.date as fecha
     and date_part('month',am.date)= {2}
     and am.company_id= {0}
     and am.state='posted') S order by s.Fecha, s.Factura)"""
-        
+
 
 
     @api.model_cr
@@ -230,13 +230,14 @@ class sv_reportWizard(models.TransientModel):
     @api.multi
     def check_report(self):
         wizard_info = dict(self.env.context)
-        data = {
+        """data = {
             'company_id': wizard_info["company_id"],
             'year': wizard_info["date_year"],
             'month': wizard_info["date_month"],
-        }
+        }"""
+        data = {}
+        data['form'] = self.read(['company_id','date_year','date_month'])[0]
         if data:
-            print("Getiing info")
             sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
             ,ai.reference as factura
             ,rp.name as proveedor
@@ -431,7 +432,7 @@ class sv_reportWizard(models.TransientModel):
          and date_part('year',am.date)= {1}
         and date_part('month',am.date)= {2}
         and am.company_id= {0}
-        and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['company_id'],data['year'],data['month'])
+        and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][0],data['form'][1],data['form'][2])
         else:
             raise UserError("No data sent")
 

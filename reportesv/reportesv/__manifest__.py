@@ -29,7 +29,6 @@
     ],
     # only loaded in demonstration mode
     'demo': [
-        'demo/demo.xml',
     ],
     'qweb': [
         'views/purchase_report.xml',
