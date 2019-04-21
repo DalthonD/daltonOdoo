@@ -6,6 +6,17 @@ from collections import defaultdict
 from dateutil.parser import parse
 from odoo.exceptions import UserError
 
+class IrActionsReport(models.Model):
+    _inherit = 'ir.actions.report'
+
+    @api.model
+    def get_html_report(self, id, report_name):
+        report = self._get_report_from_name(report_name)
+        document = report.render_qweb_html([id], data={})
+        if document:
+            return document
+        return False
+
 class sv_purchase_report(models.AbstractModel):
     _name = 'purchase_report'
     _description = "Reporte de Compras"
