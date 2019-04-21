@@ -28,7 +28,7 @@ class sv_purchase_report(models.Model):
     retencion3 = fields.Float("Retención a Terceros")
 
     @api.model_cr
-    def init(self, company_id):
+    def init(self, company_id, date_year, date_month):
         self.env.cr.execute("""CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (
 select 10000000+ai.id as id
     ,ai.company_id as company_id
