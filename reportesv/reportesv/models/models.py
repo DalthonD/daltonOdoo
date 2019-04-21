@@ -358,15 +358,15 @@ class sv_reportWizard(models.TransientModel):
 
     @api.multi
     def check_report(self):
-        wizard_info = self
+        wizard_info = dict(self.env.context)
         data = {
-            'company_id': wizard_info.company_id,
-            'year': wizard_info.date_year,
-            'month': wizard_info.date_month,
+            'company_id': wizard_info['company_id'],
+            'year': wizard_info['date_year'],
+            'month': wizard_info['date_month'],
         }
         #data['form'] = self.read(['company_id', 'date_year', 'date_month', 'serie_lenght', 'show_serie'])[0]
         if data:
-            reporte = sv_purchase_report.init(data['company_id'], data['year'], data['month'])
+            #reporte = sv_purchase_report.init(data['company_id'], data['year'], data['month'])
         else:
             raise UserError("No data sent")
         #return self._print_report(data)
