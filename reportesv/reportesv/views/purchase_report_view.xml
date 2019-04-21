@@ -56,6 +56,7 @@
                   <td><span t-field="o.iva"/></td>
                   <td><span t-field="o.retenido"/></td>
                   <td><span t-field="o.percibido"/></td>
+                  <td>$0.00</td>
                   <!--td><span t-field="o."/></td-->
                   <td><span t-field="o.excluido"/></td>
                   <td><span t-field="o.retencion3"/></td>
