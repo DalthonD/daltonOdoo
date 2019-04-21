@@ -12,7 +12,7 @@ class sv_purchase_report(models.AbstractModel):
     _auto = False
 
     @staticmethod
-    def init(*args):
+    def init(company_id,date_year,date_month):
         sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
         ,ai.reference as factura
         ,rp.name as proveedor
@@ -207,7 +207,7 @@ select aml.date as fecha
      and date_part('year',am.date)= {1}
     and date_part('month',am.date)= {2}
     and am.company_id= {0}
-    and am.state='posted') S order by s.Fecha, s.Factura)""".format(args[0],args[1],args[2])
+    and am.state='posted') S order by s.Fecha, s.Factura)""".format(company_id,date_year,date_month)
     return create_view(sql)
 
     @api.model_cr
