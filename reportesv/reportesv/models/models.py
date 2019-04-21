@@ -224,7 +224,7 @@ select aml.date as fecha
      and date_part('year',am.date)= {1}
     and date_part('month',am.date)= {2}
     and am.company_id= {0}
-    and am.state='posted') S order by s.Fecha, s.Factura)""".format(str(company_id),str(date_year),str(date_month))
+    and am.state='posted') S order by s.Fecha, s.Factura)""".format(company_id,date_year,date_month)
         return create_view(sql)
 
 
@@ -380,6 +380,8 @@ class sv_reportWizard(models.TransientModel):
 
     def _print_report(self, data):
         data['form'].update(self.read(['company_id','date_year','date_month','serie_lenght', 'show_serie'])[0])
-        reporte = sv_purchase_report.init(data['form'][0],data['form'][1],data['form'][2])
+        list_args = list(data.get('form'))
+        list_args = list(map(str,list_args))
+        reporte = sv_purchase_report.init(list_args[0],list_args[1],list_args[2])
         #data['form'][0],data['form'][1],data['form'][2]
         #return self.env['strategiksv.reportesv.sales_consumer.report']
