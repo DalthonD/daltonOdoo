@@ -371,10 +371,11 @@ class sv_reportWizard(models.TransientModel):
     @api.multi
     def check_report(self):
         data = {}
-        data['form'] = self.read(['company_id', 'date_month', 'date_year', 'serie_lenght', 'show_serie'])[0]
+        data['form'] = self.read(['company_id', 'date_year', 'date_month', 'serie_lenght', 'show_serie'])[0]
         return self._print_report(data)
 
     def _print_report(self, data):
         data['form'].update(self.read(['company_id','date_year','date_month','serie_lenght', 'show_serie'])[0])
-        reporte = sv_purchase_report.create_view(data['form'][0],data['form'][1],data['form'][2])
+        reporte = sv_purchase_report.create_view(1,2018,1)
+        #data['form'][0],data['form'][1],data['form'][2]
         #return self.env['strategiksv.reportesv.sales_consumer.report']
