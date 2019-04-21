@@ -6,7 +6,7 @@ from collections import defaultdict
 from dateutil.parser import parse
 from odoo.exceptions import UserError
 
-class report_parser(object):
+"""class report_parser(object):
     def __init__(self, cr, uid, name, context):
         self.localcontext = {
             'next_seq': 'value',
@@ -15,7 +15,7 @@ class report_parser(object):
 
     def set_context(self, objects, data, ids, report_type = None):
         self.localcontext['data'] = data
-        self.localcontext['objects'] = objects
+        self.localcontext['objects'] = objects"""
 
 class sv_purchase_report(models.AbstractModel):
     _name = 'report.purchase_report.strategiksv_purchase_report_pdf'
