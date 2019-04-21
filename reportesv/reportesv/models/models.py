@@ -209,8 +209,6 @@ select aml.date as fecha
     and am.company_id= {0}
     and am.state='posted') S order by s.Fecha, s.Factura)"""
 
-
-
     @api.model_cr
     def create_view(self, sql):
         self.env.cr.execute(sql)
@@ -435,7 +433,7 @@ class sv_reportWizard(models.TransientModel):
          and date_part('year',am.date)= {1}
         and date_part('month',am.date)= {2}
         and am.company_id= {0}
-        and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form'][0],data['form'][1],data['form'][2])
+        and am.state='posted') S order by s.Fecha, s.Factura)""".format(data['form']['company_id'],data['form']['date_year'],data['form']['date_month'])
         else:
             raise UserError("No data sent")
 
