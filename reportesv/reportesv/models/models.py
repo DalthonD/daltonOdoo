@@ -29,7 +29,7 @@ class sv_purchase_report(models.Model):
     retencion3 = fields.Float("Retención a Terceros")
 
     @staticmethod
-    def init(company_id, date_year, date_month):
+    def init(self,company_id, date_year, date_month):
         sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
         ,ai.reference as factura
         ,rp.name as proveedor
