@@ -229,7 +229,7 @@ class sv_reportWizard(models.TransientModel):
     def check_report(self):
         data = {}
         data['form'] = self.read(['company_id','date_year','date_month'])[0:]
-        if len(data['form'])>=3:
+        if len(data['form'])>=2:
             sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
             ,ai.reference as factura
             ,rp.name as proveedor
