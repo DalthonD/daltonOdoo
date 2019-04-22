@@ -54,10 +54,10 @@ class sv_reportWizard(models.TransientModel):
         report_obj = self.pool['report']
         report = report_obj._get_report_from_name(uid, 'purchase_report.strategiksv_purchase_report_pdf')
         docargs = {
-        'doc_ids': self.ids,
-        'doc_model': report.model,
-        'docs': create_view(),
-        'time': time,
+            'doc_ids': self.ids,
+            'doc_model': report.model,
+            'docs': create_view(),
+            'time': time,
         }
         return report_obj.render('purchase_report.strategiksv_purchase_report_pdf', docargs)
 
@@ -266,9 +266,9 @@ class sv_reportWizard(models.TransientModel):
         else:
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
         datas = {
-        'ids': self._ids,
-        'model': 'report_wizard'
-        'docs': create_view()
+            'ids': self._ids,
+            'model': 'report_wizard'
+            'docs': create_view()
         }
         return self.env.ref('purchase_report.purchase_report_pdf').report_action(self, data=datas)
 
@@ -366,9 +366,9 @@ class sv_reportWizard(models.TransientModel):
         else:
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
         datas = {
-        'ids': self._ids,
-        'model': 'report_wizard'
-        'docs': create_view()
+            'ids': self._ids,
+            'model': 'report_wizard'
+            'docs': create_view()
         }
         return self.env.ref('purchase_report.purchase_report_pdf').report_action(self, data=datas)
 
@@ -541,8 +541,8 @@ class sv_reportWizard(models.TransientModel):
         else:
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
         datas = {
-        'ids': self._ids,
-        'model': 'report_wizard'
-        'docs': create_view()
+            'ids': self._ids,
+            'model': 'report_wizard'
+            'docs': create_view()
         }
         return self.env.ref('purchase_report.purchase_report_pdf').report_action(self, data=datas)
