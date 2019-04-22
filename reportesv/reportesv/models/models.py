@@ -23,7 +23,7 @@ class sv_reportWizard(models.TransientModel):
 
     @api.model_cr
     def create_view(self):
-        tools.drop_view_if_exists(self._cr, 'strategiksv_reportesv_purchase_report')
+        tools.drop_view_if_exists(self.env.cr, 'strategiksv_reportesv_purchase_report')
         if self._sql:
             raise AttribError("s%", self._sql)
             if self.env.cr.execute(self._sql):
