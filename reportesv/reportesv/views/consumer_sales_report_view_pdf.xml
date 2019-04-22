@@ -1,0 +1,68 @@
+<odoo>
+  <data>
+    <template id ='strategiksv_consumer_report_pdf'>
+      <t t-call="report.container">
+        <t t-call="report.external_layout">
+          <div class="page">
+            <div class="oe_structure"/>
+            <div class="page-header"/>
+            <t t-foreach="get_header_info(company_id)" as="c">
+              <blockquote class="blockquote text-center">
+                <p class="mb-0">NOMBRE DEL CONTRIBUYENTE: <span t-esc="c['name']"/></p>
+                <p class="mb-0">LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</p>
+                <p class="mb-0">NIT: <span t-esc="c['nit']"/></p>
+                <p class="mb-0">NRC: <span t-esc="c['nrc']"/></p>
+                <p class="mb-0">Contador: <span t-esc="c['contador']"/></p>
+                <p class="mb-0">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</p>
+              </blockquote>
+            </t>
+            <table class="table table-stripped">
+              <tr>
+                <td colspan="5"></td>
+                <td colspan="2">COMPRAS EXENTAS</td>
+                <td colspan="4">COMPRAS GRAVADAS</td>
+                <td colspan="4"></td>
+              </tr>
+              <tr>
+                <td>#</td>
+                <td>Fecha de emisión</td>
+                <td>Número de documento</td>
+                <td>Nombre del proveedor</td>
+                <td>N.R.C.</td>
+                <td>Internas</td>
+                <td>Importaciones e Internacionales</td>
+                <td>Internas</td>
+                <td>Importaciones e Internacionales</td>
+                <td>Crédito fiscal</td>
+                <td>Anticipo a Cuenta de IVA Retenido</td>
+                <td>Anticipo a Cuenta de IVA Percibido</td>
+                <td>Total compras</td>
+                <td>Comrpas a Sujetos Excluidos</td>
+                <td>Retención a Terceros</td>
+              </tr>
+              <t t-foreach="docs" as="o">
+                <tr>
+                  <td>1</td>
+                  <td><span t-field="o.fecha"/></td>
+                  <td><span t-field="o.factura"/></td>
+                  <td><span t-field="o.proveedor"/></td>
+                  <td><span t-field="o.nrc"/></td>
+                  <td><span t-field="o.exento"/></td>
+                  <td>$0.00</td>
+                  <td><span t-field="o.gravado"/></td>
+                  <td><span t-field="o.importacion"/></td>
+                  <td><span t-field="o.iva"/></td>
+                  <td><span t-field="o.retenido"/></td>
+                  <td><span t-field="o.percibido"/></td>
+                  <td>$0.10</td>
+                  <td><span t-field="o.excluido"/></td>
+                  <td><span t-field="o.retencion3"/></td>
+                </tr>
+              </t>
+            </table>
+          </div>
+        </t>
+      </t>
+    </template>
+  </data>
+</odoo>

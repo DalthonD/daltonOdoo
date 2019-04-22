@@ -4,8 +4,6 @@
       <t t-call="report.container">
         <t t-call="report.external_layout">
           <div class="page">
-          <!--Report page content-->
-            <!--></-->
             <div class="oe_structure"/>
             <div class="page-header"/>
             <t t-foreach="get_header_info(company_id)" as="c">

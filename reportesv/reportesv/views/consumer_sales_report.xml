@@ -1,8 +1,0 @@
-<report id="action_report_consumersales"
-      string="Consumer Sales Report"
-      model="strategiksv.reportesv.sales_consumer.report"
-      report_type="qweb-pdf"
-      name="strategiksv.sales_consumer_report"
-      file="strategiksv.sales_consumer_report"
-      attachment_use="True"
-      attachment="Reporte_De_Ventas_a_consumirdores.pdf"/>

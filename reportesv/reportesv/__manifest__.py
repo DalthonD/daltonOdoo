@@ -24,8 +24,10 @@
     # always loaded
     'data': [
         'views/reports.xml',
-        'views/purchase_report_view.xml',
-        'views/wizard.xml',
+        'views/purchase_report_view_pdf.xml',
+        'views/wizard_purchase_report.xml',
+        'views/wizard_taxpayer_report.xml',
+        'views/wizard_consumer_report.xml',
         'security/ir.model.access.csv',
     ],
 

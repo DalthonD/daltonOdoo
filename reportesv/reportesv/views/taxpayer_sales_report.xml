@@ -1,8 +1,0 @@
-<report id="strategiksv.sales_taxpayer_report"
-    string="Taxpayer Sales Report"
-    model="strategiksv.reportesv.sales_taxpayer.report"
-    report_type="qweb-pdf"
-    name="strategiksv.sales_taxpayer_report"
-    file="strategiksv.sales_taxpayer_report"
-    attachment_use="True"
-    attachment="Reporte_De_Ventas_a_Contribuyentes.pdf"/>
