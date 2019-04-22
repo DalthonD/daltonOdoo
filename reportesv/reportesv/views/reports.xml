@@ -6,8 +6,8 @@
       string=" Strateg-k Purchase Report"
       model="report_wizard"
       report_type="qweb-pdf"
-      name="purchase_report.strategiksv_purchase_report_pdf"
-      file="purchase_report.strategiksv_purchase_report_pdf"
+      name="reportesv.strategiksv_purchase_report_pdf"
+      file="reportesv.strategiksv_purchase_report_pdf"
       attachment_use="True"
       attachment="Reporte_De_Compras.pdf"
       />
@@ -34,13 +34,13 @@
           attachment="Reporte_De_Ventas_Consumidores.pdf"
           />
 
-      <record id="purchase_report_action" model="ir.actions.report">
+      <!--record id="purchase_report_action" model="ir.actions.report">
           <field name="name">Reporte de Compras</field>
           <field name="model">report_wizard</field>
           <field name="report_type">qweb-pdf</field>
           <field name="report_name">purchase_report.purchase_report_pdf</field>
           <field name="print_report_name">'Reporte de Compras(PDF)'</field>
-      </record>
+      </record-->
 
       <!--record id="paperformat_session_receipt_pdf" model="report.paperformat">
           <field name="name">Reportes PDF</field>

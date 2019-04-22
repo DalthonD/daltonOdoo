@@ -280,7 +280,7 @@ class sv_reportWizard(models.TransientModel):
             'model': 'report_wizard',
             'docs': create_view()
         }
-        return self.env.ref('purchase_report.purchase_report_pdf').report_action(self, data)
+        return self.env.ref('reportesv.purchase_report_pdf').report_action(self, data)
 
     #Metodo para invocar reporte de ventas a Contribuyentes
     @api.multi
