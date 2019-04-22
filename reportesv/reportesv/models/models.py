@@ -266,7 +266,7 @@ class sv_reportWizard(models.TransientModel):
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
         datas = {
             'ids': self._ids,
-            'model': 'report_wizard'
+            'model': 'report_wizard',
             'docs': list(create_view())
         }
         return self.env.ref('purchase_report.purchase_report_pdf').report_action(self, data=datas)
@@ -366,7 +366,7 @@ class sv_reportWizard(models.TransientModel):
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
         datas = {
             'ids': self._ids,
-            'model': 'report_wizard'
+            'model': 'report_wizard',
             'docs': create_view()
         }
         return self.env.ref('purchase_report.purchase_report_pdf').report_action(self, data=datas)
@@ -541,7 +541,7 @@ class sv_reportWizard(models.TransientModel):
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
         datas = {
             'ids': self._ids,
-            'model': 'report_wizard'
+            'model': 'report_wizard',
             'docs': create_view()
         }
         return self.env.ref('purchase_report.purchase_report_pdf').report_action(self, data=datas)
