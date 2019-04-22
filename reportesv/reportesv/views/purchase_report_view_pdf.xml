@@ -18,28 +18,28 @@
             </t>
             <table class="table table-stripped">
               <tr>
-                <td colspan="5"></td>
-                <td colspan="2">COMPRAS EXENTAS</td>
-                <td colspan="4">COMPRAS GRAVADAS</td>
-                <td colspan="4"></td>
+               <td colspan="5"></td>
+               <td colspan="2" align="center">COMPRAS EXENTAS</td>
+               <td colspan="4" align="center">COMPRAS GRAVADAS</td>
+               <td colspan="4"></td>
               </tr>
               <tr>
-                <td>#</td>
-                <td>Fecha de emisión</td>
-                <td>Número de documento</td>
-                <td>Nombre del proveedor</td>
-                <td>N.R.C.</td>
-                <td>Internas</td>
-                <td>Importaciones e Internacionales</td>
-                <td>Internas</td>
-                <td>Importaciones e Internacionales</td>
-                <td>Crédito fiscal</td>
-                <td>Anticipo a Cuenta de IVA Retenido</td>
-                <td>Anticipo a Cuenta de IVA Percibido</td>
-                <td>Total compras</td>
-                <td>Comrpas a Sujetos Excluidos</td>
-                <td>Retención a Terceros</td>
-              </tr>
+               <td>#</td>
+               <td>Fecha de emisión</td>
+               <td>Número de documento</td>
+               <td>Nombre del proveedor</td>
+               <td>N.R.C.</td>
+               <td>Internas</td>
+               <td>Importaciones e Internacionales</td>
+               <td>Internas</td>
+               <td>Importaciones e Internacionales</td>
+               <td>Crédito fiscal</td>
+               <td>Anticipo a Cuenta de IVA Retenido</td>
+               <td>Anticipo a Cuenta de IVA Percibido</td>
+               <td>Total compras</td>
+               <td>Comrpas a Sujetos Excluidos</td>
+               <td>Retención a Terceros</td>
+             </tr>
               <t t-foreach="docs" as="o">
                 <tr>
                   <td>1</td>
