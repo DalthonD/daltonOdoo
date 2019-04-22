@@ -369,7 +369,7 @@ class sv_reportWizard(models.TransientModel):
             'model': 'report_wizard',
             'docs': create_view()
         }
-        return self.env.ref('purchase_report.purchase_report_pdf').report_action(self, data=datas)
+        return self.env.ref('taxpayer_report.taxpayer_report_pdf').report_action(self, data=datas)
 
     #Metodo para invocar reporte de ventas a Consumidores
     @api.multi
@@ -544,4 +544,4 @@ class sv_reportWizard(models.TransientModel):
             'model': 'report_wizard',
             'docs': create_view()
         }
-        return self.env.ref('purchase_report.purchase_report_pdf').report_action(self, data=datas)
+        return self.env.ref('consumer_report.consumer_report_pdf').report_action(self, data=datas)
