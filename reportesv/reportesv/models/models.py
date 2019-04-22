@@ -23,9 +23,17 @@ class sv_reportWizard(models.TransientModel):
 
     @api.model_cr
     def create_view(self):
-        self.env.cr.execute(self._sql)
-        reg = list(self.env.cr.fetchall())
-        return reg
+        if self._sql:
+            if self.env.cr.execute(self._sql):
+                reg = list(self.env.cr.fetchall())
+                if reg:
+                    return reg
+                else:
+                    raise TypeError("No returning. Empty")
+            else:
+                raise TypeError("Not executed")
+        else:
+            raise NameError("SQL no listo s%", self._sql)
 
     @api.multi
     def get_header_info(self):
@@ -68,6 +76,7 @@ class sv_reportWizard(models.TransientModel):
         if len(data['form'])>0:
             self._sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
             ,ai.reference as factura
+            ,ai.reference as name
             ,rp.name as proveedor
             ,rp.vat as NRC
             ,case
@@ -264,12 +273,12 @@ class sv_reportWizard(models.TransientModel):
             self._companyId = data['form'][0]['company_id'][0]
         else:
             raise NameError(data['form'],data['form'][0]['company_id'][0],data['form'][0]['date_year'],data['form'][0]['date_month'])
-        datas = {
+        data = {
             'ids': self._ids,
             'model': 'report_wizard',
-            'docs': list(create_view())
+            'docs': create_view()
         }
-        return self.env.ref('purchase_report.purchase_report_pdf').report_action(self, data=datas)
+        return self.env.ref('purchase_report.purchase_report_pdf').report_action(self, data)
 
     #Metodo para invocar reporte de ventas a Contribuyentes
     @api.multi
