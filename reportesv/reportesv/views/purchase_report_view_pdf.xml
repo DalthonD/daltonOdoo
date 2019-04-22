@@ -6,7 +6,7 @@
           <div class="page">
             <div class="oe_structure"/>
             <div class="page-header"/>
-            <t t-foreach="get_header_info(company_id)" as="c">
+            <!--t t-foreach="get_header_info(company_id)" as="c">
               <blockquote class="blockquote text-center">
                 <p class="mb-0">NOMBRE DEL CONTRIBUYENTE: <span t-esc="c['name']"/></p>
                 <p class="mb-0">LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</p>
@@ -15,7 +15,7 @@
                 <p class="mb-0">Contador: <span t-esc="c['contador']"/></p>
                 <p class="mb-0">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</p>
               </blockquote>
-            </t>
+            </t-->
             <table class="table table-stripped">
               <tr>
                <td colspan="5"></td>
