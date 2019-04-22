@@ -25,6 +25,7 @@ class sv_reportWizard(models.TransientModel):
     def create_view(self):
         tools.drop_view_if_exists(self._cr, 'strategiksv_reportesv_purchase_report')
         if self._sql:
+            raise AttribError("s%", self._sql)
             if self.env.cr.execute(self._sql):
                 reg = list(self.env.cr.fetchall())
                 if reg:
