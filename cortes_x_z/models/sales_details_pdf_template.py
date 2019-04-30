@@ -27,7 +27,7 @@ class sales_details_pdf_template(models.AbstractModel):
                 }
 
 class front_sales_report_x_pdf_template(models.AbstractModel):
-    _name = 'report.cortes_x_z.corte_x_front_sales_report_x_pdf_template'
+    _name = 'report.cortes_x_z.front_sales_report_x_pdf_template'
 
     @api.model
     def _get_report_values(self, docids, data=None):
