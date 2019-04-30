@@ -17,7 +17,7 @@
       <field name="name">strategiksv account move form</field>
       <field name="model">account.move</field>
       <field name="arch" type="xml">
-		  <xpath expr="//button[@name='button_cancel']" position="after">
+		  <xpath expr="//button[@name='cancel']" position="after">
 
 			<button  class="btn btn-sm btn-primary" string="Imprimir" custom="click_partida">
 
