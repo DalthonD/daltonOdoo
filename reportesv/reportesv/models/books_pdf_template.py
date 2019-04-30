@@ -12,7 +12,16 @@ class strategiksv_purchase_report_pdf(models.Model):
     def _get_report_values(self, docids, data=None):
         report = self.env['ir.actions.report'].\
             _get_report_from_name('reportesv.strategiksv_purchase_report_pdf')
-        if data and data.get('form') and  data.get('form').get(''):
+        if data and data.get('form')\
+            and  data.get('form').get('company_id')\
+            and  data.get('form').get('date_year')\
+            and  data.get('form').get('date_month'):
+            docids = self.env['res.company'].browse(data['form']['company_id'][0])
+        return {'doc_ids': self.env['wizard.sv.purchase.report'].browse(data['ids']),
+                'doc_model': report.model,
+                'docs': self.env['res.company'].browse(data['form']['company_id'][0]),
+                'data': data,
+                }
 
         self._companyId = company_id
         self._sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
