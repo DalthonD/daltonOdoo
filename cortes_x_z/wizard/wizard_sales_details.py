@@ -24,14 +24,14 @@ class wizard_sales_details(models.TransientModel):
         proxy_ip = self.env['res.users'].browse([self._uid]).company_id.report_ip_address or''
         return proxy_ip
 
-    start_date = fields.Date(string="Start Date")
-    end_date = fields.Date(string="End Date")
+    start_date = fields.Date(string="Fecha de Inicio")
+    end_date = fields.Date(string="Fecha de Corte")
     report_type = fields.Selection([('thermal', 'Thermal'),
-                                    ('pdf', 'PDF')], default='pdf', readonly=True, string="Report Type")
+                                    ('pdf', 'PDF')], default='pdf', readonly=True, string="Tipo de Reporte")
     user_ids = fields.Many2many('res.users', 'acespritech_pos_details_report_user_rel', 'user_id', 'wizard_id',
                                 'Salespeople')
     proxy_ip = fields.Char(string="Proxy IP", default=get_ip)
-    only_summary = fields.Boolean("Only Summary")
+    only_summary = fields.Boolean("Sólo resumen")
 
     @api.multi
     def print_sales_details(self):
