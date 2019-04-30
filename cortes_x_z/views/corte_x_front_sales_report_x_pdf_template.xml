@@ -50,7 +50,7 @@
                       <td class="text-right">
                         <span t-esc="o.get_session_date(o.start_at)"/>
                       </td>
-                    </t>
+                    </tr>
                     <tr>
                       <td class="text-left">
                         IMPRESION:
