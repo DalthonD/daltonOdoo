@@ -4,12 +4,16 @@ from odoo import models, fields, api, tools
 from dateutil.parser import parse
 from odoo.exceptions import UserError
 
-class purchase_report_pdf(models.Model):
-    _name = 'report.purchase_report.strategiksv_purchase_report_pdf'
+class strategiksv_purchase_report_pdf(models.Model):
+    _name = 'report.reportesv.strategiksv_purchase_report_pdf'
     _auto = False
 
     @api.model
-    def __init__(self, company_id, date_year, date_month):
+    def _get_report_values(self, docids, data=None):
+        report = self.env['ir.actions.report'].\
+            _get_report_from_name('reportesv.strategiksv_purchase_report_pdf')
+        if data and data.get('form') and  data.get('form').get(''):
+
         self._companyId = company_id
         self._sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
     ,ai.reference as factura

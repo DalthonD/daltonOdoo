@@ -19,20 +19,16 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','account','purchase'],
+    'depends': ['base','account','purchase','account_accountant'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/purchase_report_pdf_view.xml',
-        'views/wizard.xml',
+        '',
 
     ],
     # only loaded in demonstration mode
-    'demo': [
-        'demo/demo.xml',
-    ],
-    'qweb': [
-        'views/purchase_report.xml',
+    'qweb': [,
     ],
 }
