@@ -20,6 +20,7 @@
 
     # always loaded
     'data': [
+        'reports.xml',
         'security/ir.model.access.csv',
         'views/purchase_report_pdf_view.xml',
         'wizard/wizard_purchases_report.xml',
