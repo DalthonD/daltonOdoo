@@ -3,8 +3,7 @@
     'name': "Reporte-SV",
 
     'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+        Allows users to print Purchase Report, Sales Report either taxpayer or consumer""",
 
     'description': "Creación de Reportes para Compras, Ventas Contribuyentes y  Ventas Consumidores"
         "Long description of module's purpose",
@@ -30,6 +29,8 @@
 
     ],
     # only loaded in demonstration mode
-    'qweb': [,
+    'qweb': [
     ],
+    'instalable': True,
+    'auto_install': False,
 }
