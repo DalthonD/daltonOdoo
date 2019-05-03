@@ -5,8 +5,7 @@
     'summary': """
         Allows users to print Purchase Report, Sales Report either taxpayer or consumer""",
 
-    'description': "Creación de Reportes para Compras, Ventas Contribuyentes y  Ventas Consumidores"
-        "Long description of module's purpose",
+    'description': "Creación de Reportes para Compras, Ventas Contribuyentes y  Ventas Consumidores",
 
     'author': "strategiksv",
     'website': "http://Strategi-k.com",
@@ -18,7 +17,7 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','account','account_accountant', 'strategiksv'],
+    'depends': ['base','account','strategiksv'],
 
     # always loaded
     'data': [

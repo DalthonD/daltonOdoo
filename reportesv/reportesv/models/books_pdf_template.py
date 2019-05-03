@@ -21,18 +21,7 @@ class strategiksv_purchase_report_pdf(models.Model):
                 'data': data,
                 }
 
-    """def get_header_info(self):
-        compania_info = self.env['res_company']
-        id_needed = compania_info.search([('company_id', '=', _companyId)], limit=1).id
-        compania = compania_info.browse(id_needed)
-        header = { 'name' : compania.name,
-            'nit': compania.sv_nit,
-            'nrc': compania.sv_nrc,
-            'contador': compania.sv_revisa_partida,
-        }
-        return header
-
-    def render_html(self):
+    """def render_html(self):
         report_obj = self.pool['report']
         report = report_obj._get_report_from_name(uid, 'purchase_report.strategiksv_purchase_report_pdf')
         docargs = {
