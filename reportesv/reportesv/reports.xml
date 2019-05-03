@@ -46,7 +46,7 @@
             <field name="header_line" eval="False" />
             <field name="header_spacing">0</field>
             <field name="dpi">90</field>
-            <field name="report_ids" eval="[(6,0,[ref('cortes_x_z.report_purchase_pdf'),
+            <field name="report_ids" eval="[(6,0,[ref('reportesv.report_purchase_pdf'),
                                                   ])]"/>
         </record>
 
