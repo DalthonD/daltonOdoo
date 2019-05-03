@@ -2,8 +2,7 @@
 {
     'name': "Reporte-SV",
 
-    'summary': """
-        Allows users to print Purchase Report, Sales Report either taxpayer or consumer""",
+    'summary': """Allows users to print Purchase Report, Sales Report either taxpayer or consumer""",
 
     'description': "Creación de Reportes para Compras, Ventas Contribuyentes y  Ventas Consumidores",
 
@@ -24,12 +23,9 @@
         'security/ir.model.access.csv',
         'views/purchase_report_pdf_view.xml',
         'wizard/wizard_purchases_report.xml',
-        '',
-
     ],
     # only loaded in demonstration mode
-    'qweb': [
-    ],
+    'qweb': [],
     'instalable': True,
     'auto_install': False,
 }
