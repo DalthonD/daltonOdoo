@@ -1,18 +1,19 @@
 <odoo>
   <data>
-    <template id ='strategiksv_purchase_report_pdf'>
+    <template id ='company_strategiksv_purchase_report_pdf'>
       <t t-call="web.html_container">
         <t t-call="web.basic_layout">
           <div class="page">
             <!--div class="page-header"/-->
             <t t-foreach="docs" t-as="o">
               <blockquote class="blockquote text-center">
-                <p class="mb-0">NOMBRE DEL CONTRIBUYENTE: <span t-field="o."/></p>
+                <p class="mb-0">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></p><br/>
                 <p class="mb-0">LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</p>
-                <p class="mb-0">NIT: <span t-field="o."/></p>
-                <p class="mb-0">NRC: <span t-field="o."/></p>
-                <p class="mb-0">Contador: <span t-field="o."/></p>
-                <p class="mb-0">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</p>
+                <p class="mb-0">NIT: <span t-field="o.sv_nit"/></p>
+                <p class="mb-0">NRC: <span t-field="o.sv_nrc"/></p><br/>
+                <!--p class="mb-0">Contador: <span t-field="o."/></p-->
+                <p class="mb-0">MES: <span t-esc="data.get('form').get('date_month')"/> DE <span t-esc="data.get('form').get('date_year')"/></p><br/>
+                <p class="mb-0">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</p><br/>
               </blockquote>
             </t>
               <table class="table table-stripped">
@@ -36,7 +37,7 @@
                   <td>Anticipo a Cuenta de IVA Retenido</td>
                   <td>Anticipo a Cuenta de IVA Percibido</td>
                   <td>Total compras</td>
-                  <td>Comrpas a Sujetos Excluidos</td>
+                  <td>Compras a Sujetos Excluidos</td>
                   <td>Retención a Terceros</td>
                 </tr>
                 <!--tr t-foreach="docs" t-as="c">

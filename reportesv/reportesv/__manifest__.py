@@ -19,12 +19,13 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','account','purchase','account_accountant'],
+    'depends': ['base','account','account_accountant', 'strategiksv'],
 
     # always loaded
     'data': [
         'security/ir.model.access.csv',
         'views/purchase_report_pdf_view.xml',
+        'wizard/wizard_purchases_report.xml',
         '',
 
     ],
