@@ -3,13 +3,13 @@ import time
 from odoo import models, fields, api, tools
 
 class strategiksv_purchase_report_pdf(models.Model):
-    _name = 'report.reportesv.strategiksv_purchase_report_pdf'
+    _name = 'report.reportesv.company_strategiksv_purchase_report_pdf'
     _auto = False
 
     @api.model
     def _get_report_values(self, docids, data=None):
         report = self.env['ir.actions.report'].\
-            _get_report_from_name('reportesv.strategiksv_purchase_report_pdf')
+            _get_report_from_name('reportesv.company_strategiksv_purchase_report_pdf')
         if data and data.get('form')\
             and  data.get('form').get('company_id')\
             and  data.get('form').get('date_year')\

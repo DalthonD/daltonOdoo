@@ -8,7 +8,7 @@
             <t t-foreach="docs" t-as="o">
               <blockquote class="blockquote text-center">
                 <p class="mb-0">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></p><br/>
-                <p class="mb-0">LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</p>
+                <p class="mb-0">LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</p><br/>
                 <p class="mb-0">NIT: <span t-field="o.sv_nit"/></p>
                 <p class="mb-0">NRC: <span t-field="o.sv_nrc"/></p><br/>
                 <!--p class="mb-0">Contador: <span t-field="o."/></p-->
