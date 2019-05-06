@@ -2,7 +2,7 @@
 import time
 from odoo import models, fields, api, tools
 
-class strategiksv_purchase_report_pdf(models.Model):
+class strategiksv_purchase_report_pdf(models.AbstractModel):
     _name = 'report.reportesv.company_strategiksv_purchase_report_pdf'
     _auto = False
 

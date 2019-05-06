@@ -10,11 +10,12 @@
                 <p class="mb-0">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></p>
                 <p class="mb-0">LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</p>
                 <p class="mb-0">NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></p>
-                <p class="mb-0">MES: <span t-esc="data.get('form').get('date_month')"/> DE <span t-esc="data.get('form').get('date_year')[1]"/></p>
+                <p class="mb-0">MES: <span t-set="month" t-value="data.get('form').get('date_month')" t-esc="o.get_month_str(month)"/> DE <span t-esc="data.get('form').get('date_year')"/></p>
                 <p class="mb-0">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</p>
               </blockquote>
+              <t t-set="accountant" t-value="o.sv_aprueba_partida"/>
             </t>
-              <table class="table table-stripped" style="border: 1px solid black; border-collapse: collapse">
+              <table class="table table-bordered" style="border: 1px solid black; border-collapse: collapse">
                 <tr align="center">
                   <th colspan="5" style="border: 0px !important;"></th>
                   <th colspan="2">COMPRAS EXENTAS</th>
@@ -62,7 +63,7 @@
               <table align="center">
               	<tr>
                 	<td align="left">
-                      <table style="border: 1px solid black; border-collapse: collapse;">
+                      <table class="table table-bordered" style="border: 1px solid black; border-collapse: collapse;">
                         <tr>
                         	<td align="center">RESUMEN DE COMPRAS</td>
                         </tr>
@@ -107,7 +108,7 @@
                               <td align="center">_________________________________________</td>
                           </tr>
                           <tr>
-                              <td align="center">Nombre</td>
+                              <td align="center"><span t-esc="accountant"/></td>
                           </tr>
                           <tr>
                               <td align="center">Contador</td>

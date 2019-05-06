@@ -9,7 +9,7 @@ from odoo import exceptions
 _logger = logging.getLogger(__name__)
 
 class res_company(models.Model):
-    _inherit = 'res.company'
+    _inherit = "res.company"
 
     @api.multi
     def get_purchase_details(self, company_id, date_year, date_month):
@@ -219,3 +219,16 @@ class res_company(models.Model):
         except (ValueError, TypeError, UserError):
             UserError(_("Error occured when creating view"))
         return data
+
+    @api.multi
+    def get_month_str(self, month):
+        months = {1: "Enero", 2: "Febrero",
+                  3: "Marzo", 4: "Abril",
+                  5: "Mayo", 6: "Junio",
+                  7: "Julio", 8: "Agosto",
+                  9: "Septiembre", 10: "Octubre",
+                  11: "Noviembre", 12: "Diciembre"}
+        if month>0:
+            return months.get(month)
+        else:
+            return "No especificado"
