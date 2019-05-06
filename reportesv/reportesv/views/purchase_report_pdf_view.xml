@@ -9,13 +9,13 @@
             <t t-set="year" t-value="int(0)"/>
             <t t-set="company_id" t-value="int(0)"/>
             <t t-set="contador" t-value="null"/>
-            <t t-set="company" t-value="null">
+            <t t-set="company" t-value="null"/>
             <t t-foreach="docs" t-as="o">
               <t t-set="month" t-value="int(data.get('form').get('date_month'))"/>
               <t t-set="year" t-value="int(data.get('form').get('date_year'))"/>
               <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
               <t t-set="contador" t-value="o.sv_aprueba_partida"/>
-              <t t-set="company" t-value="o">
+              <t t-set="company" t-value="o"/>
               <blockquote class="blockquote text-center">
                 <p class="mb-0">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></p>
                 <p class="mb-0">LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</p>

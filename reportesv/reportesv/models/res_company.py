@@ -210,7 +210,8 @@ class res_company(models.Model):
         and date_part('month',am.date)= {2}
         and am.company_id= {0}
         and am.state='posted') S order by s.Fecha, s.Factura)""".format(company_id,date_year,date_month)
-        return create_view(sql)
+        data = create_view(sql)
+        return data
 
     @api.model_cr
     def create_view(self, sql):
