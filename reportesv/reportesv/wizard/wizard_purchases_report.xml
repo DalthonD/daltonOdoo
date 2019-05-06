@@ -32,7 +32,7 @@
 
 
     <menuitem id="pdf_reports" name="Reportes PDF"/>
-      <menuitem id="legal_report" name="Libros legales" parent="pdf_reports" sequence="10"/>
+      <menuitem id="legal_report" name="Libros Legales" parent="pdf_reports" sequence="10"/>
       <menuitem id="purchase_report" name="Libro de Compras(PDF)" action="action_report_wizard" parent="legal_report" sequence="11"/>
       <!--menuitem id="taxpayer_report" name="Taxpayer_Sales_Report" action="" parent="pdf_reports" sequence="11"/>
       <menuitem id="consumer_report" name="Consumer_Sales_Report" action="" parent="pdf_reports" sequence="12"/-->

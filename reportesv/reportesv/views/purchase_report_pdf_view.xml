@@ -7,38 +7,36 @@
             <!--div class="page-header"/-->
             <t t-foreach="docs" t-as="o">
               <blockquote class="blockquote text-center">
-                <p class="mb-0">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></p><br/>
-                <p class="mb-0">LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</p><br/>
-                <p class="mb-0">NIT: <span t-field="o.sv_nit"/></p>
-                <p class="mb-0">NRC: <span t-field="o.sv_nrc"/></p><br/>
-                <!--p class="mb-0">Contador: <span t-field="o."/></p-->
-                <p class="mb-0">MES: <span t-esc="data.get('form').get('date_month')"/> DE <span t-esc="data.get('form').get('date_year')"/></p><br/>
-                <p class="mb-0">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</p><br/>
+                <p class="mb-0">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></p>
+                <p class="mb-0">LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</p>
+                <p class="mb-0">NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></p>
+                <p class="mb-0">MES: <span t-esc="data.get('form').get('date_month')"/> DE <span t-esc="data.get('form').get('date_year')[1]"/></p>
+                <p class="mb-0">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</p>
               </blockquote>
             </t>
-              <table class="table table-stripped">
-                <tr>
-                  <td colspan="5"></td>
-                  <td colspan="2">COMPRAS EXENTAS</td>
-                  <td colspan="4">COMPRAS GRAVADAS</td>
-                  <td colspan="4"></td>
+              <table class="table table-stripped" style="border: 1px solid black; border-collapse: collapse">
+                <tr align="center">
+                  <th colspan="5" style="border: 0px !important;"></th>
+                  <th colspan="2">COMPRAS EXENTAS</th>
+                  <th colspan="4">COMPRAS GRAVADAS</th>
+                  <th colspan="4" style="border: 0px !important;"></th>
                 </tr>
-                <tr>
-                  <td>#</td>
-                  <td>Fecha de emisión</td>
-                  <td>Número de documento</td>
-                  <td>Nombre del proveedor</td>
-                  <td>N.R.C.</td>
-                  <td>Internas</td>
-                  <td>Importaciones e Internacionales</td>
-                  <td>Internas</td>
-                  <td>Importaciones e Internacionales</td>
-                  <td>Crédito fiscal</td>
-                  <td>Anticipo a Cuenta de IVA Retenido</td>
-                  <td>Anticipo a Cuenta de IVA Percibido</td>
-                  <td>Total compras</td>
-                  <td>Compras a Sujetos Excluidos</td>
-                  <td>Retención a Terceros</td>
+                <tr align="center">
+                  <th>#</th>
+                  <th>Fecha de emisión</th>
+                  <th>Número de documento</th>
+                  <th>Nombre del proveedor</th>
+                  <th>N.R.C.</th>
+                  <th>Internas</th>
+                  <th>Importaciones e Internacionales</th>
+                  <th>Internas</th>
+                  <th>Importaciones e Internacionales</th>
+                  <th>Crédito fiscal</th>
+                  <th>Anticipo a Cuenta de IVA Retenido</th>
+                  <th>Anticipo a Cuenta de IVA Percibido</th>
+                  <th>Total compras</th>
+                  <th>Compras a Sujetos Excluidos</th>
+                  <th>Retención a Terceros</th>
                 </tr>
                 <!--tr t-foreach="docs" t-as="c">
                   <td>1</td>
@@ -58,6 +56,67 @@
                   <td><span t-field="o.retencion3"/></td>
                 </tr-->
               </table>
+
+              <br/>
+
+              <table align="center">
+              	<tr>
+                	<td align="left">
+                      <table style="border: 1px solid black; border-collapse: collapse;">
+                        <tr>
+                        	<td align="center">RESUMEN DE COMPRAS</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Compras Exentas:</td>
+                            <td align="right">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Importaciones Exentas:</td>
+                            <td align="right">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Compras Gravadas:</td>
+                            <td align="right">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Importaciones Gravadas:</td>
+                            <td align="right">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td align="left">Crédito Fiscal:</td>
+                            <td align="right">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td align="left">IVA Percibido:</td>
+                            <td align="right">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td align="left">IVA Retenido:</td>
+                            <td align="right">$0.00</td>
+                        </tr>
+                        <tr>
+                            <td align="left">TOTAL:</td>
+                            <td align="right">$0.00</td>
+                        </tr>
+                	  </table>
+                    </td>
+                    <td style="width: 30%"></td>
+                    <td align="right">
+                        <table>
+                          <tr>
+                              <td align="center">_________________________________________</td>
+                          </tr>
+                          <tr>
+                              <td align="center">Nombre</td>
+                          </tr>
+                          <tr>
+                              <td align="center">Contador</td>
+                          </tr>
+              		    </table>
+                   </td>
+                </tr>
+              </table>
+
           </div>
         </t>
       </t>
