@@ -5,17 +5,23 @@
         <t t-call="web.basic_layout">
           <div class="page">
             <!--div class="page-header"/-->
-            <!--t t-set="contador" t-value="Null"/-->
-            <t t-set="month" t-value="0"/>
+            <t t-set="month" t-value="int(0)"/>
+            <t t-set="year" t-value="int(0)"/>
+            <t t-set="company_id" t-value="int(0)"/>
+            <t t-set="contador" t-value="null"/>
+            <t t-set="company" t-value="null">
             <t t-foreach="docs" t-as="o">
+              <t t-set="month" t-value="int(data.get('form').get('date_month'))"/>
+              <t t-set="year" t-value="int(data.get('form').get('date_year'))"/>
+              <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
+              <t t-set="contador" t-value="o.sv_aprueba_partida"/>
+              <t t-set="company" t-value="o">
               <blockquote class="blockquote text-center">
                 <p class="mb-0">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></p>
                 <p class="mb-0">LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</p>
-                <p class="mb-0">NIT: <span t-field="o.sv_nit"/>    NRC: <span t-field="o.sv_nrc"/></p>
-                <t t-set="month" t-value="data.get('form').get('date_month')"/>
-                <p class="mb-0">MES: <span t-esc="o.get_month_str(int(month))"/> <span t-esc="data.get('form').get('date_month')"/> DE <span t-esc="data.get('form').get('date_year')"/></p>
+                <p class="mb-0">NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></p>
+                <p class="mb-0">MES: <span t-esc="o.get_month_str(month)"/> DE <span t-esc="year"/></p>
                 <p class="mb-0">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</p>
-                <t t-set="contador" t-value="o.sv_aprueba_partida"/>
               </blockquote>
             </t>
               <table class="table table-bordered" style="border: 1px solid black;">
@@ -26,7 +32,7 @@
                   <th colspan="4"></th>
                 </tr>
                 <tr align="center" valign="middle">
-                  <th>#</th>
+                  <th valign="middle">#</th>
                   <th>Fecha de emisión</th>
                   <th>Número de documento</th>
                   <th>Nombre del proveedor</th>
@@ -42,23 +48,23 @@
                   <th>Compras a Sujetos Excluidos</th>
                   <th>Retención a Terceros</th>
                 </tr>
-                <!--tr t-foreach="docs" t-as="c">
+                <tr t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c">
                   <td>1</td>
-                  <td><span t-field="o.fecha"/></td>
-                  <td><span t-field="o.factura"/></td>
-                  <td><span t-field="o.proveedor"/></td>
-                  <td><span t-field="o.nrc"/></td>
-                  <td><span t-field="o.exento"/></td>
+                  <td><span t-field="c.fecha"/></td>
+                  <td><span t-field="c.factura"/></td>
+                  <td><span t-field="c.proveedor"/></td>
+                  <td><span t-field="c.nrc"/></td>
+                  <td><span t-field="c.exento"/></td>
                   <td>$0.00</td>
-                  <td><span t-field="o.gravado"/></td>
-                  <td><span t-field="o.importacion"/></td>
-                  <td><span t-field="o.iva"/></td>
-                  <td><span t-field="o.retenido"/></td>
-                  <td><span t-field="o.percibido"/></td>
-                  <td><span t-field="o."/></td>
-                  <td><span t-field="o.excluido"/></td>
-                  <td><span t-field="o.retencion3"/></td>
-                </tr-->
+                  <td><span t-field="c.gravado"/></td>
+                  <td><span t-field="c.importacion"/></td>
+                  <td><span t-field="c.iva"/></td>
+                  <td><span t-field="c.retenido"/></td>
+                  <td><span t-field="c.percibido"/></td>
+                  <!--td><span t-field="o."/></td-->
+                  <td><span t-field="c.excluido"/></td>
+                  <td><span t-field="c.retencion3"/></td>
+                </tr>
               </table>
 
               <br/>

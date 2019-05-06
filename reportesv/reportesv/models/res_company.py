@@ -214,12 +214,16 @@ class res_company(models.Model):
 
     @api.model_cr
     def create_view(self, sql):
-        try:
-            self.env.cr.execute(sql)
-            data = list(self.env.cr.fetchall())
-        except (ValueError, TypeError, UserError):
-            UserError(_("Error occured when creating view"))
-        return data
+        data = []
+        if self and sql:
+            try:
+                self.env.cr.execute(sql)
+                data = list(self.env.cr.fetchall())
+                return data
+            except (ValueError, TypeError, UserError):
+                UserError(_("Error occured when creating view"))
+        else:
+            return data
 
     @api.multi
     def get_month_str(self, month):
