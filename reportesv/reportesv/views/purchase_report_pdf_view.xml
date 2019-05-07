@@ -10,9 +10,10 @@
             <t t-set="company_id" t-value="int(0)"/>
             <t t-set="contador" t-value="null"/>
             <t t-set="company" t-value="null"/>
+            <t t-set="imp" t-value="False"/>
 
             <t tset="compra" t-value="float(0.00)"/>
-
+            <t tset="zero" t-value="float(0.00)"/>
             <t t-set="totalExentas" t-value="float(0.00)"/>
             <t t-set="totalGravadas" t-value="float(0.00)"/>
             <t t-set="totalIva" t-value="float(0.00)"/>
@@ -68,26 +69,26 @@
                   <td><span t-field="c.proveedor"/></td>
                   <td><span t-field="c.nrc"/></td>
                   <td><span t-esc="company.currency_id.symbol"/>
-                      <span t-if="c.importacion != True" t-field="c.exento"/>
-                      <t t-else="">0.00<t/>
+                      <span  t-if="c.importacion != True" t-field="c.exento"/>
+                      <span  t-else="" t-esc="zero"/>
                   </td>
                   <td><span t-esc="company.currency_id.symbol"/>
                       <span t-if="c.importacion == True" t-field="c.exento"/>
-                      <t t-else="">0.00<t/>
+                      <span t-else="" t-esc="zero"/>
                   </td>
                   <td><span t-esc="company.currency_id.symbol"/>
                       <span t-if="c.importacion != True" t-field="c.gravado"/>
-                      <t t-else="">0.00<t/>
+                      <span t-else="" t-esc="zero"/>
                   </td>
                   <td><span t-esc="company.currency_id.symbol"/>
                       <span t-if="c.importacion == True" t-field="c.gravado"/>
-                      <t t-else="">0.00<t/>
+                      <span t-else="" t-esc="zero"/>
                   </td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-field="c.iva"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-field="c.retenido"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-field="c.percibido"/></td>
                   <t t-set="compra" t-value="c.exento + c.gravado + c.iva + c.retenido + c.percibido"/>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="compra"></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="compra"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-field="c.excluido"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-field="c.retencion3"/></td>
 
@@ -100,9 +101,9 @@
                   <t t-set="totalCompras" t-value="totalCompras + compra"/>
                   <t t-set="totalExcluidos" t-value="totalExcluidos + c.excluido"/>
                   <t t-set="totalRetenido3" t-value="totalRetenido3 + c.retencion3"/>
-
+                  <t t-set="imp" t-value="c.importacion"/>
                 </tr>
-                <tr t-if="c_last" align="center">
+                <tr t-if="company.get_purchase_details(company_id, year, month)" align="center">
                   <td>
                   </td>
                   <td>
@@ -115,20 +116,20 @@
                   </td>
                   <td><span t-esc="company.currency_id.symbol"/>
                       <span t-if="c.importacion != True" t-esc="totalExentas"/>
-                      <t t-else="">0.00<t/>
+                      <span t-else="" t-esc="zero"/>
                   </td>
                   <td><span t-esc="company.currency_id.symbol"/>
-                      <span t-if="c.importacion == True" t-esc="totalExentas"/>
-                      <t t-else="">0.00<t/>
+                      <span t-if="imp == True" t-esc="totalExentas"/>
+                      <span t-else="" t-esc="zero"/>
                   </td>
                   <td>
                     <span t-esc="company.currency_id.symbol"/>
-                      <span t-if="c.importacion != True" t-esc="totalGravadas"/>
-                      <t t-else="">0.00<t/>
+                      <span t-if="imp != True" t-esc="totalGravadas"/>
+                      <span t-else="" t-esc="zero"/>
                   </td>
                   <td><span t-esc="company.currency_id.symbol"/>
-                      <span t-if="c.importacion == True" t-esc="totalGravadas"/>
-                      <t t-else="">0.00<t/>
+                      <span t-if="imp == True" t-esc="totalGravadas"/>
+                      <span t-else="" t-esc="zero"/>
                   </td>
                   <td>
                     <span t-esc="company.currency_id.symbol"/><span t-esc="totalIva"/>
@@ -153,7 +154,7 @@
 
               <br/>
 
-              <table align="center">
+              <table t-if="imp" align="center">
               	<tr style="width: 100%;">
                 	<td align="right">
                       <table class="table table-bordered" style="border: 1px solid black; border-collapse: collapse;">
@@ -164,45 +165,45 @@
                             <td align="left">Compras Exentas:</td>
                             <td align="right"><span t-esc="company.currency_id.symbol"/>
                               <span t-if="c.importacion != True" t-esc="totalExentas"/>
-                              <t t-else="">0.00<t/>
+                              <span t-else="" t-esc="zero"/>
                             </td>
                         </tr>
                         <tr>
                             <td align="left">Importaciones Exentas:</td>
                             <td align="right"><span t-esc="company.currency_id.symbol"/>
                               <span t-if="c.importacion == True" t-esc="totalExentas"/>
-                              <t t-else="">0.00<t/>
+                              <span t-else="" t-esc="zero"/>
                             </td>
                         </tr>
                         <tr>
                             <td align="left">Compras Gravadas:</td>
                             <td align="right"><span t-esc="company.currency_id.symbol"/>
                               <span t-if="c.importacion != True" t-esc="totalGravadas"/>
-                              <t t-else="">0.00<t/>
+                              <span t-else="" t-esc="zero"/>
                             </td>
                         </tr>
                         <tr>
                             <td align="left">Importaciones Gravadas:</td>
                             <td align="right"><span t-esc="company.currency_id.symbol"/>
                               <span t-if="c.importacion == True" t-esc="totalGravadas"/>
-                              <t t-else="">0.00<t/>
+                              <span t-else="" t-esc="zero"/>
                             </td>
                         </tr>
                         <tr>
                             <td align="left">Crédito Fiscal:</td>
-                            <td align="right"><span t-esc="company.currency_id.symbol"/><span t-esc="totalIva"></td>
+                            <td align="right"><span t-esc="company.currency_id.symbol"/><span t-esc="totalIva"/></td>
                         </tr>
                         <tr>
                             <td align="left">IVA Percibido:</td>
-                            <td align="right"><span t-esc="company.currency_id.symbol"/><span t-esc="totalPercibido"></td>
+                            <td align="right"><span t-esc="company.currency_id.symbol"/><span t-esc="totalPercibido"/></td>
                         </tr>
                         <tr>
                             <td align="left">IVA Retenido:</td>
-                            <td align="right"><span t-esc="company.currency_id.symbol"/><span t-esc="totalRetenido"></td>
+                            <td align="right"><span t-esc="company.currency_id.symbol"/><span t-esc="totalRetenido"/></td>
                         </tr>
                         <tr>
                             <td align="left">TOTAL:</td>
-                            <td align="right"><span t-esc="company.currency_id.symbol"/><span t-esc="totalCompras"></td>
+                            <td align="right"><span t-esc="company.currency_id.symbol"/><span t-esc="totalCompras"/></td>
                         </tr>
                 	  </table>
                     </td>
