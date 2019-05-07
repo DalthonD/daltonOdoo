@@ -221,21 +221,6 @@ class res_company(models.Model):
         return data
 
     @api.multi
-    def create_view(self, sql):
-        data = []
-        if self and sql:
-            try:
-                self._cr.execute(sql)
-                #self.env.cr.execute(sql)
-                data = list(self._cr.fetchall())
-                #data = list(self.env.cr.fetchall())
-                return data
-            except (ValueError, TypeError, UserError):
-                UserError(_("Error occured when creating view"))
-        else:
-            return data
-
-    @api.multi
     def get_month_str(self, month):
         m = "No especificado"
         if self and month>0:
