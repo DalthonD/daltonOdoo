@@ -1,6 +1,7 @@
 import logging
 from odoo import fields, models, api, SUPERUSER_ID, _
 from odoo.tools import DEFAULT_SERVER_DATETIME_FORMAT
+from odoo import tools
 import pytz
 from pytz import timezone
 from datetime import datetime, date, timedelta
@@ -14,6 +15,8 @@ class res_company(models.Model):
 
     @api.multi
     def get_purchase_details(self, company_id, date_year, date_month):
+        #data = {}
+        data = []
         sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
         ,ai.reference as factura
         ,rp.name as proveedor
@@ -210,16 +213,22 @@ class res_company(models.Model):
         and date_part('month',am.date)= {2}
         and am.company_id= {0}
         and am.state='posted') S order by s.Fecha, s.Factura)""".format(company_id,date_year,date_month)
-        data = create_view(sql)
+        tools.drop_view_if_exists(self._cr, 'strategiksv_reportesv_purchase_report')
+        self._cr.execute(sql)
+        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+            #data = self._cr.dictfetchall()
+            data = list(self._cr.fetchall())
         return data
 
-    @api.model_cr
+    @api.multi
     def create_view(self, sql):
         data = []
         if self and sql:
             try:
-                self.env.cr.execute(sql)
-                data = list(self.env.cr.fetchall())
+                self._cr.execute(sql)
+                #self.env.cr.execute(sql)
+                data = list(self._cr.fetchall())
+                #data = list(self.env.cr.fetchall())
                 return data
             except (ValueError, TypeError, UserError):
                 UserError(_("Error occured when creating view"))
