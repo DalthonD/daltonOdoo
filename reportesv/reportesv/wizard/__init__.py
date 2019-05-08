@@ -1,1 +1,1 @@
-from . import wizard_purchases_sales
+from . import wizard_purchases

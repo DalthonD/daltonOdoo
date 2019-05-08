@@ -1,0 +1,51 @@
+<odoo>
+  <data>
+    <template id ='company_strategiksv_taxpayer_report_pdf'>
+      <t t-call="web.html_container">
+        <t t-call="web.basic_layout">
+          <div class="page">
+            <!--Declaracion de variables-->
+            <t t-set="month" t-value="int(0)"/>
+            <t t-set="year" t-value="int(0)"/>
+            <t t-set="company_id" t-value="int(0)"/>
+            <t t-set="contador" t-value="null"/>
+            <t t-set="company" t-value="null"/>
+
+            <t tset="compra" t-value="float(0.00)"/>
+            <t tset="zero" t-value="float(0.00)"/>
+            <t t-set="totalExentas" t-value="float(0.00)"/>
+            <t t-set="totalGravadas" t-value="float(0.00)"/>
+            <t t-set="totalIva" t-value="float(0.00)"/>
+            <t t-set="totalRetenido" t-value="float(0.00)"/>
+            <t t-set="totalPercibido" t-value="float(0.00)"/>
+            <t t-set="totalCompras" t-value="float(0.00)"/>
+            <t t-set="totalExcluidos" t-value="float(0.00)"/>
+            <t t-set="totalRetenido3" t-value="float(0.00)"/>
+            <!--Fin de declaraciones-->
+
+            <!--Encabezado-->
+              <t t-foreach="docs" t-as="o">
+                <t t-set="month" t-value="int(data.get('form').get('date_month'))"/>
+                <t t-set="year" t-value="int(data.get('form').get('date_year'))"/>
+                <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
+                <t t-set="contador" t-value="o.sv_aprueba_partida"/>
+                <t t-set="company" t-value="o"/>
+                <blockquote class="blockquote text-center">
+                  <p class="mb-0"><span t-field="o.name"/></p>
+                  <p class="mb-0">LIBRO DE VENTAS A CONTRIBUYENTES</p>
+                  <p class="mb-0">NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></p>
+                  <p class="mb-0"><span t-esc="o.get_month_str(month)"/> <span t-esc="year"/></p>
+                  <p class="mb-0">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</p>
+                </blockquote>
+                <hr style="width: 100%; color: #FFFFFF"/>
+              </t>
+            <!--Fin encabezado-->
+            <!--Contenido de reporte-->
+            <!--Fin contenido-->
+
+          </div>
+        </t>
+      </t>
+    </template>
+  </data>
+</odoo>
