@@ -4,7 +4,7 @@
 
         <report
             id="report_purchase_pdf"
-            string="Libro de compras(pdf)"
+            string="Libro de compras"
             model="res.company"
             report_type="qweb-pdf"
             file="reportesv.company_strategiksv_purchase_report_pdf"
@@ -14,7 +14,7 @@
 
         <report
             id="report_taxpayer_sales_pdf"
-            string="Libro de ventas contribuyentes(pdf)"
+            string="Libro de ventas contribuyentes"
             model="res.company"
             report_type="qweb-pdf"
             file="reportesv.company_strategiksv_taxpayer_report_pdf"

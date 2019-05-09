@@ -31,18 +31,119 @@
                 <t t-set="contador" t-value="o.sv_aprueba_partida"/>
                 <t t-set="company" t-value="o"/>
                 <blockquote class="blockquote text-center">
-                  <p class="mb-0"><span t-field="o.name"/></p>
+                  <p class="mb-0" style="font-size: 40px; text-transform: uppercase"><span t-field="o.name"/></p>
                   <p class="mb-0">LIBRO DE VENTAS A CONTRIBUYENTES</p>
                   <p class="mb-0">NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></p>
                   <p class="mb-0"><span t-esc="o.get_month_str(month)"/> <span t-esc="year"/></p>
-                  <p class="mb-0">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</p>
-                </blockquote>
-                <hr style="width: 100%; color: #FFFFFF"/>
+                  </blockquote>
+                <hr style="width: 100%; color: #FFFFFF; border-width: 3px"/>
               </t>
             <!--Fin encabezado-->
             <!--Contenido de reporte-->
-            <!--Fin contenido-->
+            <!--t t-foreach="company.get_taxpayer_details(company_id, year, month)" t-as="c"-->
+              <table class="table table-bordered" style="border: 1.5px solid black;">
+                <!--div t-if="c_first" style="background-color:gray"-->
+                <tr align="center" valign="middle">
+                  <th rowspan="2">#</th>
+                  <th rowspan="2">FECHA</th>
+                  <th rowspan="2">No. Corr. Por Tipo De Documento</th>
+                  <th rowspan="2" align="center">CLIENTE</th>
+                  <th rowspan="2">N.R.C.</th>
+                  <th colspan="4" align="center">VENTAS PROPIAS</th>
+                  <th rowspan="2">RETENCION</th>
+                  <th rowspan="2">PERCEPCION</th>
+                  <th rowspan="2">TOTAL</th>
+                </tr>
+                <tr align="center" valign="middle">
+                  <th>EXENTAS</th>
+                  <th>GRAVADAS</th>
+                  <th>DEBITO</th>
+                  <th>T.VENTA</th>
+                </tr>
 
+                <tr align="center">
+                  <td>
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                  </td>
+                  <td><span t-esc="company.currency_id.symbol"/>
+                      <!--span t-if="c.importacion != True" t-esc="totalExentas"/-->
+                      <span t-esc="zero"/>
+                  </td>
+                  <td><span t-esc="company.currency_id.symbol"/>
+                      <!--span t-if="c.importacion == True" t-esc="totalExentas"/-->
+                      <span t-esc="zero"/>
+                  </td>
+                  <td><span t-esc="company.currency_id.symbol"/>
+                      <!--span t-if="c.importacion != True" t-esc="totalGravadas"/-->
+                      <span t-esc="zero"/>
+                  </td>
+                  <td><span t-esc="company.currency_id.symbol"/>
+                      <!--span t-if="c.importacion == True" t-esc="totalGravadas"/-->
+                      <span t-esc="zero"/>
+                  </td>
+                  <td>
+                    <span t-esc="company.currency_id.symbol"/><span t-esc="totalIva"/>
+                  </td>
+                  <td>
+                    <span t-esc="company.currency_id.symbol"/><span t-esc="totalRetenido"/>
+                  </td>
+                  <td>
+                    <span t-esc="company.currency_id.symbol"/><span t-esc="totalPercibido"/>
+                  </td>
+                </tr>
+              </table>
+
+              <br/>
+
+              <table align="center">
+                <tr style="width: 100%;">
+                  <td align="right">
+                    <table class="table table-bordered" style="border: 1.5px solid black; border-collapse: collapse;">
+                      <tr>
+                        <th align="center">Resumen de Operaciones</th>
+                        <th align="center">Valor Exenta</th>
+                        <th align="center">Gravado</th>
+                        <th align="center">Débito Fiscal</th>
+                        <th align="center">Retención</th>
+                        <th align="center">Percepción</th>
+                        <th align="center">Total</th>
+                      </tr>
+                      <tr>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-tesc="zero"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-tesc="zero"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-tesc="zero"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-tesc="zero"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-tesc="zero"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-tesc="zero"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-tesc="zero"/></td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td style="width: 30%"></td>
+                  <td align="center" valign="bottom">
+                    <table>
+                      <tr>
+                        <hr style="border-width: 1.5px;"/>
+                        <td align="center">_________________________________________</td>
+                      </tr>
+                      <tr>
+                        <td align="center"><span t-esc="contador"/></td>
+                      </tr>
+                      <tr>
+                        <td align="center">Contador</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+                <!--Fin contenido-->
           </div>
         </t>
       </t>
