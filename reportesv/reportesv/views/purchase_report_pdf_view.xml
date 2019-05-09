@@ -229,6 +229,16 @@
                 </tr>
               </table>
             </t>
+
+              <!--Pie de pagina-->
+              <footer class="footer" style="background-color: lightgray; bottom: 1; position: fixed; width: 100%; border-width: 55%;">
+                <div class="row">
+                    <p style="text-align: right">Pag. <span class="page"></span>
+                    de
+                    <span class="topage"></span></p>
+                </div>
+              </footer>
+              <!-- Fin Pie de pagina-->
           </div>
         </t>
       </t>

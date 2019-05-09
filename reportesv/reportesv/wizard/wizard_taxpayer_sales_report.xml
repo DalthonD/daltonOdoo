@@ -13,7 +13,7 @@
             <field name="date_year"/>
           </group>
           <footer>
-            <button name="print_taxpayer_sales_report" string="Print" type="object" default_focus="1" class="oe_highlight"/>
+            <button name="print_taxpayer_sales_report" string="Imprimir" type="object" default_focus="1" class="oe_highlight"/>
             or
             <button string="Cancelar" class="oe_link" special="cancel"/>
           </footer>

@@ -43,22 +43,22 @@
             <!--t t-foreach="company.get_taxpayer_details(company_id, year, month)" t-as="c"-->
               <table class="table table-bordered" style="border: 1.5px solid black;">
                 <!--div t-if="c_first" style="background-color:gray"-->
-                <tr align="center" valign="middle">
-                  <th rowspan="2">#</th>
-                  <th rowspan="2">FECHA</th>
-                  <th rowspan="2">No. Corr. Por Tipo De Documento</th>
-                  <th rowspan="2" align="center">CLIENTE</th>
-                  <th rowspan="2">N.R.C.</th>
+                <tr align="center">
+                  <th rowspan="2" valign="middle">#</th>
+                  <th rowspan="2" valign="middle">FECHA</th>
+                  <th rowspan="2" style="width: 40%; font-size: 10px" valign="middle">No. Corr. Por Tipo De Documento</th>
+                  <th rowspan="2" align="center" valign="middle">CLIENTE</th>
+                  <th rowspan="2" valign="middle">N.R.C.</th>
                   <th colspan="4" align="center">VENTAS PROPIAS</th>
-                  <th rowspan="2">RETENCION</th>
-                  <th rowspan="2">PERCEPCION</th>
-                  <th rowspan="2">TOTAL</th>
+                  <th rowspan="2" valign="middle">RETENCION</th>
+                  <th rowspan="2" valign="middle">PERCEPCION</th>
+                  <th rowspan="2" valign="middle">TOTAL</th>
                 </tr>
                 <tr align="center" valign="middle">
                   <th>EXENTAS</th>
                   <th>GRAVADAS</th>
                   <th>DEBITO</th>
-                  <th>T.VENTA</th>
+                  <th>T. VENTA</th>
                 </tr>
 
                 <tr align="center">
@@ -106,7 +106,7 @@
                 <tr style="width: 100%;">
                   <td align="right">
                     <table class="table table-bordered" style="border: 1.5px solid black; border-collapse: collapse;">
-                      <tr>
+                      <tr style="width: 100%;">
                         <th align="center">Resumen de Operaciones</th>
                         <th align="center">Valor Exenta</th>
                         <th align="center">Gravado</th>
@@ -126,7 +126,7 @@
                       </tr>
                     </table>
                   </td>
-                  <td style="width: 30%"></td>
+                  <td style="width: 10%"></td>
                   <td align="center" valign="bottom">
                     <table>
                       <tr>
@@ -144,6 +144,17 @@
                 </tr>
               </table>
                 <!--Fin contenido-->
+            <!--/t-->
+              <!--Pie de pagina-->
+              <footer class="footer" style="background-color: lightgray; bottom: 1; position: fixed; width: 100%; border-width: 55%;">
+                <div class="row">
+                    <p style="text-align: right">Pag. <span class="page"></span>
+                    de
+                    <span class="topage"></span></p>
+                </div>
+              </footer>
+              <!-- Fin Pie de pagina-->
+
           </div>
         </t>
       </t>
