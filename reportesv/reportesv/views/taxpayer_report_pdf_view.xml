@@ -11,8 +11,9 @@
             <t t-set="contador" t-value="null"/>
             <t t-set="company" t-value="null"/>
 
-            <t tset="compra" t-value="float(0.00)"/>
-            <t tset="zero" t-value="float(0.00)"/>
+            <t t-set="total" t-value="float(0.00)"/>
+            <t t-set="venta" t-value="float(0.00)"/>
+            <t t-set="zero" t-value="float(0.00)"/>
             <t t-set="totalExentas" t-value="float(0.00)"/>
             <t t-set="totalGravadas" t-value="float(0.00)"/>
             <t t-set="totalIva" t-value="float(0.00)"/>
@@ -42,7 +43,7 @@
             <!--Contenido de reporte-->
             <!--t t-foreach="company.get_taxpayer_details(company_id, year, month)" t-as="c"-->
               <table class="table table-bordered" style="border: 1.5px solid black;">
-                <!--div t-if="c_first" style="background-color:gray"-->
+                <!--div t-if="c_first" style="background-color: lightgray"-->
                 <tr align="center">
                   <th rowspan="2" valign="middle">#</th>
                   <th rowspan="2" valign="middle">FECHA</th>
@@ -59,6 +60,23 @@
                   <th>GRAVADAS</th>
                   <th>DEBITO</th>
                   <th>T. VENTA</th>
+                </tr>
+              <!--/div-->
+                <tr>
+                  <td><span t-esc="c_index + 1"/></td>
+                  <td><span t-field="c.fecha"/></td>
+                  <td><span t-field="c.factura"/></td>
+                  <td><span t-field="c.cliente"/></td>
+                  <td><span t-field="c.nrc"/></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-field="c.exento"/></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-field="c.gravado"/></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-field="c.iva"/></td>
+                  <t t-set="venta" t-value="venta + c.exento + c.gravado + c.iva"/>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="venta"/></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-field="c.retenido"/></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-field="c.percibido"/></td>
+                  <t t-set="total" t-value="total + venta + c.percibido + c.retenido"/>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="total"/></td>
                 </tr>
 
                 <tr align="center">
