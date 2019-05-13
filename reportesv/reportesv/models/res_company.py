@@ -15,8 +15,8 @@ class res_company(models.Model):
 
     @api.multi
     def get_purchase_details(self, company_id, date_year, date_month):
-        #data = {}
-        data = []
+        data = {}
+        #data = []
         sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
         ,ai.reference as factura
         ,rp.name as proveedor
@@ -214,10 +214,10 @@ class res_company(models.Model):
         and am.company_id= {0}
         and am.state='posted') S order by s.Fecha, s.Factura)""".format(company_id,date_year,date_month)
         tools.drop_view_if_exists(self._cr, 'strategiksv_reportesv_purchase_report')
-        self.env.cr.execute(sql)
-        if self.env.cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
-            #data = self._cr.dictfetchall()
-            data = list(self.env.cr.fetchall())
+        self._cr.execute(sql)
+        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+            data = self._cr.dictfetchall()
+            #data = list(self.env.cr.fetchall())
         return data
 
     @api.multi
