@@ -30,18 +30,25 @@
                 <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
                 <t t-set="contador" t-value="o.sv_aprueba_partida"/>
                 <t t-set="company" t-value="o"/>
-                <blockquote class="blockquote text-center">
+                <!--blockquote class="blockquote text-center">
                   <p class="mb-0">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></p>
                   <p class="mb-0">LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</p>
                   <p class="mb-0">NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></p>
                   <p class="mb-0">MES: <span t-esc="o.get_month_str(month)"/> DE <span t-esc="year"/></p>
                   <p class="mb-0">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</p>
-                </blockquote>
+                </blockquote-->
+                <div style="background-color:lightgray" align="center">
+                  <h2>NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></h2>
+                  <h2>LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</h2>
+                  <h2>NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></h2>
+                  <h2>MES: <span t-esc="o.get_month_str(month)"/> DE <span t-esc="year"/></h2>
+                  <h2>VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</h2>
+                </div>
               </t>
             <!--Fin encabezado-->
             <!--Contenido de reporte-->
             <t t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c">
-              <table class="table table-bordered" style="border: 1px solid black;">
+              <table style="border: 1px solid black;">
                 <div t-if="c_first" style="background-color:gray">
                 <tr align="center" valign="middle">
                   <th colspan="5"></th>
