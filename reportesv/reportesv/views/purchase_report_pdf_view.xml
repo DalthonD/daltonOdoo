@@ -113,7 +113,7 @@
                   <td><span t-esc="company.currency_id.symbol"/><span t-field="c.get('iva')"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-field="c.get('retenido')"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-field="c.get('percibido')"/></td>
-                  <t t-set="compra" t-value="c.get('exento') + c.('gravado') + c.get('iva') + c.get('retenido') + c.get('percibido')"/>
+                  <t t-set="compra" t-value="c.get('exento') + c.get('gravado') + c.get('iva') + c.get('retenido') + c.get('percibido')"/>
                   <td><span t-esc="company.currency_id.symbol"/><span t-esc="compra"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-field="c.get('excluido')"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-field="c.get('retencion3')"/></td>
@@ -122,7 +122,7 @@
                   <t t-set="importacion" t-value="c.get('importacion')"/>
                   <t t-set="totalExentas" t-value="totalExentas + c.get('exento') "/>
                   <t t-set="totalGravadas" t-value="totalGravadas + c.get('gravado')"/>
-                  <t t-set="totalIva" t-value="totalIva + c.iva"/>
+                  <t t-set="totalIva" t-value="totalIva + c.get('iva')"/>
                   <t t-set="totalRetenido" t-value="totalRetenido + c.get('retenido')"/>
                   <t t-set="totalPercibido" t-value="totalPercibido + c.get('percibido')"/>
                   <t t-set="totalCompras" t-value="totalCompras + compra"/>
