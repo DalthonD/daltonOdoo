@@ -218,6 +218,7 @@ class res_company(models.Model):
         #if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             #data = self._cr.dictfetchall()
             #data = list(self.env.cr.fetchall())
+        self._cr.execute("SELECT * FROM public.strategiksv_reportesv_purchase_report")
         data = self._cr.dictfetchall()
         return data
 
