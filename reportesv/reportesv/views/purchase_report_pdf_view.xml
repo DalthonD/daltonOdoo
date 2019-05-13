@@ -62,7 +62,7 @@
             <!--Fin encabezado-->
             <!--Contenido de reporte-->
             <t t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c">
-              <table style="border-color: black; height: 100%; width: 100%;" border="1">
+              <table class="table table-bordered" style="border-color: black; height: 100%; width: 100%;" border="1">
                 <div t-if="c_first" style="background-color:gray">
                 <thead style="text-align: center; vertical-align:middle; height: auto; width: auto;">
                   <tr align="center" valign="middle">
