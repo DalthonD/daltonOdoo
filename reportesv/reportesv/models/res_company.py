@@ -215,7 +215,7 @@ class res_company(models.Model):
         and am.state='posted') S order by s.Fecha, s.Factura)""".format(company_id,date_year,date_month)
         tools.drop_view_if_exists(self._cr, 'strategiksv_reportesv_purchase_report')
         self.env._cr.execute(sql)
-        if self._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
+        if self.env._cr.description: #Verify whether or not the query generated any tuple before fetching in order to avoid PogrammingError: No results when fetching
             #data = self._cr.dictfetchall()
             data = list(self.env._cr.fetchall())
         return data
