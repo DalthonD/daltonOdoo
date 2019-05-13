@@ -1,0 +1,181 @@
+<odoo>
+  <data>
+    <template id ='company_strategiksv_taxpayer_report_pdf'>
+      <t t-call="web.html_container">
+        <t t-call="web.basic_layout">
+          <div class="page">
+            <!--Declaracion de variables-->
+            <t t-set="month" t-value="int(0)"/>
+            <t t-set="year" t-value="int(0)"/>
+            <t t-set="company_id" t-value="int(0)"/>
+            <t t-set="contador" t-value="null"/>
+            <t t-set="company" t-value="null"/>
+
+            <t t-set="total" t-value="float(0.00)"/>
+            <t t-set="venta" t-value="float(0.00)"/>
+            <t t-set="zero" t-value="float(0.00)"/>
+            <t t-set="totalExentas" t-value="float(0.00)"/>
+            <t t-set="totalGravadas" t-value="float(0.00)"/>
+            <t t-set="totalIva" t-value="float(0.00)"/>
+            <t t-set="totalRetenido" t-value="float(0.00)"/>
+            <t t-set="totalPercibido" t-value="float(0.00)"/>
+            <t t-set="totalCompras" t-value="float(0.00)"/>
+            <t t-set="totalExcluidos" t-value="float(0.00)"/>
+            <t t-set="totalRetenido3" t-value="float(0.00)"/>
+            <!--Fin de declaraciones-->
+
+            <!--Encabezado-->
+              <t t-foreach="docs" t-as="o">
+                <t t-set="month" t-value="int(data.get('form').get('date_month'))"/>
+                <t t-set="year" t-value="int(data.get('form').get('date_year'))"/>
+                <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
+                <t t-set="contador" t-value="o.sv_aprueba_partida"/>
+                <t t-set="company" t-value="o"/>
+                <blockquote class="blockquote text-center">
+                  <p class="mb-0" style="font-size: 40px; text-transform: uppercase"><span t-field="o.name"/></p>
+                  <p class="mb-0">LIBRO DE VENTAS A CONTRIBUYENTES</p>
+                  <p class="mb-0">NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></p>
+                  <p class="mb-0"><span t-esc="o.get_month_str(month)"/> <span t-esc="year"/></p>
+                  </blockquote>
+                <hr style="width: 100%; color: #FFFFFF; border-width: 3px"/>
+              </t>
+            <!--Fin encabezado-->
+            <!--Contenido de reporte-->
+            <!--t t-foreach="company.get_taxpayer_details(company_id, year, month)" t-as="c"-->
+              <table class="table table-bordered" style="border: 1.5px solid black;">
+                <!--div t-if="c_first" style="background-color: lightgray"-->
+                <tr align="center">
+                  <th rowspan="2" valign="middle">#</th>
+                  <th rowspan="2" valign="middle">FECHA</th>
+                  <th rowspan="2" style="width: 40%; font-size: 10px" valign="middle">No. Corr. Por Tipo De Documento</th>
+                  <th rowspan="2" align="center" valign="middle">CLIENTE</th>
+                  <th rowspan="2" valign="middle">N.R.C.</th>
+                  <th colspan="4" align="center">VENTAS PROPIAS</th>
+                  <th rowspan="2" valign="middle">RETENCION</th>
+                  <th rowspan="2" valign="middle">PERCEPCION</th>
+                  <th rowspan="2" valign="middle">TOTAL</th>
+                </tr>
+                <tr align="center" valign="middle">
+                  <th>EXENTAS</th>
+                  <th>GRAVADAS</th>
+                  <th>DEBITO</th>
+                  <th>T. VENTA</th>
+                </tr>
+              <!--/div-->
+                <tr>
+                  <td><span t-esc="c_index + 1"/></td>
+                  <td><span t-field="c.fecha"/></td>
+                  <td><span t-field="c.factura"/></td>
+                  <td><span t-field="c.cliente"/></td>
+                  <td><span t-field="c.nrc"/></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-field="c.exento"/></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-field="c.gravado"/></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-field="c.iva"/></td>
+                  <t t-set="venta" t-value="venta + c.exento + c.gravado + c.iva"/>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="venta"/></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-field="c.retenido"/></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-field="c.percibido"/></td>
+                  <t t-set="total" t-value="total + venta + c.percibido + c.retenido"/>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="total"/></td>
+                </tr>
+
+                <tr align="center">
+                  <td>
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                  </td>
+                  <td>
+                  </td>
+                  <td><span t-esc="company.currency_id.symbol"/>
+                      <!--span t-if="c.importacion != True" t-esc="totalExentas"/-->
+                      <span t-esc="zero"/>
+                  </td>
+                  <td><span t-esc="company.currency_id.symbol"/>
+                      <!--span t-if="c.importacion == True" t-esc="totalExentas"/-->
+                      <span t-esc="zero"/>
+                  </td>
+                  <td><span t-esc="company.currency_id.symbol"/>
+                      <!--span t-if="c.importacion != True" t-esc="totalGravadas"/-->
+                      <span t-esc="zero"/>
+                  </td>
+                  <td><span t-esc="company.currency_id.symbol"/>
+                      <!--span t-if="c.importacion == True" t-esc="totalGravadas"/-->
+                      <span t-esc="zero"/>
+                  </td>
+                  <td>
+                    <span t-esc="company.currency_id.symbol"/><span t-esc="totalIva"/>
+                  </td>
+                  <td>
+                    <span t-esc="company.currency_id.symbol"/><span t-esc="totalRetenido"/>
+                  </td>
+                  <td>
+                    <span t-esc="company.currency_id.symbol"/><span t-esc="totalPercibido"/>
+                  </td>
+                </tr>
+              </table>
+
+              <br/>
+
+              <table align="center">
+                <tr style="width: 100%;">
+                  <td align="right">
+                    <table class="table table-bordered" style="border: 1.5px solid black; border-collapse: collapse;">
+                      <tr style="width: 100%;">
+                        <th align="center">Resumen de Operaciones</th>
+                        <th align="center">Valor Exenta</th>
+                        <th align="center">Gravado</th>
+                        <th align="center">Débito Fiscal</th>
+                        <th align="center">Retención</th>
+                        <th align="center">Percepción</th>
+                        <th align="center">Total</th>
+                      </tr>
+                      <tr>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-tesc="zero"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-tesc="zero"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-tesc="zero"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-tesc="zero"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-tesc="zero"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-tesc="zero"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-tesc="zero"/></td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td style="width: 10%"></td>
+                  <td align="center" valign="bottom">
+                    <table>
+                      <tr>
+                        <hr style="border-width: 1.5px;"/>
+                        <td align="center">_________________________________________</td>
+                      </tr>
+                      <tr>
+                        <td align="center"><span t-esc="contador"/></td>
+                      </tr>
+                      <tr>
+                        <td align="center">Contador</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
+              </table>
+                <!--Fin contenido-->
+            <!--/t-->
+              <!--Pie de pagina-->
+              <footer class="footer" style="background-color: lightgray; bottom: 1; position: fixed; width: 100%; border-width: 55%;">
+                <div class="row">
+                    <p style="text-align: right">Pag. <span class="page"></span>
+                    de
+                    <span class="topage"></span></p>
+                </div>
+              </footer>
+              <!-- Fin Pie de pagina-->
+
+          </div>
+        </t>
+      </t>
+    </template>
+  </data>
+</odoo>
