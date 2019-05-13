@@ -88,7 +88,7 @@
                   <th>Retención a Terceros</th>
                 </tr>
                 </div>
-                <tr t-foreach="" t-as="c">
+                <tr t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c">
                   <td><span t-esc="int(c_index) + 1"/></td>
                   <td><span t-field="c.get('fecha')"/></td>
                   <td><span t-field="c.get('factura')"/></td>
