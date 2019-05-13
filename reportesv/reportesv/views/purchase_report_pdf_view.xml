@@ -21,6 +21,7 @@
             <t t-set="totalCompras" t-value="float(0.00)"/>
             <t t-set="totalExcluidos" t-value="float(0.00)"/>
             <t t-set="totalRetenido3" t-value="float(0.00)"/>
+            <t t-set="importacion" t-value="False"/>
             <!--Fin de declaraciones-->
 
             <!--Encabezado-->
@@ -75,7 +76,7 @@
                 </tr>
                 </div>
                 <tr>
-                  <td><span t-esc="c_index + 1"/></td>
+                  <td><span t-esc="int(c_index) + 1"/></td>
                   <td><span t-field="c.fecha"/></td>
                   <td><span t-field="c.factura"/></td>
                   <td><span t-field="c.proveedor"/></td>
@@ -105,6 +106,7 @@
                   <td><span t-esc="company.currency_id.symbol"/><span t-field="c.retencion3"/></td>
 
                   <!--Calculo de totales-->
+                  <t t-set="importacion" t-value="c.importacion"/>
                   <t t-set="totalExentas" t-value="totalExentas + c.exento "/>
                   <t t-set="totalGravadas" t-value="totalGravadas + c.gravado"/>
                   <t t-set="totalIva" t-value="totalIva + c.iva"/>
@@ -163,10 +165,11 @@
                   </td>
                 </tr>
               </table>
+            </t>
 
               <br/>
 
-              <table t-if="c_last" align="center">
+              <table align="center">
                 <tr style="width: 100%;">
                   <td align="right">
                     <table class="table table-bordered" style="border: 1px solid black; border-collapse: collapse;">
@@ -176,28 +179,28 @@
                       <tr>
                         <td align="left">Compras Exentas:</td>
                         <td align="right"><span t-esc="company.currency_id.symbol"/>
-                                          <span t-if="c.importacion != True" t-esc="totalExentas"/>
+                                          <span t-if="importacion != True" t-esc="totalExentas"/>
                                           <span t-else="" t-esc="zero"/>
                         </td>
                       </tr>
                       <tr>
                         <td align="left">Importaciones Exentas:</td>
                         <td align="right"><span t-esc="company.currency_id.symbol"/>
-                                          <span t-if="c.importacion == True" t-esc="totalExentas"/>
+                                          <span t-if="importacion == True" t-esc="totalExentas"/>
                                           <span t-else="" t-esc="zero"/>
                         </td>
                       </tr>
                       <tr>
                         <td align="left">Compras Gravadas:</td>
                         <td align="right"><span t-esc="company.currency_id.symbol"/>
-                                          <span t-if="c.importacion != True" t-esc="totalGravadas"/>
+                                          <span t-if="importacion != True" t-esc="totalGravadas"/>
                                           <span t-else="" t-esc="zero"/>
                         </td>
                       </tr>
                       <tr>
                         <td align="left">Importaciones Gravadas:</td>
                         <td align="right"><span t-esc="company.currency_id.symbol"/>
-                                          <span t-if="c.importacion == True" t-esc="totalGravadas"/>
+                                          <span t-if="importacion == True" t-esc="totalGravadas"/>
                                           <span t-else="" t-esc="zero"/>
                         </td>
                       </tr>
@@ -235,7 +238,7 @@
                   </td>
                 </tr>
               </table>
-            </t>
+            <!--/t-->
 
               <!--Pie de pagina-->
               <footer class="footer" style="background-color: lightgray; bottom: 1; position: fixed; width: 100%; border-width: 55%;">
