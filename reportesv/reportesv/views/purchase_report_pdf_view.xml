@@ -90,47 +90,6 @@
                   </tr>
                 </thead>
                 </div>
-                <!--tr t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c">
-                  <td><span t-esc="int(c_index) + 1"/></td>
-                  <td><span t-field="c.fecha"/></td>
-                  <td><span t-field="c.factura"/></td>
-                  <td><span t-field="c.proveedor"/></td>
-                  <td><span t-field="c.nrc"/></td>
-                  <td><span t-esc="company.currency_id.symbol"/>
-                      <span  t-if="c.importacion != True" t-field="c.exento"/>
-                      <span  t-else="" t-esc="zero"/>
-                  </td>
-                  <td><span t-esc="company.currency_id.symbol"/>
-                    <span t-if="c.importacion == True" t-field="c.exento"/>
-                    <span t-else="" t-esc="zero"/>
-                  </td>
-                  <td><span t-esc="company.currency_id.symbol"/>
-                    <span t-if="c.importacion != True" t-field="c.gravado"/>
-                    <span t-else="" t-esc="zero"/>
-                  </td>
-                  <td><span t-esc="company.currency_id.symbol"/>
-                    <span t-if="c.importacion == True" t-field="c.gravado"/>
-                    <span t-else="" t-esc="zero"/>
-                  </td>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-field="c.iva"/></td>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-field="c.retenido"/></td>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-field="c.percibido"/></td>
-                  <t t-set="compra" t-value="c.exento + c.gravado + c.iva + c.retenido + c.percibido"/>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="compra"/></td>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-field="c.excluido"/></td>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-field="c.retencion3"/></td>
-
-                  <Calculo de totales>
-                  <t t-set="importacion" t-value="c.importacion"/>
-                  <t t-set="totalExentas" t-value="totalExentas + c.exento"/>
-                  <t t-set="totalGravadas" t-value="totalGravadas + c.gravado"/>
-                  <t t-set="totalIva" t-value="totalIva + c.getiva"/>
-                  <t t-set="totalRetenido" t-value="totalRetenido + c.retenido"/>
-                  <t t-set="totalPercibido" t-value="totalPercibido + c.percibido"/>
-                  <t t-set="totalCompras" t-value="totalCompras + compra"/>
-                  <t t-set="totalExcluidos" t-value="totalExcluidos + c.excluido"/>
-                  <t t-set="totalRetenido3" t-value="totalRetenido3 + c.retencion3"/>
-                  <Fin ce calculos-->
                   <!-->
                   fecha [0]
                   feactura [1]
@@ -186,7 +145,7 @@
                     <t t-set="totalCompras" t-value="totalCompras + compra"/>
                     <t t-set="totalExcluidos" t-value="totalExcluidos + c[10]"/>
                     <t t-set="totalRetenido3" t-value="totalRetenido3 + c[11]"/>
-
+                    <!--Fin ce calculos-->
                 </tr>
                 <tr t-if="c_last" align="center">
                   <td>
