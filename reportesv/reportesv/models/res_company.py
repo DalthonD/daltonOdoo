@@ -15,8 +15,8 @@ class res_company(models.Model):
 
     @api.multi
     def get_purchase_details(self, company_id, date_year, date_month):
-        data = {}
-        #data = []
+        #data = {}
+        data = []
         sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_purchase_report AS (select * from (select ai.date_invoice as fecha
         ,ai.reference as factura
         ,rp.name as proveedor
@@ -219,7 +219,7 @@ class res_company(models.Model):
             #data = self._cr.dictfetchall()
             #data = list(self.env.cr.fetchall())
         self._cr.execute("SELECT * FROM public.strategiksv_reportesv_purchase_report")
-        data = self._cr.dictfetchall()
+        data = list(self._cr.fetchall())
         return data
 
     @api.multi
