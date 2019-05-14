@@ -17,5 +17,5 @@ class wizard_sv_consumer_report(models.TransientModel):
     def print_consumer_sales_report(self):
         datas = {'ids': self._ids,
                  'form': self.read()[0],
-                 'model': 'wizard.sv.taxpayer.report'}
+                 'model': 'wizard.sv.consumer.report'}
         return self.env.ref('reportesv.report_consumer_sales_pdf').report_action(self, data=datas)
