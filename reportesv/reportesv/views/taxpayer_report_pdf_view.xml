@@ -119,7 +119,7 @@
                   <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(venta)"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('retenido'))"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('percibido'))"/></td>
-                  <t t-set="total" t-value="total + venta + c.('percibido') + c.('retenido')"/>
+                  <t t-set="total" t-value="total + venta + c.get('percibido') + c.get('retenido')"/>
                   <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total)"/></td>
                   <!--Calculo de totales-->
                   <t t-set="totalExentas" t-value="totalExentas + c.get('exento')"/>
