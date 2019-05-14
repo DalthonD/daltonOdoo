@@ -22,11 +22,13 @@
     'data': [
         'reports.xml',
         'security/ir.model.access.csv',
+        'views/reports_static.xml',
         'views/purchase_report_pdf_view.xml',
         'views/taxpayer_report_pdf_view.xml',
         'views/consumer_report_pdf_view.xml',
         'wizard/wizard_purchases_report.xml',
         'wizard/wizard_taxpayer_sales_report.xml',
+        'wizard/wizard_consumer_sales_report.xml',
     ],
     # only loaded in demonstration mode
     'qweb': [],
