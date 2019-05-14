@@ -86,21 +86,21 @@
                     <th colspan="5" style="border-right: none; border-top: none;"></th>
                   </tr>
                   <tr style="width: 100%;">
-                    <th>#</th>
-                    <th>Fecha de emisión</th>
-                    <th>Número de documento</th>
-                    <th>Nombre del proveedor</th>
-                    <th>N.R.C.</th>
-                    <th>Internas</th>
-                    <th>Importaciones e Internacionales</th>
-                    <th>Internas</th>
-                    <th>Importaciones e Internacionales</th>
-                    <th>Crédito fiscal</th>
-                    <th>Anticipo a Cuenta de IVA Retenido</th>
-                    <th>Anticipo a Cuenta de IVA Percibido</th>
-                    <th>Total compras</th>
-                    <th>Compras a Sujetos Excluidos</th>
-                    <th>Retención a Terceros</th>
+                    <th style="text-align: center; vertical-align: middle;">#</th>
+                    <th style="text-align: center; vertical-align: middle;">Fecha de emisión</th>
+                    <th style="text-align: center; vertical-align: middle;">Número de documento</th>
+                    <th style="text-align: center; vertical-align: middle;">Nombre del proveedor</th>
+                    <th style="text-align: center; vertical-align: middle;">N.R.C.</th>
+                    <th style="text-align: center; vertical-align: middle;">Internas</th>
+                    <th style="text-align: center; vertical-align: middle;">Importaciones e Internacionales</th>
+                    <th style="text-align: center; vertical-align: middle;">Internas</th>
+                    <th style="text-align: center; vertical-align: middle;">Importaciones e Internacionales</th>
+                    <th style="text-align: center; vertical-align: middle;">Crédito fiscal</th>
+                    <th style="text-align: center; vertical-align: middle;">Anticipo a Cuenta de IVA Retenido</th>
+                    <th style="text-align: center; vertical-align: middle;">Anticipo a Cuenta de IVA Percibido</th>
+                    <th style="text-align: center; vertical-align: middle;">Total compras</th>
+                    <th style="text-align: center; vertical-align: middle;">Compras a Sujetos Excluidos</th>
+                    <th style="text-align: center; vertical-align: middle;">Retención a Terceros</th>
                   </tr>
                 </div>
                   <tr style="text-align: center; vertical-align: middle; height: auto; width: 100%; padding: 0px; border-collapse: collapse;">
@@ -191,12 +191,9 @@
                     <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido3)"/>
                   </td>
                 </tr>
-            </table>
-            <!--/t-->
-
-              <br t-if="c_last"/>
-
-              <table t-if="c_last" style="border: none">
+              </table>
+            </t>
+              <table style="border: none">
                 <tr style="width: 100%;">
                   <td align="right">
                     <table class="table table-bordered" style="border: 1px solid black; border-collapse: collapse;">
@@ -251,22 +248,15 @@
                   </td>
                   <td style="width: 30%"></td>
                   <td style="text-align: center; vertical-align: bottom">
-                    <table style="text-align: center; vertical-align: bottom;">
-                      <tr>
-                        <td align="center">_________________________________________</td>
-                      </tr>
-                      <tr>
-                        <td align="center" style="vertical-align: top"><span t-esc="contador"/></td>
-                      </tr>
-                      <tr>
-                        <td align="center" style="vertical-align: top">Contador</td>
-                      </tr>
-                    </table>
+                    <div style="text-align: center;">
+                        <p align="center">_________________________________________</p>
+                        <p align="center" style="vertical-align: top"><span t-esc="contador"/></p>
+                        <p align="center" style="vertical-align: top">Contador</p>
+                    </div>
                   </td>
                 </tr>
               </table>
-            </t>
-
+              
               <!--Pie de pagina-->
               <footer class="footer" style="background-color: lightgray; top: 90x; position: absolute; width: 100%; border-width: 55%;">
                 <div class="row">
