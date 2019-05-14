@@ -6,47 +6,6 @@
           <div class="page">
             <link rel="stylesheet" href="/reportesv/static/src/css/report.css"/>
             <style type="text/css">
-              th {
-                text-align: center;
-                vertical-align: middle;
-                border-collapse: collapse;
-                padding: 0px;
-                border-spacing: 0px;
-              }
-              td {
-                text-align: center;
-                border-collapse: collapse;
-                padding: 0px;
-                border-spacing: 0px;
-              }
-              .pagenumber:before {
-                content: counter(page);
-              }
-              .pagecount:before {
-                content: counter(pages);
-              }
-              @page {
-                @bottom-left{
-                  content: "Pag. " counter(page) " de " counter(pages);
-                }
-                size: A4;
-                margin: 1mm 1mm 1mm 1mm;
-              }
-              @media print {
-                .page {
-                  page-break-before: always;
-                }
-
-                footer {
-                  position: fixed;
-                  bottom: 0;
-                }
-
-                html {
-                  width: 216mm;
-                  height: 279mm;
-                }
-              }
             </style>
             <!--Declaracion de variables-->
             <t t-set="month" t-value="int(0)"/>
@@ -54,6 +13,7 @@
             <t t-set="company_id" t-value="int(0)"/>
             <t t-set="contador" t-value="null"/>
             <t t-set="company" t-value="null"/>
+            <t t-set="agrupacion" t-value="int(0)"/>
             <t t-set="importacion" t-value="False"/>
 
             <t t-set="total" t-value="float(0.00)"/>
@@ -72,6 +32,7 @@
               <t t-foreach="docs" t-as="o">
                 <t t-set="month" t-value="int(data.get('form').get('date_month'))"/>
                 <t t-set="year" t-value="int(data.get('form').get('date_year'))"/>
+                <t t-set="agrupacion" t-value="int(data.get('form').get('serie_lenght'))"/>
                 <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
                 <t t-set="contador" t-value="o.sv_aprueba_partida"/>
                 <t t-set="company" t-value="o"/>
@@ -85,7 +46,7 @@
               </t>
             <!--Fin encabezado-->
             <!--Contenido de reporte-->
-            <t t-foreach="company.get_consumer_details(company_id, year, month)" t-as="c">
+            <t t-foreach="company.get_consumer_details(company_id, year, month, agrupacion)" t-as="c">
               <table class="table table-bordered" style="border: 1px solid black; text-align: center; vertical-align: middle; height: auto; width: 100%; padding: 0px; border-collapse: collapse;">
                 <div t-if="c_first">
                   <tr style="width: 100%;">
