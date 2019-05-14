@@ -4,18 +4,7 @@
       <t t-call="web.html_container">
         <t t-call="web.basic_layout">
           <div class="page">
-            <style class="text/css">
-              @page {
-                @bottom-left {
-                  content: "Libro de compras";
-                }
-                @bottom-righ {
-                content: counter(page) " de " counter(pages);
-                }
-              }
-              .custom-footer:after {
-                content: counter(page);
-              }
+            <style>
               table, th, tr, tbody {
                 border-color: black;
                 height: 100%;
@@ -25,9 +14,9 @@
                 text-align: center;
                 vertical-align: middle;
               }
-              text-align: center;
-              vertical-align: middle;
               td {
+                text-align: center;
+                vertical-align: middle;
                 height: fixed;
                 width: fixed;
               }
