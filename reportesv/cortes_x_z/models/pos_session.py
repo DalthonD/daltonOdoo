@@ -573,8 +573,9 @@ class pos_session(models.Model):
                 if len(fiscal_position_ids)>1 and pos_order_obj:
                     orders = [pos_order_obj for pos_order_obj.fiscal_position_id in fiscal_position_ids]
                 elif len(fiscal_position_ids)==1 and pos_order_obj:
-                    #orders = [pos_order_obj for pos_order_obj.fiscal_position_id == fiscal_position_ids]
-                    orders = list(map(lambda o: o.fiscal_position_id == fiscal_position_ids, pos_order_obj))
+                    for order in pos_order_obj:
+                        if order.fiscal_position_id == fiscal_position_ids:
+                            orders.append(order)
                 else:
                     return total_price
                 for order in orders:
@@ -595,8 +596,9 @@ class pos_session(models.Model):
                 if len(fiscal_position_ids)>1 and pos_order_obj:
                     orders = [pos_order_obj for pos_order_obj.fiscal_position_id in fiscal_position_ids]
                 elif len(fiscal_position_ids)==1 and pos_order_obj:
-                    #orders = [pos_order_obj for pos_order_obj.fiscal_position_id == fiscal_position_ids]
-                    orders = list(map(lambda o: o.fiscal_position_id == fiscal_position_ids, pos_order_obj))
+                    for order in pos_order_obj:
+                        if order.fiscal_position_id == fiscal_position_ids:
+                            orders.append(order)
                 else:
                     return total_price
                 for order in orders:
@@ -617,8 +619,9 @@ class pos_session(models.Model):
                 if len(fiscal_position_ids)>1 and pos_order_obj:
                     orders = [pos_order_obj for pos_order_obj.fiscal_position_id in fiscal_position_ids]
                 elif len(fiscal_position_ids)==1 and pos_order_obj:
-                    #orders = [pos_order_obj for pos_order_obj.fiscal_position_id == fiscal_position_ids]
-                    orders = list(map(lambda o: o.fiscal_position_id == fiscal_position_ids, pos_order_obj))
+                    for order in pos_order_obj:
+                        if order.fiscal_position_id == fiscal_position_ids:
+                            orders.append(order)
                 else:
                     return total_price
                 for order in orders:
@@ -677,8 +680,9 @@ class pos_session(models.Model):
                 if len(fiscal_position_ids)>1 and pos_order_obj:
                     orders = [pos_order_obj for pos_order_obj.fiscal_position_id in fiscal_position_ids]
                 elif len(fiscal_position_ids)==1 and pos_order_obj:
-                    #orders = [pos_order_obj for pos_order_obj.fiscal_position_id == fiscal_position_ids]
-                    orders = list(map(lambda o: o.fiscal_position_id == fiscal_position_ids, pos_order_obj))
+                    for order in pos_order_obj:
+                        if order.fiscal_position_id == fiscal_position_ids:
+                            orders.append(order)
                 else:
                     return total_price
                 for order in orders:
@@ -699,8 +703,9 @@ class pos_session(models.Model):
                 if len(fiscal_position_ids)>1 and pos_order_obj:
                     orders = [pos_order_obj for pos_order_obj.fiscal_position_id in fiscal_position_ids]
                 elif len(fiscal_position_ids)==1 and pos_order_obj:
-                    #orders = [pos_order_obj for pos_order_obj.fiscal_position_id == fiscal_position_ids]
-                    orders = list(map(lambda o: o.fiscal_position_id == fiscal_position_ids, pos_order_obj))
+                    for order in pos_order_obj:
+                        if order.fiscal_position_id == fiscal_position_ids:
+                            orders.append(order)
                 else:
                     return total_price
                 for order in orders:
@@ -721,8 +726,9 @@ class pos_session(models.Model):
                 if len(fiscal_position_ids)>1 and pos_order_obj:
                     orders = [pos_order_obj for pos_order_obj.fiscal_position_id in fiscal_position_ids]
                 elif len(fiscal_position_ids)==1 and pos_order_obj:
-                    #orders = [pos_order_obj for pos_order_obj.fiscal_position_id == fiscal_position_ids]
-                    orders = list(map(lambda o: o.fiscal_position_id == fiscal_position_ids, pos_order_obj))
+                    for order in pos_order_obj:
+                        if order.fiscal_position_id == fiscal_position_ids:
+                            orders.append(order)
                 else:
                     return total_price
                 for order in orders:
@@ -786,8 +792,9 @@ class pos_session(models.Model):
                 if len(fiscal_position_ids)>1 and pos_order_obj:
                     orders = [pos_order_obj for pos_order_obj.fiscal_position_id in fiscal_position_ids]
                 elif len(fiscal_position_ids)==1 and pos_order_obj:
-                    #orders = [pos_order_obj for pos_order_obj.fiscal_position_id == fiscal_position_ids]
-                    orders = list(map(lambda o: o.fiscal_position_id == fiscal_position_ids, pos_order_obj))
+                    for order in pos_order_obj:
+                        if order.fiscal_position_id == fiscal_position_ids:
+                            orders.append(order)
                 else:
                     return total_price
                 for order in orders:
@@ -808,8 +815,9 @@ class pos_session(models.Model):
                 if len(fiscal_position_ids)>1 and pos_order_obj:
                     orders = [pos_order_obj for pos_order_obj.fiscal_position_id in fiscal_position_ids]
                 elif len(fiscal_position_ids)==1 and pos_order_obj:
-                    #orders = [pos_order_obj for pos_order_obj.fiscal_position_id == fiscal_position_ids]
-                    orders = list(map(lambda o: o.fiscal_position_id == fiscal_position_ids, pos_order_obj))
+                    for order in pos_order_obj:
+                        if order.fiscal_position_id == fiscal_position_ids:
+                            orders.append(order)
                 else:
                     return total_price
                 for order in orders:
