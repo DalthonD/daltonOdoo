@@ -316,7 +316,7 @@ class res_company(models.Model):
         return data
 
     @api.multi
-    def get_consumer_details(self, company_id, date_year, date_month, serie_lenght):
+    def get_consumer_details(self, company_id, date_year, date_month, sv_invoice_serie_size):
         data = {}
         func = """CREATE OR REPLACE FUNCTION public.facturasagrupadas(p_company_id integer, month_number integer, year_number integer, p_series_lenght integer)
         RETURNS TABLE(invoice_id integer, factura_number character varying, factura_status character varying, grupo integer)
@@ -476,7 +476,7 @@ class res_company(models.Model):
         and ((ai.sv_no_tax is null ) or (ai.sv_no_tax=false))
         and afp.sv_contribuyente=False
         and ai.state in ('cancel')
-        )S )SS group by SS.fecha, SS.Grupo,SS.estado order by SS.fecha, SS.Grupo))""".format(company_id,date_year,date_month,serie_lenght)
+        )S )SS group by SS.fecha, SS.Grupo,SS.estado order by SS.fecha, SS.Grupo))""".format(company_id,date_year,date_month,sv_invoice_serie_size)
         tools.drop_view_if_exists(self._cr, 'strategiksv_reportesv_consumer_report')
         self._cr.execute(func) #Create the function used on view creation
         self._cr.execute(sql) #Query for view

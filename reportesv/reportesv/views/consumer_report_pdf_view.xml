@@ -13,17 +13,18 @@
             <t t-set="company_id" t-value="int(0)"/>
             <t t-set="contador" t-value="null"/>
             <t t-set="company" t-value="null"/>
-            <t t-set="agrupacion" t-value="int(0)"/>
             <t t-set="importacion" t-value="False"/>
 
             <t t-set="total" t-value="float(0.00)"/>
-            <t t-set="venta" t-value="float(0.00)"/>
             <t t-set="zero" t-value="float(0.00)"/>
             <t t-set="totalExentas" t-value="float(0.00)"/>
-            <t t-set="totalGravadas" t-value="float(0.00)"/>
+            <t t-set="totalGravadasLocal" t-value="float(0.00)"/>
+            <t t-set="totalGravadasExp" t-value="float(0.00)"/>
+            <t t-set="totalRetenido" t-value="float(0.00)"/>
+
             <t t-set="totalIva" t-value="float(0.00)"/>
             <t t-set="ventas" t-value="float(0.00)"/>
-            <t t-set="totalRetenido" t-value="float(0.00)"/>
+
             <t t-set="totalPercibido" t-value="float(0.00)"/>
             <t t-set="totalventas" t-value="float(0.00)"/>
             <!--Fin de declaraciones-->
@@ -32,64 +33,60 @@
               <t t-foreach="docs" t-as="o">
                 <t t-set="month" t-value="int(data.get('form').get('date_month'))"/>
                 <t t-set="year" t-value="int(data.get('form').get('date_year'))"/>
-                <t t-set="agrupacion" t-value="int(data.get('form').get('serie_lenght'))"/>
                 <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
                 <t t-set="contador" t-value="o.sv_aprueba_partida"/>
                 <t t-set="company" t-value="o"/>
-                <div style="text-align: center; background-color: ligthgray">
-                  <h2 style="font-size: 40px; text-transform: uppercase"><span t-field="o.name"/></h2>
-                  <h2>LIBRO DE VENTAS A CONTRIBUYENTES</h2>
+                <div style="background-color:lightgray; text-align: center">
+                  <h2 style="font-size: 40px; text-transform: uppercase">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></h2>
+                  <h2>LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</h2>
                   <h2>NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></h2>
-                  <h2><span t-esc="o.get_month_str(month)"/> <span t-esc="year"/></h2>
+                  <h2>MES: <span t-esc="o.get_month_str(month)"/> DE <span t-esc="year"/></h2>
+                  <h2>VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</h2>
                 </div>
-                <hr style="width: 100%; color: #FFFFFF; border-width: 3px"/>
               </t>
             <!--Fin encabezado-->
             <!--Contenido de reporte-->
-            <t t-foreach="company.get_consumer_details(company_id, year, month, agrupacion)" t-as="c">
+            <t t-foreach="company.get_consumer_details(company_id, year, month, company.sv_invoice_serie_size)" t-as="c">
               <table class="table table-bordered" style="border: 1px solid black; text-align: center; vertical-align: middle; height: auto; width: 100%; padding: 0px; border-collapse: collapse;">
                 <div t-if="c_first">
                   <tr style="width: 100%;">
-                    <th rowspan="2">#</th>
-                    <th rowspan="2">FECHA</th>
-                    <th rowspan="2" style="width: 40%; font-size: 10px">No. Corr. Por Tipo De Documento</th>
-                    <th rowspan="2">CLIENTE</th>
-                    <th rowspan="2">N.R.C.</th>
-                    <th colspan="4">VENTAS PROPIAS</th>
-                    <th rowspan="2">RETENCION</th>
-                    <th rowspan="2">PERCEPCION</th>
-                    <th rowspan="2">TOTAL</th>
+                    <th rowspan="3" valign="middle">#</th>
+                    <th rowspan="3" valign="middle">Fecha</th>
+                    <th colspan="2" align="center">Documentos Emitidos</th>
+                    <th colspan="4" align="center">Ventas</th>
+                    <th rowspan="3">Ventas Totales</th>
                   </tr>
                   <tr>
-                    <th>EXENTAS</th>
-                    <th>GRAVADAS</th>
-                    <th>DEBITO</th>
-                    <th>T. VENTA</th>
+                    <th rowspan="2">Del No.</th>
+                    <th rowspan="2">Al No.</th>
+                    <th rowspan="2">Exentas</th>
+                    <th colspan="2">Gravadas</th>
+                    <th rowspan="2">Retención</th>
+                  </tr>
+                  <tr>
+                    <th align="center">Locales</td>
+                    <th align="center">Exportación</td>
                   </tr>
                 </div>
                 <tr style="text-align: center; vertical-align: middle; height: auto; width: 100%; padding: 0px; border-collapse: collapse;">
                   <td><span t-esc="int(c_index) + 1"/></td>
                   <td><span t-esc="c.get('fecha')"/></td>
-                  <td><span t-esc="c.get('factura')"/></td>
-                  <td><span t-esc="c.get('cliente')"/></td>
-                  <td><span t-esc="c.get('nrc')"/></td>
+                  <td><span t-esc="c.get('delnum')"/></td>
+                  <td><span t-esc="c.get('alnum')"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('exento'))"/></td>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('gravado'))"/></td>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('iva'))"/></td>
-                  <t t-set="venta" t-value="venta + c.get('exento') + c.get('gravado') + c.get('iva')"/>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(venta)"/></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('gravadolocal'))"/></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('gravadoexportacion'))"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('retenido'))"/></td>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('percibido'))"/></td>
-                  <t t-set="total" t-value="total + venta + c.get('percibido') + c.get('retenido')"/>
+                  <t t-set="total" t-value="total + c.get('exento') + c.get('retenido') + c.get('gravadolocal') + c.get('gravadoexportacion')"/>
                   <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(total)"/></td>
+
                   <!--Calculo de totales-->
                   <t t-set="totalExentas" t-value="totalExentas + c.get('exento')"/>
-                  <t t-set="totalGravadas" t-value="totalGravadas + c.get('gravado')"/>
-                  <t t-set="totalIva" t-value="totalIva + c.get('iva')"/>
-                  <t t-set="ventas" t-value="ventas + venta"/>
+                  <t t-set="totalGravadasLocal" t-value="totalGravadas + c.get('gravadolocal')"/>
+                  <t t-set="totalGravadasExp" t-value="totalGravadas + c.get('gravadoexportacion')"/>
                   <t t-set="totalRetenido" t-value="totalRetenido + c.get('retenido')"/>
-                  <t t-set="totalPercibido" t-value="totalPercibido + c.get('percibido')"/>
-                  <t t-set="totalventas" t-value="totalventas + total"/>
+                  <t t-set="ventas" t-value="ventas + total"/>
+                  <t t-set="totalIva" t-value="totalIva + c.get('ivalocal')"/>c.get('ivaexportacion')
                   <!--Fin ce calculos-->
                 </tr>
                 <div t-if="c_last">
@@ -102,15 +99,11 @@
                   </td>
                   <td>
                   </td>
-                  <td>
-                  </td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalExentas)"/></td>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadas)"/></td>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIva)"/></td>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(ventas)"/></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadasLocal)"/></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadasExp)"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido)"/></td>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalPercibido)"/></td>
-                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalventas)"/></td>
+                  <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(ventas)"/></td>
                 </tr>
               </div>
               </table>
@@ -121,12 +114,23 @@
                     <table class="table table-bordered" style="border: 1.5px solid black; border-collapse: collapse;">
                       <tr style="width: 100%;">
                         <th align="center">Resumen de Operaciones</th>
-                        <th align="center">Valor Exenta</th>
-                        <th align="center">Gravado</th>
+                        <th align="center">Valor Total</th>
                         <th align="center">Débito Fiscal</th>
-                        <th align="center">Retención</th>
-                        <th align="center">Percepción</th>
-                        <th align="center">Total</th>
+                        <th align="center">Venta Neta</th>
+                      </tr>
+                      <tr>
+                        <td align="center">Ventas Internas Gravadas</td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalExentas)"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadas)"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIva)"/></td>
+                      </tr>
+                      <tr>
+                        <td align="center">Ventas Internas Exentas</td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalExentas)"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalGravadas)"/></td>
+                        <td align="center"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIva)"/></td>
+                      </tr>
+                      <tr>
                       </tr>
                       <tr>
                         <td align="center">Totales</td>

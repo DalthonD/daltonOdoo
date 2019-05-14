@@ -11,7 +11,6 @@ class wizard_sv_consumer_report(models.TransientModel):
     company_id=fields.Many2one('res.company', string="Company", help='Company',default=lambda self: self.env.user.company_id.id)
     date_month = fields.Selection([('1','Enero'),('2','Febrero'),('3','Marzo'),('4','Abril'),('5','Mayo'),('6','Junio'),('7','Julio'),('8','Agosto'),('9','Septiembre'),('10','Octubre'),('11','Noviembre'),('12','Diciembre')],string='Mes de facturación', default='1',required=True)
     date_year = fields.Integer("Año de facturación", default=20, requiered=True)
-    serie_lenght = fields.Integer("Agrupación de facturas", default = 1)
 
     @api.multi
     def print_consumer_sales_report(self):
