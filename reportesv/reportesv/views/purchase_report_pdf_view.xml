@@ -10,7 +10,6 @@
                 height: 100%;
                 width: 100%;
                 border-collapse: collapse;
-                border: 1px solid black;
                 text-align: center;
                 vertical-align: middle;
                 border-spacing: 0px;
@@ -19,8 +18,6 @@
               td {
                 text-align: center;
                 vertical-align: middle;
-                height: fixed;
-                width: fixed;
                 border-collapse: collapse;
                 padding: 0;
               }
@@ -79,7 +76,7 @@
             <!--Contenido de reporte-->
             <t t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c">
               <!--table class="table table-bordered" style="border-color: black; height: 100%; width: 100%; border-collapse: collapse; border: 1px solid black"-->
-              <table class="table table-bordered">
+              <table class="table table-bordered" style="border: 1px solid black">
                 <div t-if="c_first">
                   <!--tr style="text-align: center; vertical-align: middle; height: auto; width: auto;"-->
                   <tr style="width: 100%;">
@@ -106,8 +103,7 @@
                     <th>Retención a Terceros</th>
                   </tr>
                 </div>
-                  <!--tr style="text-align: center; vertical-align: middle; height: auto; width: auto; padding: 0px; border-collapse: collapse;"-->
-                  <tr style="width: 100%;">
+                  <tr style="text-align: center; vertical-align: middle; height: auto; width: 100%; padding: 0px; border-collapse: collapse;">
                     <td><span t-esc="int(c_index) + 1"/></td>
                     <td><span t-esc="c[0]"/></td>
                     <td><span t-esc="c[1]"/></td>
@@ -198,7 +194,7 @@
             </table>
             <!--/t-->
 
-              <br/>
+              <br t-if="c_last"/>
 
               <table t-if="c_last" style="border: none">
                 <tr style="width: 100%;">
