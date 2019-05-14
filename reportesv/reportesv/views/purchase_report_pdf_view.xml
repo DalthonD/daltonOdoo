@@ -44,13 +44,20 @@
                 <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
                 <t t-set="contador" t-value="o.sv_aprueba_partida"/>
                 <t t-set="company" t-value="o"/>
-                <!--blockquote class="blockquote text-center">
-                  <p class="mb-0">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></p>
-                  <p class="mb-0">LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</p>
-                  <p class="mb-0">NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></p>
-                  <p class="mb-0">MES: <span t-esc="o.get_month_str(month)"/> DE <span t-esc="year"/></p>
-                  <p class="mb-0">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</p>
-                </blockquote-->
+                <!-->
+                fecha [0]
+                feactura [1]
+                proveedor [2]
+                nrc [3]
+                importacion [4]
+                gravado [5]
+                exento [6]
+                iva [7]
+                retenido [8]
+                percibido [9]
+                excluido [10]
+                retencion3 [11]
+                <-->
                 <div style="background-color:lightgray; text-align: center">
                   <h2>NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></h2>
                   <h2>LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</h2>
@@ -64,7 +71,7 @@
             <t t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c">
               <table class="table table-bordered" style="border-color: black; height: 100%; width: 100%;" border="1">
                 <div t-if="c_first" style="background-color:gray">
-                <thead style="text-align: center; vertical-align:middle; height: auto; width: auto;">
+                <tbody style="text-align: center; vertical-align: middle; height: auto; width: auto;">
                   <tr align="center" valign="middle">
                     <th colspan="5"></th>
                     <th colspan="2">COMPRAS EXENTAS</th>
@@ -88,23 +95,7 @@
                     <th>Compras a Sujetos Excluidos</th>
                     <th>Retención a Terceros</th>
                   </tr>
-                </thead>
                 </div>
-                  <!-->
-                  fecha [0]
-                  feactura [1]
-                  proveedor [2]
-                  nrc [3]
-                  importacion [4]
-                  gravado [5]
-                  exento [6]
-                  iva [7]
-                  retenido [8]
-                  percibido [9]
-                  excluido [10]
-                  retencion3 [11]
-                  <-->
-                <tbody style="text-align: center; vertical-align: middle; height: auto; width: auto;">
                   <tr>
                     <td><span t-esc="int(c_index) + 1"/></td>
                     <td><span t-esc="c[0]"/></td>

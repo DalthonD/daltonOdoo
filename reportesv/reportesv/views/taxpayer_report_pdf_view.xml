@@ -10,6 +10,7 @@
             <t t-set="company_id" t-value="int(0)"/>
             <t t-set="contador" t-value="null"/>
             <t t-set="company" t-value="null"/>
+            <t t-set="importacion" t-value="False"/>
 
             <t t-set="total" t-value="float(0.00)"/>
             <t t-set="venta" t-value="float(0.00)"/>
