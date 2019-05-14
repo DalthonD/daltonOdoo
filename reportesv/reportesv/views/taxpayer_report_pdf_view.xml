@@ -18,6 +18,34 @@
                 padding: 0px;
                 border-spacing: 0px;
               }
+              .pagenumber:before {
+                content: counter(page);
+              }
+              .pagecount:before {
+                content: counter(pages);
+              }
+              @page {
+                @bottom-left{
+                  content: "Pag. " counter(page) " de " counter(pages);
+                }
+                size: A4;
+                margin: 1mm 1mm 1mm 1mm;
+              }
+              @media print {
+                .page {
+                  page-break-before: always;
+                }
+
+                footer {
+                  position: fixed;
+                  bottom: 0;
+                }
+
+                html {
+                  width: 216mm;
+                  height: 279mm;
+                }
+              }
             </style>
             <!--Declaracion de variables-->
             <t t-set="month" t-value="int(0)"/>
@@ -161,15 +189,14 @@
               </table>
                 <!--Fin contenido-->
               <!--Pie de pagina-->
-              <footer class="footer" style="background-color: lightgray; bottom: 1; position: fixed; width: 100%; border-width: 55%;">
+              <div class="footer" style="background-color: lightgray; bottom: 0; position: fixed; width: 100%; border-width: 55%;">
                 <div class="row">
-                    <p style="text-align: right">Pag. <span class="page"></span>
+                    <p style="text-align: right">Pag. <span class="pagenumber"></span>
                     de
-                    <span class="topage"></span></p>
+                    <span class="pagecount"></span></p>
                 </div>
-              </footer>
+              </div>
               <!-- Fin Pie de pagina-->
-
           </div>
         </t>
       </t>

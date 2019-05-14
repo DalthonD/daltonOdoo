@@ -22,6 +22,34 @@
                 padding: 0px;
                 border-spacing: 0px;
               }
+              .pagenumber:before {
+                content: counter(page);
+              }
+              .pagecount:before {
+                content: counter(pages);
+              }
+              @page {
+                size: A4;
+                margin: 1mm 1mm 1mm 1mm;
+                @bottom-left{
+                  content: "Pag. " counter(page) " de " counter(pages);
+                }
+              }
+              @media print {
+                .page {
+                  page-break-before: always;
+                }
+
+                footer {
+                  position: fixed;
+                  bottom: 0;
+                }
+
+                html {
+                  width: 216mm;
+                  height: 279mm;
+                }
+              }
             </style>
             <!--Declaracion de variables-->
             <t t-set="month" t-value="int(0)"/>
