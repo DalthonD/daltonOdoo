@@ -16,6 +16,22 @@
               .custom-footer:after {
                 content: counter(page);
               }
+              table, th, tr, tbody {
+                border-color: black;
+                height: 100%;
+                width: 100%;
+                border-collapse: collapse;
+                border: 1px solid black;
+                text-align: center;
+                vertical-align: middle;
+              }
+              text-align: center;
+              vertical-align: middle;
+              td {
+                height: fixed;
+                width: fixed;
+              }
+
             </style>
             <!--Declaracion de variables-->
             <t t-set="month" t-value="int(0)"/>
@@ -69,17 +85,18 @@
             <!--Fin encabezado-->
             <!--Contenido de reporte-->
             <t t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c">
-              <table class="table table-bordered" style="border-color: black; height: 100%; width: 100%;" border="1">
-                <tbody style="text-align: center; vertical-align: middle; height: auto; width: auto;">
+              <!--table class="table table-bordered" style="border-color: black; height: 100%; width: 100%; border-collapse: collapse; border: 1px solid black"-->
+              <table class="table table-bordered">
                 <div t-if="c_first" style="background-color:gray">
-                  <tr style="text-align: center; vertical-align: middle; height: auto; width: auto;">
+                  <!--tr style="text-align: center; vertical-align: middle; height: auto; width: auto;"-->
+                  <tr style="width: 100%;">
                     <th colspan="5"></th>
                     <th colspan="2">COMPRAS EXENTAS</th>
                     <th colspan="3">COMPRAS GRAVADAS</th>
                     <th colspan="5"></th>
                   </tr>
-                  <tr align="center" valign="middle">
-                    <th valign="middle">#</th>
+                  <tr style="width: 100%;">
+                    <th>#</th>
                     <th>Fecha de emisión</th>
                     <th>Número de documento</th>
                     <th>Nombre del proveedor</th>
@@ -96,7 +113,8 @@
                     <th>Retención a Terceros</th>
                   </tr>
                 </div>
-                  <tr style="text-align: center; vertical-align: middle; height: auto; width: auto;">
+                  <!--tr style="text-align: center; vertical-align: middle; height: auto; width: auto; padding: 0px; border-collapse: collapse;"-->
+                  <tr style="width: 100%;">
                     <td><span t-esc="int(c_index) + 1"/></td>
                     <td><span t-esc="c[0]"/></td>
                     <td><span t-esc="c[1]"/></td>
@@ -138,7 +156,7 @@
                     <t t-set="totalRetenido3" t-value="totalRetenido3 + c[11]"/>
                     <!--Fin ce calculos-->
                 </tr>
-                <tr t-if="c_last" align="center">
+                <tr t-if="c_last">
                   <td>
                   </td>
                   <td>
@@ -184,18 +202,18 @@
                     <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido3)"/>
                   </td>
                 </tr>
-              </tbody>
             </table>
             <!--/t-->
 
               <br/>
 
-              <table t-if="c_last" align="center">
+              <table t-if="c_last">
                 <tr style="width: 100%;">
                   <td align="right">
-                    <table class="table table-bordered" style="border: 1px solid black; border-collapse: collapse;">
+                    <!--table class="table table-bordered" style="border: 1px solid black; border-collapse: collapse;"-->
+                    <table class="table table-bordered">
                       <tr>
-                        <td align="center" colspan="2">RESUMEN DE COMPRAS</td>
+                        <td colspan="2">RESUMEN DE COMPRAS</td>
                       </tr>
                       <tr>
                         <td align="left">Compras Exentas:</td>
