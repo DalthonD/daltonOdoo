@@ -746,10 +746,10 @@ class pos_session(models.Model):
             for record in self:
                 pos_order_obj = self.env['pos.order'].search([('invoice_id','=',False),('session_id','=',record.id),('recibo_number','=',False),('ticket_number','!=',False)], order='ticket_number asc')
                 if len(pos_order_obj)>1:
-                    tckt_in = pos_order_obj[0]
-                    tckt_fin = pos_order_obj[-1]
+                    tckt_in = pos_order_obj[0].ticket_number
+                    tckt_fin = pos_order_obj[-1].ticket_number
                 elif len(pos_order_obj)==1:
-                    tckt_in = pos_order_obj[0]
+                    tckt_in = pos_order_obj[0].ticket_number
                     tckt_fin = '(único)'
                 else:
                     tckt_in = 0
@@ -860,10 +860,10 @@ class pos_session(models.Model):
             for record in self:
                 pos_order_obj = self.env['pos.order'].search([('invoice_id','=',False),('session_id','=',record.id), ('recibo_number','!=',False),('ticket_number','=',False)], order='recibo_number asc')
                 if len(pos_order_obj)>1:
-                    rec_in = pos_order_obj[0]
-                    rec_fin = pos_order_obj[-1]
+                    rec_in = pos_order_obj[0].recibo_number
+                    rec_fin = pos_order_obj[-1].recibo_number
                 elif len(pos_order_obj)==1:
-                    rec_in = pos_order_obj[0]
+                    rec_in = pos_order_obj[0].recibo_number
                     rec_fin = '(único)'
                 else:
                     rec_in = 0
