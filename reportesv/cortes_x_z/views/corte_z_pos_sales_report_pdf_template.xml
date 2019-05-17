@@ -144,7 +144,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <td align="right" colspan="2">
+                      <td class="text-right" colspan="2">
                         ----------------------
                       </td>
                     </tr>
@@ -190,7 +190,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <td align="right" colspan="2">
+                      <td class="text-right" colspan="2">
                         ----------------------
                       </td>
                     </tr>
@@ -252,7 +252,7 @@
                       </td>
                     </tr>
                     <tr>
-                      <td align="right" colspan="2">
+                      <td class="text-right" colspan="2">
                         ----------------------
                       </td>
                     </tr>
@@ -289,7 +289,7 @@
                       </td>
                     </tr-->
                     <tr>
-                      <td align="right" colspan="2">
+                      <td class="text-right" colspan="2">
                         ----------------------
                       </td>
                     </tr>
@@ -339,7 +339,7 @@
                       <t t-set="total2" t-value="total2 + l.get('sum')"/>
                     </tr>
                     <tr>
-                      <td align="right" colspan="2">
+                      <td class="text-right" colspan="2">
                         ----------------------
                       </td>
                     </tr>
