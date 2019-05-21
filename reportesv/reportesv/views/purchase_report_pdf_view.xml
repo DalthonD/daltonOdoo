@@ -137,12 +137,12 @@
                     <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">Retención a Terceros</th>
                   </tr>
                   <tr t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c" style="vertical-align: middle; text-align: left; height: auto; width: 100%; padding: 0px; border-spacing: 0.05px; border-collapse: collapse;">
-                    <td style="padding: 1px;border-spacing: 0.5px;text-align: center ;border-spacing: 0.5px; vertical-align: middle"><span t-esc="int(c_index) + 1"/></td>
-                    <td style="padding: 1px;border-spacing: 0.5px;vertical-align: middle"><span t-esc="c[0]"/></td>
-                    <td style="padding: 1px;;vertical-align: middle"><span t-esc="c[1]"/></td>
-                    <td style="padding: 1px;border-spacing: 0.05px;vertical-align: middle; width: 100%, font-size: 6.5pt"><span t-esc="c[2]"/></td>
-                    <td style="padding: 1px;border-spacing: 0.5px;vertical-align: middle"><span t-esc="c[3]"/></td>
-                    <td style="padding: 1px;border-spacing: 0.5px;text-align: right;vertical-align: middle"><span t-esc="company.currency_id.symbol"/>
+                    <td style="padding: 0px;border-spacing: 0.5px;text-align: center ;vertical-align: middle"><span t-esc="int(c_index) + 1"/></td>
+                    <td style="padding: 0px;border-spacing: 0.5px;vertical-align: middle"><span t-esc="c[0]"/></td>
+                    <td style="padding: 0px;;vertical-align: middle"><span t-esc="c[1]"/></td>
+                    <td style="padding: 0px;border-spacing: 0.05px;vertical-align: middle; width: 100%, font-size: 6.5pt"><span t-esc="c[2]"/></td>
+                    <td style="padding: 0px;border-spacing: 0.5px;vertical-align: middle"><span t-esc="c[3]"/></td>
+                    <td style="padding: 0px;border-spacing: 0.5px;text-align: right;vertical-align: middle"><span t-esc="company.currency_id.symbol"/>
                         <span  t-if="c[4] != True" t-esc="'{0:.2f}'.format(c[6])"/>
                         <span  t-else="" t-esc="zero"/>
                     </td>
@@ -233,48 +233,48 @@
                         <td colspan="2" style="text-align: center">RESUMEN DE COMPRAS</td>
                       </tr>
                       <tr>
-                        <td style="text-align: left">Compras Exentas:</td>
-                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/>
+                        <td style="text-align: left;padding: 0px;border-spacing: 0.5px;">Compras Exentas:</td>
+                        <td style="text-align: right;padding: 0px;border-spacing: 0.5px;"><span t-esc="company.currency_id.symbol"/>
                                           <span t-if="importacion != True" t-esc="'{0:.2f}'.format(totalExentas)"/>
                                           <span t-else="" t-esc="zero"/>
                         </td>
                       </tr>
                       <tr>
-                        <td style="text-align: left">Importaciones Exentas:</td>
-                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/>
+                        <td style="text-align: left;padding: 0px;border-spacing: 0.5px;">Importaciones Exentas:</td>
+                        <td style="text-align: right;padding: 0px;border-spacing: 0.5px;"><span t-esc="company.currency_id.symbol"/>
                                           <span t-if="importacion == True" t-esc="'{0:.2f}'.format(totalExentas)"/>
                                           <span t-else="" t-esc="zero"/>
                         </td>
                       </tr>
                       <tr>
-                        <td style="text-align: left">Compras Gravadas:</td>
-                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/>
+                        <td style="text-align: left;padding: 0px;border-spacing: 0.5px;">Compras Gravadas:</td>
+                        <td style="text-align: right;padding: 0px;border-spacing: 0.5px;"><span t-esc="company.currency_id.symbol"/>
                                           <span t-if="importacion != True" t-esc="'{0:.2f}'.format(totalGravadas)"/>
                                           <span t-else="" t-esc="zero"/>
                         </td>
                       </tr>
                       <tr>
-                        <td style="text-align: left">Importaciones Gravadas:</td>
-                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/>
+                        <td style="text-align: left;padding: 0px;border-spacing: 0.5px;">Importaciones Gravadas:</td>
+                        <td style="text-align: right;padding: 0px;border-spacing: 0.5px;"><span t-esc="company.currency_id.symbol"/>
                                           <span t-if="importacion == True" t-esc="(totalGravadas)"/>
                                           <span t-else="" t-esc="zero"/>
                         </td>
                       </tr>
                       <tr>
-                        <td style="text-align: left">Crédito Fiscal:</td>
-                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIva)"/></td>
+                        <td style="text-align: left;padding: 0px;border-spacing: 0.5px;"</td>
+                        <td style="text-align: right;padding: 0px;border-spacing: 0.5px;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIva)"/></td>
                       </tr>
                       <tr>
-                        <td style="text-align: left">IVA Percibido:</td>
-                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalPercibido)"/></td>
+                        <td style="text-align: left;padding: 0px;border-spacing: 0.5px;">IVA Percibido:</td>
+                        <td style="text-align: right;padding: 0px;border-spacing: 0.5px;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalPercibido)"/></td>
                       </tr>
                       <tr>
-                        <td style="text-align: left">IVA Retenido:</td>
-                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido)"/></td>
+                        <td style="text-align: left;padding: 0px;border-spacing: 0.5px;">IVA Retenido:</td>
+                        <td style="text-align: right;padding: 0px;border-spacing: 0.5px;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido)"/></td>
                       </tr>
                       <tr>
-                        <td style="text-align: left">TOTAL:</td>
-                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalCompras)"/></td>
+                        <td style="text-align: left;padding: 0px;border-spacing: 0.5px;">TOTAL:</td>
+                        <td style="text-align: right;padding: 0px;border-spacing: 0.5px;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalCompras)"/></td>
                       </tr>
                     </table>
                   </td>
