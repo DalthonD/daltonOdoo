@@ -3,18 +3,59 @@
     <template id ='company_strategiksv_purchase_report_pdf'>
       <t t-call="web.html_container">
         <t t-call="web.basic_layout">
-          <div class="page">
-            <style class="text/css">
+          <div class="page reporte-stylesheet" style="font-size: 8pt">
+            <style type="text/css">
+              table, th, tr, tbody {
+                border-color: black;
+                height: 100%;
+                width: 100%;
+                border-collapse: collapse;
+                text-align: center;
+                vertical-align: middle;
+                border-spacing: 0px;
+                padding: 0;
+              }
+              th {
+                text-align: center;
+                vertical-align: middle;
+                border-collapse: collapse;
+                padding: 0px;
+                border-spacing: 0px;
+              }
+              td {
+                text-align: left;
+                vertical-align: middle;
+                border-collapse: collapse;
+                padding: 0px;
+                border-spacing: 0px;
+              }
+              .pagenumber:before {
+                content: counter(page);
+              }
+              .pagecount:before {
+                content: counter(pages);
+              }
               @page {
-                @bottom-left {
-                  content: "Libro de compras";
-                }
-                @bottom-righ {
-                content: counter(page) " de " counter(pages);
+                size: A4;
+                margin: 1mm 1mm 1mm 1mm;
+                @bottom-left{
+                  content: "Pag. " counter(page) " de " counter(pages);
                 }
               }
-              .custom-footer:after {
-                content: counter(page);
+              @media print {
+                .page {
+                  page-break-before: always;
+                }
+
+                footer {
+                  position: fixed;
+                  bottom: 0;
+                }
+
+                html {
+                  width: 216mm;
+                  height: 279mm;
+                }
               }
             </style>
             <!--Declaracion de variables-->
@@ -44,14 +85,21 @@
                 <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
                 <t t-set="contador" t-value="o.sv_aprueba_partida"/>
                 <t t-set="company" t-value="o"/>
-                <!--blockquote class="blockquote text-center">
-                  <p class="mb-0">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></p>
-                  <p class="mb-0">LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</p>
-                  <p class="mb-0">NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></p>
-                  <p class="mb-0">MES: <span t-esc="o.get_month_str(month)"/> DE <span t-esc="year"/></p>
-                  <p class="mb-0">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</p>
-                </blockquote-->
-                <div style="background-color:lightgray; text-align: center">
+                <!-->
+                fecha [0]
+                feactura [1]
+                proveedor [2]
+                nrc [3]
+                importacion [4]
+                gravado [5]
+                exento [6]
+                iva [7]
+                retenido [8]
+                percibido [9]
+                excluido [10]
+                retencion3 [11]
+                <-->
+                <div style="text-align: center">
                   <h2>NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></h2>
                   <h2>LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</h2>
                   <h2>NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></h2>
@@ -61,80 +109,62 @@
               </t>
             <!--Fin encabezado-->
             <!--Contenido de reporte-->
-            <t t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c">
-              <table class="table table-bordered" style="border-color: black; height: 100%; width: 100%;" border="1">
-                <div t-if="c_first" style="background-color:gray">
-                <thead style="text-align: center; vertical-align:middle; height: auto; width: auto;">
-                  <tr align="center" valign="middle">
+            <!--t t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c"-->
+              <!--table class="table table-bordered" style="border-color: black; height: 100%; width: 100%; border-collapse: collapse; border: 1px solid black"-->
+              <table class="table table-bordered" style="border: 1px solid black; padding: 0px; border-collapse: collapse;">
+                  <!--tr style="text-align: center; vertical-align: middle; height: auto; width: auto;"-->
+                  <tr style="width: 100%;">
                     <th colspan="5"></th>
                     <th colspan="2">COMPRAS EXENTAS</th>
                     <th colspan="3">COMPRAS GRAVADAS</th>
                     <th colspan="5"></th>
                   </tr>
-                  <tr align="center" valign="middle">
-                    <th valign="middle">#</th>
-                    <th>Fecha de emisión</th>
-                    <th>Número de documento</th>
-                    <th>Nombre del proveedor</th>
-                    <th>N.R.C.</th>
-                    <th>Internas</th>
-                    <th>Importaciones e Internacionales</th>
-                    <th>Internas</th>
-                    <th>Importaciones e Internacionales</th>
-                    <th>Crédito fiscal</th>
-                    <th>Anticipo a Cuenta de IVA Retenido</th>
-                    <th>Anticipo a Cuenta de IVA Percibido</th>
-                    <th>Total compras</th>
-                    <th>Compras a Sujetos Excluidos</th>
-                    <th>Retención a Terceros</th>
+                  <tr style="width: 100%;">
+                    <th style="text-align: center; vertical-align: middle;">#</th>
+                    <th style="text-align: center; vertical-align: middle;">Fecha de emisión</th>
+                    <th style="text-align: center; vertical-align: middle;">Número de documento</th>
+                    <th style="text-align: center; vertical-align: middle;">Nombre del proveedor</th>
+                    <th style="text-align: center; vertical-align: middle;">N.R.C.</th>
+                    <th style="text-align: center; vertical-align: middle;">Internas</th>
+                    <th style="text-align: center; vertical-align: middle;">Importaciones e Internacionales</th>
+                    <th style="text-align: center; vertical-align: middle;">Internas</th>
+                    <th style="text-align: center; vertical-align: middle;">Importaciones e Internacionales</th>
+                    <th style="text-align: center; vertical-align: middle;">Crédito fiscal</th>
+                    <th style="text-align: center; vertical-align: middle;">Anticipo a Cuenta de IVA Retenido</th>
+                    <th style="text-align: center; vertical-align: middle;">Anticipo a Cuenta de IVA Percibido</th>
+                    <th style="text-align: center; vertical-align: middle;">Total compras</th>
+                    <th style="text-align: center; vertical-align: middle;">Compras a Sujetos Excluidos</th>
+                    <th style="text-align: center; vertical-align: middle;">Retención a Terceros</th>
                   </tr>
-                </thead>
-                </div>
-                  <!-->
-                  fecha [0]
-                  feactura [1]
-                  proveedor [2]
-                  nrc [3]
-                  importacion [4]
-                  gravado [5]
-                  exento [6]
-                  iva [7]
-                  retenido [8]
-                  percibido [9]
-                  excluido [10]
-                  retencion3 [11]
-                  <-->
-                <tbody style="text-align: center; vertical-align: middle; height: auto; width: auto;">
-                  <tr>
-                    <td><span t-esc="int(c_index) + 1"/></td>
-                    <td><span t-esc="c[0]"/></td>
-                    <td><span t-esc="c[1]"/></td>
-                    <td><span t-esc="c[2]"/></td>
-                    <td><span t-esc="c[3]"/></td>
-                    <td><span t-esc="company.currency_id.symbol"/>
+                  <tr t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c" style="vertical-align: middle; text-align: left; height: auto; width: 100%; padding: 0px; border-spacing: 0.05px; border-collapse: collapse;">
+                    <td style="text-align: center ; vertical-alig: middle"><span t-esc="int(c_index) + 1"/></td>
+                    <td style="vertical-alig: middle"><span t-esc="c[0]"/></td>
+                    <td style="padding: 0px;border-spacing: 0px;vertical-alig: middle"><span t-esc="c[1]"/></td>
+                    <td style="padding: 0px;border-spacing: 0.05px;vertical-alig: middle"><span t-esc="c[2]"/></td>
+                    <td style="padding: 0px;border-spacing: 0px;vertical-alig: middle"><span t-esc="c[3]"/></td>
+                    <td style="padding: 0px;border-spacing: 0px;text-align: right;vertical-alig: middle"><span t-esc="company.currency_id.symbol"/>
                         <span  t-if="c[4] != True" t-esc="'{0:.2f}'.format(c[6])"/>
                         <span  t-else="" t-esc="zero"/>
                     </td>
-                    <td><span t-esc="company.currency_id.symbol"/>
+                    <td style="vertical-alig: middle;padding: 0px;border-spacing: 0px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
                       <span t-if="c[4] == True" t-esc="'{0:.2f}'.format(c[6])"/>
                       <span t-else="" t-esc="zero"/>
                     </td>
-                    <td><span t-esc="company.currency_id.symbol"/>
+                    <td style="vertical-alig: middle;text-align: right;padding: 0px;border-spacing: 0px;"><span t-esc="company.currency_id.symbol"/>
                       <span t-if="c[4] != True" t-esc="'{0:.2f}'.format(c[5])"/>
                       <span t-else="" t-esc="zero"/>
                     </td>
-                    <td><span t-esc="company.currency_id.symbol"/>
+                    <td style="vertical-alig: middle;padding: 0px;text-align: right;border-spacing: 0px;"><span t-esc="company.currency_id.symbol"/>
                       <span t-if="c[4] == True" t-esc="'{0:.2f}'.format(c[5])"/>
                       <span t-else="" t-esc="zero"/>
                     </td>
-                    <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c[7])"/></td>
-                    <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c[8])"/></td>
-                    <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c[9])"/></td>
+                    <td style="padding: 0px;border-spacing: 0px;vertical-alig: middle;text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c[7])"/></td>
+                    <td style="padding: 0px;border-spacing: 0px;text-align: right;vertical-alig: middle;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c[8])"/></td>
+                    <td style="padding: 0px;border-spacing: 0px;text-align: right;vertical-alig: middle;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c[9])"/></td>
                     <t t-set="compra" t-value="c[6] + c[5] + c[7] + c[8] + c[9]"/>
-                    <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(compra)"/></td>
-                    <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c[10])"/></td>
-                    <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c[11])"/></td>
-
+                    <td style="padding: 0px;border-spacing: 0px;text-align: right;vertical-alig: middle;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(compra)"/></td>
+                    <td style="padding: 0px;border-spacing: 0px;text-align: right;vertical-alig: middle;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c[10])"/></td>
+                    <td style="padding: 0px;border-spacing: 0px;text-align: right;vertical-alig: middle;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c[11])"/></td>
                     <!--Calculo de totales-->
                     <t t-set="importacion" t-value="c[4]"/>
                     <t t-set="totalExentas" t-value="totalExentas + c[6]"/>
@@ -146,138 +176,121 @@
                     <t t-set="totalExcluidos" t-value="totalExcluidos + c[10]"/>
                     <t t-set="totalRetenido3" t-value="totalRetenido3 + c[11]"/>
                     <!--Fin ce calculos-->
-                </tr>
-                <tr t-if="c_last" align="center">
-                  <td>
-                  </td>
-                  <td>
-                  </td>
-                  <td>
-                  </td>
-                  <td>
-                  </td>
-                  <td>
-                  </td>
-                  <td><span t-esc="company.currency_id.symbol"/>
-                      <span t-if="importacion != True" t-esc="'{0:.2f}'.format(totalExentas)"/>
-                      <span t-else="" t-esc="zero"/>
-                  </td>
-                  <td><span t-esc="company.currency_id.symbol"/>
-                      <span t-if="importacion == True" t-esc="'{0:.2f}'.format(totalExentas)"/>
-                      <span t-else="" t-esc="zero"/>
-                  </td>
-                  <td><span t-esc="company.currency_id.symbol"/>
-                      <span t-if="importacion != True" t-esc="'{0:.2f}'.format(totalGravadas)"/>
-                      <span t-else="" t-esc="zero"/>
-                  </td>
-                  <td><span t-esc="company.currency_id.symbol"/>
-                      <span t-if="importacion == True" t-esc="'{0:.2f}'.format(totalGravadas)"/>
-                      <span t-else="" t-esc="zero"/>
-                  </td>
-                  <td>
-                    <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIva)"/>
-                  </td>
-                  <td>
-                    <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido)"/>
-                  </td>
-                  <td>
-                    <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalPercibido)"/>
-                  </td>
-                  <td>
-                    <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalCompras)"/>
-                  </td>
-                  <td>
-                    <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalExcluidos)"/>
-                  </td>
-                  <td>
-                    <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido3)"/>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+                  </tr>
+                  <tr>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td>
+                    </td>
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
+                        <span t-if="importacion != True" t-esc="'{0:.2f}'.format(totalExentas)"/>
+                        <span t-else="" t-esc="zero"/>
+                    </td>
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
+                        <span t-if="importacion == True" t-esc="'{0:.2f}'.format(totalExentas)"/>
+                        <span t-else="" t-esc="zero"/>
+                    </td>
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
+                        <span t-if="importacion != True" t-esc="'{0:.2f}'.format(totalGravadas)"/>
+                        <span t-else="" t-esc="zero"/>
+                    </td>
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
+                        <span t-if="importacion == True" t-esc="'{0:.2f}'.format(totalGravadas)"/>
+                        <span t-else="" t-esc="zero"/>
+                    </td>
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;">
+                      <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIva)"/>
+                    </td>
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;">
+                      <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido)"/>
+                    </td>
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;">
+                      <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalPercibido)"/>
+                    </td>
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;">
+                      <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalCompras)"/>
+                    </td>
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;">
+                      <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalExcluidos)"/>
+                    </td>
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;">
+                      <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido3)"/>
+                    </td>
+                  </tr>
+              </table>
             <!--/t-->
-
-              <br/>
-
-              <table t-if="c_last" align="center">
+              <table id="tr01" style="border: none">
                 <tr style="width: 100%;">
                   <td align="right">
-                    <table class="table table-bordered" style="border: 1px solid black; border-collapse: collapse;">
+                    <table class="table table-bordered" style="border: 1px solid black; border-collapse: collapse; border-spacing: 0.5px;">
                       <tr>
-                        <td align="center" colspan="2">RESUMEN DE COMPRAS</td>
+                        <td colspan="2" style="text-align: center">RESUMEN DE COMPRAS</td>
                       </tr>
                       <tr>
-                        <td align="left">Compras Exentas:</td>
-                        <td align="right"><span t-esc="company.currency_id.symbol"/>
+                        <td style="text-align: left">Compras Exentas:</td>
+                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/>
                                           <span t-if="importacion != True" t-esc="'{0:.2f}'.format(totalExentas)"/>
                                           <span t-else="" t-esc="zero"/>
                         </td>
                       </tr>
                       <tr>
-                        <td align="left">Importaciones Exentas:</td>
-                        <td align="right"><span t-esc="company.currency_id.symbol"/>
+                        <td style="text-align: left">Importaciones Exentas:</td>
+                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/>
                                           <span t-if="importacion == True" t-esc="'{0:.2f}'.format(totalExentas)"/>
                                           <span t-else="" t-esc="zero"/>
                         </td>
                       </tr>
                       <tr>
-                        <td align="left">Compras Gravadas:</td>
-                        <td align="right"><span t-esc="company.currency_id.symbol"/>
+                        <td style="text-align: left">Compras Gravadas:</td>
+                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/>
                                           <span t-if="importacion != True" t-esc="'{0:.2f}'.format(totalGravadas)"/>
                                           <span t-else="" t-esc="zero"/>
                         </td>
                       </tr>
                       <tr>
-                        <td align="left">Importaciones Gravadas:</td>
-                        <td align="right"><span t-esc="company.currency_id.symbol"/>
+                        <td style="text-align: left">Importaciones Gravadas:</td>
+                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/>
                                           <span t-if="importacion == True" t-esc="(totalGravadas)"/>
                                           <span t-else="" t-esc="zero"/>
                         </td>
                       </tr>
                       <tr>
-                        <td align="left">Crédito Fiscal:</td>
-                        <td align="right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIva)"/></td>
+                        <td style="text-align: left">Crédito Fiscal:</td>
+                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIva)"/></td>
                       </tr>
                       <tr>
-                        <td align="left">IVA Percibido:</td>
-                        <td align="right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalPercibido)"/></td>
+                        <td style="text-align: left">IVA Percibido:</td>
+                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalPercibido)"/></td>
                       </tr>
                       <tr>
-                        <td align="left">IVA Retenido:</td>
-                        <td align="right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido)"/></td>
+                        <td style="text-align: left">IVA Retenido:</td>
+                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido)"/></td>
                       </tr>
                       <tr>
-                        <td align="left">TOTAL:</td>
-                        <td align="right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalCompras)"/></td>
+                        <td style="text-align: left">TOTAL:</td>
+                        <td style="text-align: right"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalCompras)"/></td>
                       </tr>
                     </table>
                   </td>
                   <td style="width: 30%"></td>
-                  <td align="center" valign="bottom">
-                    <table>
-                      <tr>
-                        <td align="center">_________________________________________</td>
-                      </tr>
-                      <tr>
-                        <td align="center"><span t-esc="contador"/></td>
-                      </tr>
-                      <tr>
-                        <td align="center">Contador</td>
-                      </tr>
-                    </table>
+                  <td style="text-align: center; vertical-align: middle">
+                    <div style="text-align: center;">
+                        <p align="center">_________________________________________</p>
+                        <p t-if="contador" align="center" style="vertical-align: top"><span t-esc="contador"/></p>
+                        <p align="center" style="vertical-align: top">Contador</p>
+                    </div>
                   </td>
                 </tr>
               </table>
-            </t>
 
               <!--Pie de pagina-->
-              <footer class="custom-footer" style="background-color: lightgray; bottom: 1; position: fixed; width: 100%; border-width: 55%;">
-                <div class="row">
-                    <p style="text-align: right">Pag. <span class="page" style="botoom-right"></span>
-                    de
-                    <span class="topage"></span></p>
-                </div>
-              </footer>
+
               <!-- Fin Pie de pagina-->
           </div>
         </t>
