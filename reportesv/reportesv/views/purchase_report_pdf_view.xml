@@ -120,21 +120,21 @@
                     <th colspan="5"></th>
                   </tr>
                   <tr style="width: 100%;">
-                    <th style="text-align: center; vertical-align: middle;padding: 1px;border-spacing: 0.5px;">#</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 1px;border-spacing: 0.5px;">Fecha de emisión</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 1px;border-spacing: 0.5px;">Número de documento</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 1px;border-spacing: 0.5px;">Nombre del proveedor</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 1px;border-spacing: 0.5px;">N.R.C.</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 1px;border-spacing: 0.5px;">Internas</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 1px;border-spacing: 0.5px;">Importaciones e Internacionales</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 1px;border-spacing: 0.5px;">Internas</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 1px;border-spacing: 0.5px;">Importaciones e Internacionales</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 1px;border-spacing: 0.5px;">Crédito fiscal</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 1px;border-spacing: 0.5px;">Anticipo a Cuenta de IVA Retenido</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 1px;border-spacing: 0.5px;">Anticipo a Cuenta de IVA Percibido</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 1px;border-spacing: 0.5px;">Total compras</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 1px;border-spacing: 0.5px;">Compras a Sujetos Excluidos</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 1px;border-spacing: 0.5px;">Retención a Terceros</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">#</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">Fecha de emisión</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">Número de documento</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">Nombre del proveedor</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">N.R.C.</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">Internas</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">Importaciones e Internacionales</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">Internas</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">Importaciones e Internacionales</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">Crédito fiscal</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">Anticipo a Cuenta de IVA Retenido</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">Anticipo a Cuenta de IVA Percibido</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">Total compras</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">Compras a Sujetos Excluidos</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;border-spacing: 0.5px;">Retención a Terceros</th>
                   </tr>
                   <tr t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c" style="vertical-align: middle; text-align: left; height: auto; width: 100%; padding: 0px; border-spacing: 0.05px; border-collapse: collapse;">
                     <td style="padding: 1px;border-spacing: 0.5px;text-align: center ;border-spacing: 0.5px; vertical-align: middle"><span t-esc="int(c_index) + 1"/></td>
