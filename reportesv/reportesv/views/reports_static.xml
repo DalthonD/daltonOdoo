@@ -2,9 +2,10 @@
 
 <odoo>
     <data>
-        <template id="assets_backend_reportes" name="libros legales assets" inherit_id="web.report_assets_common">
+        <template id="assets_backend_reportes" name="libros legales assets" inherit_id="web.assets_backend">
             <xpath expr="." position="inside">
-                 <link rel="stylesheet" href="/reportesv/static/src/css/report.css" id="reporte-stylesheet" type="text/css"/>
+                <!--inherit_id="web.report_assets_common"-->
+                <link rel="stylesheet" href="/reportesv/static/src/css/report.css" id="reporte-stylesheet" type="text/css"/>
             </xpath>
         </template>
     </data>

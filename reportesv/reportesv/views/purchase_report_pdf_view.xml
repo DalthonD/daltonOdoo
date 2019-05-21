@@ -3,8 +3,7 @@
     <template id ='company_strategiksv_purchase_report_pdf'>
       <t t-call="web.html_container">
         <t t-call="web.basic_layout">
-          <div class="page">
-            <link rel="stylesheet" href="/reportesv/static/src/css/report.css"/>
+          <div class="page" style="font-size: 10pt">
             <style type="text/css">
               table, th, tr, tbody {
                 border-color: black;
@@ -106,7 +105,6 @@
             <!--t t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c"-->
               <!--table class="table table-bordered" style="border-color: black; height: 100%; width: 100%; border-collapse: collapse; border: 1px solid black"-->
               <table class="table table-bordered" style="border: 1px solid black; padding: 0px; border-collapse: collapse;">
-                <div t-if="c_first">
                   <!--tr style="text-align: center; vertical-align: middle; height: auto; width: auto;"-->
                   <tr style="width: 100%;">
                     <th colspan="5"></th>
@@ -131,7 +129,6 @@
                     <th style="text-align: center; vertical-align: middle;">Compras a Sujetos Excluidos</th>
                     <th style="text-align: center; vertical-align: middle;">Retención a Terceros</th>
                   </tr>
-                </div>
                   <tr t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c" style="text-align: center; vertical-align: middle; height: auto; width: 100%; padding: 0px; border-collapse: collapse;">
                     <td><span t-esc="int(c_index) + 1"/></td>
                     <td><span t-esc="c[0]"/></td>
