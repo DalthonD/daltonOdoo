@@ -4,8 +4,6 @@
       <t t-call="web.html_container">
         <t t-call="web.basic_layout">
           <div class="page">
-            <style type="text/css">
-            </style>
             <!--Declaracion de variables-->
             <t t-set="month" t-value="int(0)"/>
             <t t-set="year" t-value="int(0)"/>
@@ -65,11 +63,11 @@
                     <th align="center">Locales</th>
                     <th align="center">Exportación</th>
                   </tr>
-                <tr t-foreach="company.get_consumer_details(company_id, year, month, company.sv_invoice_serie_size)" t-as="c" style="text-align: center; vertical-align: middle; height: auto; width: 100%; padding: 0px; border-collapse: collapse;">
-                  <td><span t-esc="int(c_index) + 1"/></td>
-                  <td><span t-esc="c.get('fecha')"/></td>
-                  <td><span t-esc="c.get('delnum')"/></td>
-                  <td><span t-esc="c.get('alnum')"/></td>
+                <tr t-foreach="company.get_consumer_details(company_id, year, month, company.sv_invoice_serie_size)" t-as="c" style="text-align: right; vertical-align: middle; height: auto; width: 100%; padding: 0px; border-collapse: collapse;">
+                  <td style="text-align: center;"><span t-esc="int(c_index) + 1"/></td>
+                  <td style="text-align: left;"><span t-esc="c.get('fecha')"/></td>
+                  <td style="text-align: left;"><span t-esc="c.get('delnum')"/></td>
+                  <td style="text-align: left;"><span t-esc="c.get('alnum')"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('exento'))"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('gravadolocal'))"/></td>
                   <td><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c.get('gravadoexportacion'))"/></td>
@@ -87,7 +85,7 @@
                   <t t-set="totalIvaExp" t-value="totalIvaExp + c.get('ivaexportacion')"/>
                   <!--Fin ce calculos-->
                 </tr>
-                <tr align="center">
+                <tr align="right">
                   <td>
                   </td>
                   <td>
