@@ -104,7 +104,7 @@
             <!--/t-->
               <table align="center">
                 <tr style="width: 100%;">
-                  <td align="left">
+                  <td align="right">
                     <table class="table table-bordered" style="border: 1.5px solid black; border-collapse: collapse; padding: 0px;">
                       <tr style="width: 100%;">
                         <th align="center">Resumen de Operaciones</th>
