@@ -261,7 +261,7 @@
                         </td>
                       </tr>
                       <tr>
-                        <td style="text-align: left;padding: 0px;border-spacing: 0.5px;"</td>
+                        <td style="text-align: left;padding: 0px;border-spacing: 0.5px;">Crédito Fiscal:</td>
                         <td style="text-align: right;padding: 0px;border-spacing: 0.5px;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIva)"/></td>
                       </tr>
                       <tr>
