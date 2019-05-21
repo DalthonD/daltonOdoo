@@ -87,7 +87,7 @@
             <!--Contenido de reporte-->
             <!--t t-foreach="company.get_taxpayer_details(company_id, year, month)" t-as="c"-->
               <table class="table table-bordered" style="border: 1px solid black; text-align: center; vertical-align: middle; height: auto; width: 100%; padding: 0px; border-spacing: 0px; border-collapse: collapse;">
-                  <tr style="width: 100%;">
+                  <tr style="width: 100%;text-align: center; vertical-align: middle;">
                     <th rowspan="2">#</th>
                     <th rowspan="2">FECHA</th>
                     <th rowspan="2" style="width: 40%; font-size: 10px">No. Corr. Por Tipo De Documento</th>
