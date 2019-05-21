@@ -318,6 +318,8 @@ class res_company(models.Model):
     @api.multi
     def get_consumer_details(self, company_id, date_year, date_month, sv_invoice_serie_size):
         data = {}
+        if sv_invoice_serie_size == None or sv_invoice_serie_size < 8:
+            sv_invoice_serie_size = 8
         func = """CREATE OR REPLACE FUNCTION public.facturasagrupadas(p_company_id integer, month_number integer, year_number integer, p_series_lenght integer)
         RETURNS TABLE(invoice_id integer, factura_number character varying, factura_status character varying, grupo integer)
         LANGUAGE plpgsql

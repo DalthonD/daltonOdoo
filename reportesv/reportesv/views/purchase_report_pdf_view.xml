@@ -103,7 +103,7 @@
               </t>
             <!--Fin encabezado-->
             <!--Contenido de reporte-->
-            <t t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c">
+            <!--t t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c"-->
               <!--table class="table table-bordered" style="border-color: black; height: 100%; width: 100%; border-collapse: collapse; border: 1px solid black"-->
               <table class="table table-bordered" style="border: 1px solid black; padding: 0px; border-collapse: collapse;">
                 <div t-if="c_first">
@@ -132,7 +132,7 @@
                     <th style="text-align: center; vertical-align: middle;">Retención a Terceros</th>
                   </tr>
                 </div>
-                  <tr style="text-align: center; vertical-align: middle; height: auto; width: 100%; padding: 0px; border-collapse: collapse;">
+                  <tr t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c" style="text-align: center; vertical-align: middle; height: auto; width: 100%; padding: 0px; border-collapse: collapse;">
                     <td><span t-esc="int(c_index) + 1"/></td>
                     <td><span t-esc="c[0]"/></td>
                     <td><span t-esc="c[1]"/></td>
@@ -172,8 +172,7 @@
                     <t t-set="totalExcluidos" t-value="totalExcluidos + c[10]"/>
                     <t t-set="totalRetenido3" t-value="totalRetenido3 + c[11]"/>
                     <!--Fin ce calculos-->
-                </tr>
-                <div t-if="c_last">
+                  </tr>
                   <tr>
                     <td>
                     </td>
@@ -220,9 +219,8 @@
                       <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido3)"/>
                     </td>
                   </tr>
-                </div>
               </table>
-            </t>
+            <!--/t-->
               <table id="tr01" style="border: none">
                 <tr style="width: 100%;">
                   <td align="right">
@@ -280,7 +278,7 @@
                   <td style="text-align: center; vertical-align: middle">
                     <div style="text-align: center;">
                         <p align="center">_________________________________________</p>
-                        <p align="center" style="vertical-align: top"><span t-esc="contador"/></p>
+                        <p t-if="contador" align="center" style="vertical-align: top"><span t-esc="contador"/></p>
                         <p align="center" style="vertical-align: top">Contador</p>
                     </div>
                   </td>
