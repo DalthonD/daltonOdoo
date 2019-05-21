@@ -140,9 +140,9 @@
                     <td style="padding: 1px;border-spacing: 0.5px;text-align: center ;border-spacing: 0.5px; vertical-align: middle"><span t-esc="int(c_index) + 1"/></td>
                     <td style="padding: 1px;border-spacing: 0.5px;vertical-align: middle"><span t-esc="c[0]"/></td>
                     <td style="padding: 1px;;vertical-align: middle"><span t-esc="c[1]"/></td>
-                    <td style="padding: 1px;border-spacing: 0.05px;vertical-align: middle"><span t-esc="c[2]"/></td>
+                    <td style="padding: 1px;border-spacing: 0.05px;vertical-align: middle; width: 100%, font-size: 6.5pt"><span t-esc="c[2]"/></td>
                     <td style="padding: 1px;border-spacing: 0.5px;vertical-align: middle"><span t-esc="c[3]"/></td>
-                    <td style="padding: 1px;border-spacing: 0.5px;text-align: right;vertical-alig: middle"><span t-esc="company.currency_id.symbol"/>
+                    <td style="padding: 1px;border-spacing: 0.5px;text-align: right;vertical-align: middle"><span t-esc="company.currency_id.symbol"/>
                         <span  t-if="c[4] != True" t-esc="'{0:.2f}'.format(c[6])"/>
                         <span  t-else="" t-esc="zero"/>
                     </td>
