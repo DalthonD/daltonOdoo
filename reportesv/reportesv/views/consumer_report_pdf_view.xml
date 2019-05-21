@@ -33,7 +33,7 @@
                 <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
                 <t t-set="contador" t-value="o.sv_aprueba_partida"/>
                 <t t-set="company" t-value="o"/>
-                <div style="background-color:lightgray; text-align: center">
+                <div style="text-align: center">
                   <h2 style="font-size: 40px; text-transform: uppercase">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></h2>
                   <h2>LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</h2>
                   <h2>NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></h2>

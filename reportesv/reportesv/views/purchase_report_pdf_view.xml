@@ -99,7 +99,7 @@
                 excluido [10]
                 retencion3 [11]
                 <-->
-                <div style="background-color:lightgray; text-align: center">
+                <div style="text-align: center">
                   <h2>NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></h2>
                   <h2>LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</h2>
                   <h2>NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></h2>
@@ -137,8 +137,8 @@
                     <th style="text-align: center; vertical-align: middle;">Retención a Terceros</th>
                   </tr>
                   <tr t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c" style="vertical-align: middle; text-align: left; height: auto; width: 100%; padding: 0px; border-spacing: 0.05px; border-collapse: collapse;">
-                    <td style="padding: 0px;border-spacing: 0px; text-align: center ; vertical-alig: middle"><span t-esc="int(c_index) + 1"/></td>
-                    <td style="padding: 0px;border-spacing: 0px;vertical-alig: middle"><span t-esc="c[0]"/></td>
+                    <td style="text-align: center ; vertical-alig: middle"><span t-esc="int(c_index) + 1"/></td>
+                    <td style="vertical-alig: middle"><span t-esc="c[0]"/></td>
                     <td style="padding: 0px;border-spacing: 0px;vertical-alig: middle"><span t-esc="c[1]"/></td>
                     <td style="padding: 0px;border-spacing: 0.05px;vertical-alig: middle"><span t-esc="c[2]"/></td>
                     <td style="padding: 0px;border-spacing: 0px;vertical-alig: middle"><span t-esc="c[3]"/></td>
