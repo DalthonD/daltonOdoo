@@ -116,12 +116,12 @@
             <!--Contenido de reporte-->
             <!--t t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c"-->
               <!--table class="table table-bordered" style="border-color: black; height: 100%; width: 100%; border-collapse: collapse; border: 1px solid black"-->
-              <table class="table table-bordered" style="border: 1px solid black; padding: 0px; border-collapse: collapse;">
+              <table class="table table-bordered" style="table-layout:auto;width:150%;border: 1px solid black; padding: 0px; border-collapse: collapse;empty-cells:hide;">
                   <!--tr style="text-align: center; vertical-align: middle; height: auto; width: auto;"-->
                   <tr style="width: 100%;">
                     <th colspan="5"></th>
-                    <th colspan="2" style="padding:0px">COMPRAS EXENTAS</th>
-                    <th colspan="3" style="padding:0px">COMPRAS GRAVADAS</th>
+                    <th colspan="2" style="padding:0px;vertical-align:middle;text-align:center">COMPRAS EXENTAS</th>
+                    <th colspan="3" style="padding:0px;vertical-align:middle;text-align:center">COMPRAS GRAVADAS</th>
                     <th colspan="5"></th>
                   </tr>
                   <tr style="width: 100%;">
@@ -143,24 +143,28 @@
                   </tr>
                   <tr t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c" style="vertical-align: middle; text-align: left; height: auto; width: 100%; padding: 0px; border-spacing: 0.05px; border-collapse: collapse;">
                     <td style="padding: 0px;text-align: center;vertical-align: middle;width:5%"><span t-esc="int(c_index) + 1"/></td>
-                    <td style="padding: 0px;vertical-align: middle"><span t-esc="c[0]"/></td>
+                    <td style="padding: 0px;vertical-align: middle;width:30%"><span t-esc="c[0]"/></td>
                     <td style="padding: 0px;vertical-align: middle;width:100%;"><span t-esc="c[1]"/></td>
                     <td style="padding: 0px;vertical-align: middle;width:100%;font-size: 6.5pt"><span t-esc="c[2]"/></td>
                     <td style="padding: 0px;vertical-align: middle"><span t-esc="c[3]"/></td>
                     <td style="padding: 0px;text-align: right;vertical-align: middle"><span t-esc="company.currency_id.symbol"/>
-                        <span  t-if="c[4] != true" t-esc="'{0:.2f}'.format(c[6])" t-set="intEX" t-value="intEx+c[6]"/>
+                        <t t-if="c[4] != true"  t-set="intEX" t-value="intEx+c[6]"/>
+                        <span  t-if="c[4] != true" t-esc="'{0:.2f}'.format(c[6])"/>
                         <span  t-else="" t-esc="zero"/>
                     </td>
                     <td style="vertical-align: middle;padding: 0px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
-                      <span t-if="c[4] == true" t-esc="'{0:.2f}'.format(c[6])" t-set="impEx" t-value="impEx+c[6]"/>
+                      <t t-if="c[4] == true" t-set="impEx" t-value="impEx+c[6]"/>
+                      <span t-if="c[4] == true" t-esc="'{0:.2f}'.format(c[6])"/>
                       <span t-else="" t-esc="zero"/>
                     </td>
                     <td style="vertical-align: middle;text-align: right;padding: 0px;"><span t-esc="company.currency_id.symbol"/>
-                      <span t-if="c[4] != true" t-esc="'{0:.2f}'.format(c[5])" t-set="intGra" t-value="intGra+c[5]"/>
+                      <t t-if="c[4] != true" t-set="intGra" t-value="intGra+c[5]"/>
+                      <span t-if="c[4] != true" t-esc="'{0:.2f}'.format(c[5])"/>
                       <span t-else="" t-esc="zero"/>
                     </td>
                     <td style="vertical-align: middle;padding: 0px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
-                      <span t-if="c[4] == true" t-esc="'{0:.2f}'.format(c[5])" t-set="impGra" t-value="impGra+c[5]"/>
+                      <t t-if="c[4] == true" t-set="intGra" t-value="intGra+c[5]"/>
+                      <span t-if="c[4] == true" t-esc="'{0:.2f}'.format(c[5])"/>
                       <span t-else="" t-esc="zero"/>
                     </td>
                     <td style="padding: 0px;vertical-align: middle;text-align: right;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c[7])"/></td>
