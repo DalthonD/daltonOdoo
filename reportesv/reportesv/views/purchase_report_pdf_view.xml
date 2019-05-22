@@ -148,8 +148,8 @@
                     <td style="padding: 0px;border-spacing: 0.05px;vertical-align: middle; width: 100%;font-size: 6.5pt"><span t-esc="c[2]"/></td>
                     <td style="padding: 0px;border-spacing: 0.5px;vertical-align: middle"><span t-esc="c[3]"/></td>
                     <td style="padding: 0px;border-spacing: 0.5px;text-align: right;vertical-align: middle"><span t-esc="company.currency_id.symbol"/>
-                        <t  t-if="c[4] != true" t-set="intEX" t-value="intEX+c[6]"/>
-                        <t  t-else="" t-set="intEX" t-value="intEX+zero"/>
+                        <t  t-if="c[4] != true" t-set="intEX" t-value="intEx+c[6]"/>
+                        <t  t-else="" t-set="intEX" t-value="intEx+zero"/>
                         <span  t-if="c[4] != true" t-esc="'{0:.2f}'.format(c[6])"/>
                         <span  t-else="" t-esc="zero"/>
                     </td>
