@@ -154,8 +154,8 @@
                         <span  t-else="" t-esc="zero"/>
                     </td>
                     <td style="vertical-align: middle;padding: 0px;border-spacing: 0.5px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
-                      <t  t-if="c[4] == true" t-set="intEX" t-value="impEx+c[6]"/>
-                      <t  t-else="" t-set="intEX" t-value="impEx+zero"/>
+                      <t  t-if="c[4] == true" t-set="impEx" t-value="impEx+c[6]"/>
+                      <t  t-else="" t-set="impEx" t-value="impEx+zero"/>
                       <span t-if="c[4] == true" t-esc="'{0:.2f}'.format(c[6])"/>
                       <span t-else="" t-esc="zero"/>
                     </td>
