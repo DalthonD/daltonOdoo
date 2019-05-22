@@ -75,7 +75,10 @@
             <t t-set="totalCompras" t-value="float(0.00)"/>
             <t t-set="totalExcluidos" t-value="float(0.00)"/>
             <t t-set="totalRetenido3" t-value="float(0.00)"/>
-            <t t-set="importacion" t-value="False"/>
+            <t t-set="intEx" t-value="float(0.00)"/>
+            <t t-set="impEx" t-value="float(0.00)"/>
+            <t t-set="intGra" t-value="float(0.00)"/>
+            <t t-set="impGra" t-value="float(0.00)"/>
             <!--Fin de declaraciones-->
 
             <!--Encabezado-->
@@ -143,10 +146,14 @@
                     <td style="padding: 0px;border-spacing: 0.05px;vertical-align: middle; width: 100%;font-size: 6.5pt"><span t-esc="c[2]"/></td>
                     <td style="padding: 0px;border-spacing: 0.5px;vertical-align: middle"><span t-esc="c[3]"/></td>
                     <td style="padding: 0px;border-spacing: 0.5px;text-align: right;vertical-align: middle"><span t-esc="company.currency_id.symbol"/>
+                        <t  t-if="c[4] != True" t-set="intEX" t-value="intEX+c[6]"/>
+                        <t  t-else="" t-set="intEX" t-value="intEX+zero"/>
                         <span  t-if="c[4] != True" t-esc="'{0:.2f}'.format(c[6])"/>
                         <span  t-else="" t-esc="zero"/>
                     </td>
                     <td style="vertical-align: middle;padding: 0px;border-spacing: 0.5px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
+                      <t  t-if="c[4] == True" t-set="intEX" t-value="impEx+c[6]"/>
+                      <t  t-else="" t-set="intEX" t-value="impEx+zero"/>
                       <span t-if="c[4] == True" t-esc="'{0:.2f}'.format(c[6])"/>
                       <span t-else="" t-esc="zero"/>
                     </td>
@@ -166,7 +173,11 @@
                     <td style="padding: 0px;border-spacing: 0.5px;text-align: right;vertical-align: middle;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c[10])"/></td>
                     <td style="padding: 0px;border-spacing: 0.5px;text-align: right;vertical-align: middle;"><span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(c[11])"/></td>
                     <!--Calculo de totales-->
-                    <t t-set="importacion" t-value="c[4]"/>
+                    <!--t t-set="intEx" t-value="float(0.00)"/>
+                    <t t-set="impEx" t-value="float(0.00)"/>
+                    <t t-set="intGra" t-value="float(0.00)"/>
+                    <t t-set="impGra" t-value="float(0.00)"/>
+                    <t t-set="importacion" t-value="c[4]"/-->
                     <t t-set="totalExentas" t-value="totalExentas + c[6]"/>
                     <t t-set="totalGravadas" t-value="totalGravadas + c[5]"/>
                     <t t-set="totalIva" t-value="totalIva + c[7]"/>
@@ -189,12 +200,14 @@
                     <td>
                     </td>
                     <td style="padding: 0px;border-spacing: 0.7px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
-                        <span t-if="importacion != True" t-esc="'{0:.2f}'.format(totalExentas)"/>
-                        <span t-else="" t-esc="zero"/>
+                        <span t-esc="'{0:.2f}'.format(intEx)"/>
+                        <!--span t-if="importacion != True" t-esc="'{0:.2f}'.format(totalExentas)"/>
+                        <span t-else="" t-esc="zero"/-->
                     </td>
                     <td style="padding: 0px;border-spacing: 0.7px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
-                        <span t-if="importacion == True" t-esc="'{0:.2f}'.format(totalExentas)"/>
-                        <span t-else="" t-esc="zero"/>
+                        <span t-esc="'{0:.2f}'.format(impEx)"/>
+                        <!--span t-if="importacion == True" t-esc="'{0:.2f}'.format(totalExentas)"/>
+                        <span t-else="" t-esc="zero"/-->
                     </td>
                     <td style="padding: 0px;border-spacing: 0.7px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
                         <span t-if="importacion != True" t-esc="'{0:.2f}'.format(totalGravadas)"/>
