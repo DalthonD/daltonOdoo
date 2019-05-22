@@ -152,9 +152,7 @@
               <!--Pie de pagina-->
               <div class="footer" style="background-color: lightgray; bottom: 0; position: fixed; width: 100%; border-width: 55%;">
                 <div class="row">
-                    <p style="text-align: right">Pag. <span class="pagenumber"></span>
-                    de
-                    <span class="pagecount"></span></p>
+                    
                 </div>
               </div>
               <!-- Fin Pie de pagina-->
