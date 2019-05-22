@@ -1,5 +1,6 @@
 <odoo>
   <data>
+    <link rel="stylesheet" href="/reportesv/static/src/css/report.css" id="reporte-stylesheet" type="text/css"/>
     <record id="report_consumer_wizard_view" model="ir.ui.view" >
       <field name="name">wizard.sv.consumer.report.form.view</field>
       <field name="model">wizard.sv.consumer.report</field>
