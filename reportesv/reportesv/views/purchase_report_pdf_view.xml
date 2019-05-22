@@ -66,7 +66,8 @@
             <t t-set="company" t-value="null"/>
 
             <t t-set="compra" t-value="float(0.00)"/>
-            <t t-set="zero" t-value="'{0:.2f}'.format(float(0.00))"/>
+            <!--t t-set="zero" t-value="'{0:.2f}'.format(float(0.00))"/-->
+            <t t-set="zero" t-value="float(0.00)"/>
             <t t-set="totalExentas" t-value="float(0.00)"/>
             <t t-set="totalGravadas" t-value="float(0.00)"/>
             <t t-set="totalIva" t-value="float(0.00)"/>
