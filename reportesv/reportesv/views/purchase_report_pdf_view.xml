@@ -190,34 +190,34 @@
                     </td>
                     <td>
                     </td>
-                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;vertical-align:middle;"><span t-esc="company.currency_id.symbol"/>
                         <span t-esc="'{0:.2f}'.format(intEx)"/>
                     </td>
-                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;vertical-align:middle;"><span t-esc="company.currency_id.symbol"/>
                         <span t-esc="'{0:.2f}'.format(impEx)"/>
                     </td>
-                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;vertical-align:middle;"><span t-esc="company.currency_id.symbol"/>
                         <span t-esc="'{0:.2f}'.format(intGra)"/>
                     </td>
-                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;"><span t-esc="company.currency_id.symbol"/>
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;vertical-align:middle;"><span t-esc="company.currency_id.symbol"/>
                         <span t-esc="'{0:.2f}'.format(impGra)"/>
                     </td>
-                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;">
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;vertical-align:middle;">
                       <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalIva)"/>
                     </td>
-                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;">
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;vertical-align:middle;">
                       <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido)"/>
                     </td>
-                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;">
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;vertical-align:middle;">
                       <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalPercibido)"/>
                     </td>
-                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;">
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;vertical-align:middle;">
                       <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalCompras)"/>
                     </td>
-                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;">
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;vertical-align:middle;">
                       <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalExcluidos)"/>
                     </td>
-                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;">
+                    <td style="padding: 0px;border-spacing: 0.7px;text-align: right;vertical-align:middle;">
                       <span t-esc="company.currency_id.symbol"/><span t-esc="'{0:.2f}'.format(totalRetenido3)"/>
                     </td>
                   </tr>
