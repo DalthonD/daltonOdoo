@@ -28,7 +28,7 @@
         'views/consumer_report_pdf_view.xml',
         'wizard/wizard_purchases_report.xml',
         'wizard/wizard_taxpayer_sales_report.xml',
-        'wizard/wizard_consumer_sales_report.xml',
+        'wizard/wizard_consumer_report.xml',
     ],
     # only loaded in demonstration mode
     'qweb': [],
