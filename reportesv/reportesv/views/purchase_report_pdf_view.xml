@@ -120,10 +120,10 @@
                     <th colspan="5"></th>
                   </tr>
                   <tr style="width: 100%;">
-                    <th style="text-align: center; vertical-align: middle;">#</th>
+                    <th style="text-align: center; vertical-align: middle;width: 20%">#</th>
                     <th style="text-align: center; vertical-align: middle;width: 100%;">Fecha de emisión</th>
                     <th style="text-align: center; vertical-align: middle;">Número de documento</th>
-                    <th style="text-align: center; vertical-align: middle;width: 100%;">Nombre del proveedor</th>
+                    <th style="text-align: center; vertical-align: middle;width: 150%;">Nombre del proveedor</th>
                     <th style="text-align: center; vertical-align: middle;">N.R.C.</th>
                     <th style="text-align: center; vertical-align: middle;">Internas</th>
                     <th style="text-align: center; vertical-align: middle;">Importaciones e Internacionales</th>
@@ -228,7 +228,7 @@
               <table>
                 <tr style="width: 100%;">
                   <td align="center">
-                    <table class="table table-bordered" style="position: absolute;left: 200px;border: 1px solid black; border-collapse: collapse; border-spacing: 0.5px; paddingÑ 0.1px">
+                    <table class="table table-bordered" style="left: 200px;border: 1px solid black; border-collapse: collapse; border-spacing: 0.5px; paddingÑ 0.1px">
                       <tr>
                         <td colspan="2" style="text-align: center">RESUMEN DE COMPRAS</td>
                       </tr>
