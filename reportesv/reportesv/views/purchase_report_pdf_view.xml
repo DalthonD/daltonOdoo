@@ -126,8 +126,8 @@
                   </tr>
                   <tr style="width: 100%;">
                     <th style="text-align: center; vertical-align: middle;width: 5%; padding: 0px">#</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 0px;width:30%">Fecha de emisión</th>
-                    <th style="text-align: center; vertical-align: middle;padding: 0px;width: 100%;">Número de documento</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;width:10%">Fecha de emisión</th>
+                    <th style="text-align: center; vertical-align: middle;padding: 0px;width: 40%;">Número de documento</th>
                     <th style="text-align: center; vertical-align: middle;padding: 0px;width: 100%;">Nombre del proveedor</th>
                     <th style="text-align: center; vertical-align: middle;padding: 0px">N.R.C.</th>
                     <th style="text-align: center; vertical-align: middle;padding: 0px">Internas</th>
