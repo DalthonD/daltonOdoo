@@ -116,7 +116,7 @@
             <!--Contenido de reporte-->
             <!--t t-foreach="company.get_purchase_details(company_id, year, month)" t-as="c"-->
               <!--table class="table table-bordered" style="border-color: black; height: 100%; width: 100%; border-collapse: collapse; border: 1px solid black"-->
-              <table class="table table-bordered" style="table-layout:auto;width:150%;border: 1px solid black; padding: 0px; border-collapse: collapse;empty-cells:hide;">
+              <table class="table table-bordered" style="table-layout:auto;border: 1px solid black; padding: 0px; border-collapse: collapse;empty-cells:hide;">
                   <!--tr style="text-align: center; vertical-align: middle; height: auto; width: auto;"-->
                   <tr style="width: 100%;">
                     <th colspan="5"></th>
@@ -288,7 +288,7 @@
               </table>
               <!--Pie de pagina-->
 
-              
+
               <!-- Fin Pie de pagina-->
           </div>
         </t>
