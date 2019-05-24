@@ -13,12 +13,12 @@ class ReportInvoiceFac(models.AbstractModel):
         }
 
 class ReportInvoiceCCF(models.AbstractModel):
-    _name = 'report.cryo_sv.account_invoice_ccf_cryo'
+    _name = 'report.cryo_sv.account_ccf_formato_cryo'
     _description = 'Formato de CCF para Cryo'
 
     @api.model
     def _get_report_values(self, docids, data=None):
-        report = self.env['ir.actions.report']._get_report_from_name('cryo_sv.account_invoice_ccf_cryo')
+        report = self.env['ir.actions.report']._get_report_from_name('cryo_sv.account_ccf_formato_cryo')
         return {
             'doc_ids': docids,
             'doc_model': report.model,

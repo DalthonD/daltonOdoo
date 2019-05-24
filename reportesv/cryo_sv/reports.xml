@@ -4,7 +4,7 @@
 
         <report
             id="report_factura_pdf"
-            string="Libro de compras"
+            string="Formato Factura Cryo"
             model="account.invoice"
             report_type="qweb-pdf"
             file="cryo_sv.account_invoice_formato_cryo"
@@ -14,7 +14,7 @@
 
         <report
             id="report_ccf_pdf"
-            string="Libro de ventas contribuyentes"
+            string="Formato CCF Cryo"
             model="account.invoice"
             report_type="qweb-pdf"
             file="cryo_sv.account_ccf_formato_cryo"
