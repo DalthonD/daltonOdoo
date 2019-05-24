@@ -3,7 +3,7 @@
     <template id ='account_invoice_formato_cryo'>
       <t t-call="web.html_container">
         <t t-call="web.basic_layout">
-          <t t-foreach="docs" t-as="doc">
+          <!--t t-foreach="docs" t-as="doc"-->
             <div class="page" style="position:absolute;top:64px;left:20px;width:530px;height:130px;">
               <div style="position:absolute;top:130px;left:0px;width:530px;height:500px;">
                 <table class="table o_report_block_table small table-borderless" style="border-bottom:none;width:400px;margin-top:5px;margin-left:-14px;">
@@ -44,7 +44,7 @@
                         </th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody t-foreach="docs" t-as="doc">
                       <tr t-foreach="doc.invoice_line_ids" t-as="table_line">
                         <td>
                           <span t-field="table_line.quantity" style="position:absolute; left:-1px;"/>
@@ -83,7 +83,7 @@
                 <span t-field="doc.amount_total" class="small" style="position:absolute;top:730px;left:470px;width:65px;color:black;"/>
                 <span t-field="doc.amount_total" class="small" style="position:absolute;top:650px;left:470px;width:65px;color:black;"/>
               </div>
-            </t>
+            <!--/t-->
           </t>
         </t>
     </template>
