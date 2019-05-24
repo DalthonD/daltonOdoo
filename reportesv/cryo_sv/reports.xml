@@ -26,7 +26,7 @@
             <field name="name">Formatos Cryo</field>
             <field name="default" eval="True" />
             <field name="format">Letter</field>
-            <field name="orientation">protrait</field>
+            <field name="orientation">Portrait</field>
             <field name="margin_top">23</field>
             <field name="margin_bottom">25</field>
             <field name="margin_left">6</field>
