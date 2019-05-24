@@ -44,7 +44,7 @@
                         </th>
                       </tr>
                     </thead>
-                    <tbody t-foreach="docs" t-as="doc">
+                    <tbody>
                       <tr t-foreach="doc.invoice_line_ids" t-as="table_line">
                         <td>
                           <span t-field="table_line.quantity" style="position:absolute; left:-1px;"/>

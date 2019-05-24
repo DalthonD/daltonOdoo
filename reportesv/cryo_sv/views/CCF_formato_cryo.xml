@@ -44,8 +44,8 @@
                         </th>
                       </tr>
                     </thead>
-                    <tbody t-foreach="docs" t-as="o">
-                      <tr t-foreach="o.invoice_line_ids" t-as="table_line" style="font-size: 10pt">
+                    <tbody>
+                      <tr t-foreach="doc.invoice_line_ids" t-as="table_line" style="font-size: 10pt">
                         <td>
                           <span t-field="table_line.quantity"/>
                         </td>
@@ -54,7 +54,7 @@
                         </td>
                         <td>
                           <t t-set="sin_iva" t-value="table_line.price_unit - table_line.price_tax"/>
-                          <span t-esc="sin_iva"/>
+                          <span t-esc="'{0:.2f}'.format(sin_iva)"/>
                         </td>
                         <td style="color:#FFFFFF">
                           <span t-field="table_line.quantity"/>
