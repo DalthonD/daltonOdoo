@@ -76,7 +76,7 @@
                 <span t-field="doc.partner_id.x_nit" class="small" style="position:absolute;top:115px;left:72px;width:120px;color:black;"/>
                 <span t-field="docs.payment_term_id.name" class="small" style="position:absolute;top:115px;left:287px;width:120px;color:black;"/>
                 <span t-field="doc.x_letras" class="small" style="position:absolute;top:657px;left:30px;width:60%;color:black;"/>
-                <span t-field="doc.amount_total" t-if="doc.amount_untaxed == doc.amount_total" class="small" style="position:absolute;top:657px;left:470px;width:65px;color:black;"/>
+                <!--span t-field="doc.amount_total" t-if="doc.amount_untaxed == doc.amount_total" class="small" style="position:absolute;top:657px;left:470px;width:65px;color:black;"/-->
                 <span class="small" style="position:absolute;top:675px;left:470px;width:50px;color:black;">0</span>
                 <span class="small" style="position:absolute;top:700px;left:470px;width:50px;color:black;">0</span>
                 <span t-field="doc.amount_total" t-if="doc.amount_untaxed != doc.amount_total" class="small" style="position:absolute;top:700px;left:460px;width:50px;color:black; display:none"/>
