@@ -5,7 +5,7 @@
         <t t-call="web.basic_layout">
           <t t-foreach="docs" t-as="doc">
             <div class="page" style="position:absolute;top:64px;left:20px;width:530px;height:130px;">
-              <div style="position:absolute;top:130px;left:0px;width:530px;height:500px;">
+              <div style="position:absolute;top:130px;left:0px;width:530px;">
                 <table class="table o_report_block_table small table-borderless" style="border-bottom:none;width:400px;margin-top:5px;margin-left:-14px;">
                   <thead class="small">
                     <tr>
