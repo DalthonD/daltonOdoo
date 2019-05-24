@@ -85,7 +85,7 @@
               <span t-field="doc.amount_total" t-if="doc.amount_total &gt; 0" style="position:absolute;top:610px;left:458px;width:50px;color:black;font-size: 10pt;"/>
               <span style="position:absolute;top:668px;left:480px;width:50px;color:black;font-size: 10pt;">0</span>
               <span style="position:absolute;top:693px;left:480px;width:50px;color:black;font-size: 10pt;">0</span>
-              <span t-field="doc.amount_untaxed" t-if="amount_tax == 0" style="position:absolute;top:696px;left:458px;width:50px;color:black;font-size: 10pt;"/>
+              <span t-field="doc.amount_untaxed" t-if="amount_tax == 0" style="position:absolute;top:553px;left:458px;width:50px;color:black;font-size: 10pt;"/>
               <span t-field="doc.amount_total" style="position:absolute;top:720px;left:458px;width:50px;color:black;font-size: 10pt;"/>
             </div>
           </t>
