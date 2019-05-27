@@ -12,7 +12,7 @@
     "author": "Strategi-k",
     "website": "http://strategi-k.com",
     "version": '12.0.0.5',
-    "depends": ['sale','base','point_of_sale',],
+    "depends": ['sale','base','point_of_sale','pos_wallet_management',],
     "data": [
         'reports.xml',
         'security/ir.model.access.csv',
