@@ -689,14 +689,14 @@ class pos_session(models.Model):
                 pos_order_obj = []
                 invoices = []
                 pos_invoice_obj = []
-                pos_invoice = []
+                sales_invoice = []
                 fiscal_position_ids = self.env['account.fiscal.position'].search([('sv_contribuyente','=',False)])
-                pos_invoice = self.env['account.invoice'].search([('reference','!=',False),('state','in',['paid','open']),('fiscal_position_id','!=',False)\
+                sales_invoice = self.env['account.invoice'].search([('reference','!=',False),('state','in',['paid','open']),('fiscal_position_id','!=',False)\
                 ,('date_invoice','>=',start_at),('date_invoice','<=',stop_at)], order='reference asc')
-                pos_order_obj = self.env['pos.order'].search([('invoice_id','!=',False),('session_id','=',record.id)], order='invoice_id asc').invoice_id
+                pos_order_obj = self.env['pos.order'].search([('invoice_id','!=',False),('session_id','=',record.id)], order='invoice_id asc')
                 for order in pos_order_obj:
-                    for invoice in pos_invoice:
-                        if order.id==invoice.id:
+                    for invoice in sales_invoice:
+                        if order.invoice_id==invoice.id:
                             pos_invoice_obj.append(invoice)
                 pos_invoice_obj.sort(key=lambda i: i.reference)
                 if len(fiscal_position_ids)>1 and pos_invoice_obj:
