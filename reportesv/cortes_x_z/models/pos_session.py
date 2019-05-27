@@ -699,7 +699,7 @@ class pos_session(models.Model):
                 pos_order_obj = self._cr.fetchall()
                 for order in pos_order_obj:
                     for invoice in sales_invoice:
-                        if order.invoice_id==invoice.id:
+                        if order[0]==invoice.id:
                             pos_invoice_obj.append(invoice)
                 pos_invoice_obj.sort(key=lambda i: i.reference)
                 if len(fiscal_position_ids)>1 and pos_invoice_obj:
