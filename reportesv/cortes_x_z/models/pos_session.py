@@ -694,8 +694,8 @@ class pos_session(models.Model):
                 sales_invoice = self.env['account.invoice'].search([('reference','!=',False),('state','in',['paid','open']),('fiscal_position_id','!=',False)\
                 ,('date_invoice','>=',start_at),('date_invoice','<=',stop_at)], order='reference asc')
                 pos_order_obj = self.env['pos.order'].search([('invoice_id','!=',False),('session_id','=',record.id)], order='invoice_id asc')
-                sql = "select invoice_id from pos_order where invoice_id IS NOT NULL and session_id = %s order by invoice_id asc;"
-                self._cr.execute(sql, record.id)
+                sql = "select invoice_id from pos_order where invoice_id IS NOT NULL and session_id = {0} order by invoice_id asc".format(record.id)
+                self._cr.execute(sql)
                 pos_order_obj = self._cr.fetchall()
                 for order in pos_order_obj:
                     for invoice in sales_invoice:
