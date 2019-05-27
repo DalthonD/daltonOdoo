@@ -698,7 +698,7 @@ class pos_session(models.Model):
                     for invoice in pos_invoice:
                         if order.id==invoice.id:
                             pos_invoice_obj.append(invoice)
-                pos_invoice_obj.sorted(key=lambda i: i.reference)
+                pos_invoice_obj.sort(key=lambda i: i.reference)
                 if len(fiscal_position_ids)>1 and pos_invoice_obj:
                     for inv in pos_invoice_obj:
                         if inv.fiscal_position_id in fiscal_position_ids:
