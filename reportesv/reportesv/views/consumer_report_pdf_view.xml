@@ -93,10 +93,10 @@
                 <div style="text-align: center;">
                   <h2 style="font-size: 25px; text-transform: uppercase">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></h2>
                   <h2 style="font-size: 20px; text-transform: uppercase">SUCURSAL: <span t-esc="o.get_stock_name(stock_id)"/></h2>
-                  <h2 style="font-size: 20px; text-transform: uppercase">LIBRO DE VENTAS A CONSUMIDORES Y EXPORTACIONES</h3>
-                  <h2 style="font-size: 20px; text-transform: uppercase">NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></h3>
-                  <h2 style="font-size: 20px; text-transform: uppercase">MES: <span t-esc="o.get_month_str(month)"/> DE <span t-esc="year"/></h3>
-                  <h2 style="font-size: 20px; text-transform: uppercase">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</h3>
+                  <h2 style="font-size: 20px; text-transform: uppercase">LIBRO DE VENTAS A CONSUMIDORES Y EXPORTACIONES</h2>
+                  <h2 style="font-size: 20px; text-transform: uppercase">NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></h2>
+                  <h2 style="font-size: 20px; text-transform: uppercase">MES: <span t-esc="o.get_month_str(month)"/> DE <span t-esc="year"/></h2>
+                  <h2 style="font-size: 20px; text-transform: uppercase">VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</h2>
                 </div>
               </t>
             <!--Fin encabezado-->
