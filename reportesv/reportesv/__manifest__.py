@@ -16,13 +16,12 @@
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base','account','strategiksv'],
+    'depends': ['base','account','strategiksv','purchase','account_accountant'],
 
     # always loaded
     'data': [
         'reports.xml',
         'security/ir.model.access.csv',
-        #'views/reports_static.xml',
         'views/purchase_report_pdf_view.xml',
         'views/taxpayer_report_pdf_view.xml',
         'views/consumer_report_pdf_view.xml',
