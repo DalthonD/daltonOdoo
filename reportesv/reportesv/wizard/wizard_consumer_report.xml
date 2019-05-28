@@ -54,20 +54,15 @@
       </field>
     </record>
 
-  <record id="action_purchase_report_wizard" model="ir.actions.act_window">
-		<field name="name">Libro de Compras</field>
-    <field name="type">ir.actions.act_window</field>
-    <field name="res_model">wizard.sv.purchase.report</field>
-    <field name="view_type">form</field>
-		<field name="view_mode">form</field>
-    <field name="target">new</field>
-	</record>
+    <record id="action_consumer_report_wizard" model="ir.actions.act_window">
+  		<field name="name">Libro de Ventas Consumidores</field>
+      <field name="type">ir.actions.act_window</field>
+      <field name="res_model">wizard.sv.consumer.report</field>
+      <field name="view_type">form</field>
+  		<field name="view_mode">form</field>
+      <field name="target">new</field>
+  	</record>
 
-
-    <menuitem id="pdf_reports" name="Reportes PDF"/>
-      <menuitem id="legal_report" name="Libros Legales" parent="pdf_reports" sequence="10"/>
-      <menuitem id="purchase_report" name="Libro de Compras(PDF)" action="action_purchase_report_wizard" parent="legal_report" sequence="11"/>
-      <!--menuitem id="taxpayer_report" name="Taxpayer_Sales_Report" action="" parent="pdf_reports" sequence="11"/>
-      <menuitem id="consumer_report" name="Consumer_Sales_Report" action="" parent="pdf_reports" sequence="12"/-->
+        <menuitem id="consumer_report" name="Libro de Ventas a Consumidores(PDF)" action="action_consumer_report_wizard" parent="legal_report" sequence="13"/>
   </data>
 </odoo>
