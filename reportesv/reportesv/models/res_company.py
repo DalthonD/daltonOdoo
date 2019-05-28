@@ -373,6 +373,7 @@ class res_company(models.Model):
 
         sql = """CREATE OR REPLACE VIEW strategiksv_reportesv_consumer_report AS (Select
         SS.Fecha
+        ,SS.sucursal
         ,SS.grupo
         ,min(SS.Factura) as DELNum
         ,max(SS.Factura) as ALNum
@@ -385,6 +386,7 @@ class res_company(models.Model):
         ,estado
         FROM (
         select S.fecha
+        ,S.sucursal
         ,S.factura
         ,S.estado
         ,S.grupo
@@ -404,6 +406,7 @@ class res_company(models.Model):
         ,S.Retenido
         from(
         select ai.date_invoice as fecha
+        ,ai.x_sucursal_id as sucursal
         ,coalesce(ai.reference,ai.number) as factura
         ,'valid' as estado
         ,FG.grupo
@@ -459,6 +462,7 @@ class res_company(models.Model):
         union
 
         select ai.date_invoice as fecha
+        ,ai.x_sucursal_id
         ,coalesce(ai.reference,ai.number) as factura
         ,ai.state as estado
         ,FG.grupo
@@ -478,7 +482,7 @@ class res_company(models.Model):
         and ((ai.sv_no_tax is null ) or (ai.sv_no_tax=false))
         and afp.sv_contribuyente=False
         and ai.state in ('cancel')
-        )S )SS group by SS.fecha, SS.Grupo,SS.estado order by SS.fecha, SS.Grupo))""".format(company_id,date_year,date_month,sv_invoice_serie_size)
+        )S )SS group by SS.fecha, SS.x_sucursal_id,SS.Grupo,SS.estado order by SS.fecha,SS.x_sucursal_id,SS.Grupo))""".format(company_id,date_year,date_month,sv_invoice_serie_size)
         tools.drop_view_if_exists(self._cr, 'strategiksv_reportesv_consumer_report')
         self._cr.execute(func) #Create the function used on view creation
         self._cr.execute(sql) #Query for view
@@ -501,3 +505,12 @@ class res_company(models.Model):
             return m
         else:
             return m
+
+    @api.multi
+    def get_stock_name(self, stock_location_id):
+        sucursal= " "
+            if self and stock_location_id:
+                sucursal = self.env['stock_location'].search([('id','=',stock_location_id)],limit=1).name
+                return sucursal
+            else:
+                return sucursal

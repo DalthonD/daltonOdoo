@@ -31,11 +31,13 @@
                 <t t-set="month" t-value="int(data.get('form').get('date_month'))"/>
                 <t t-set="year" t-value="int(data.get('form').get('date_year'))"/>
                 <t t-set="company_id" t-value="int(data.get('form').get('company_id')[0])"/>
+                <t t-set="stock_id" t-value="int(data.get('form').get('stock_location_id')[0])"/>
                 <t t-set="contador" t-value="o.sv_aprueba_partida"/>
                 <t t-set="company" t-value="o"/>
                 <div style="text-align: center">
                   <h2 style="font-size: 40px; text-transform: uppercase">NOMBRE DEL CONTRIBUYENTE: <span t-field="o.name"/></h2>
-                  <h2>LIBRO DE COMPRAS CON OPERACIONES DE RETENCIÓN</h2>
+                  <h2 style="font-size: 30px; text-transform: uppercase">SUCURSAL: <span t-esc="o.get_stock_name(stock_id)"/></h2>
+                  <h2>LIBRO DE VENTAS A CONSUMIDORES Y EXPORTACIONES</h2>
                   <h2>NIT: <span t-field="o.sv_nit"/> NRC: <span t-field="o.sv_nrc"/></h2>
                   <h2>MES: <span t-esc="o.get_month_str(month)"/> DE <span t-esc="year"/></h2>
                   <h2>VALORES EXPRESADOS EN DOLARES DE LOS ESTADOS UNIDOS</h2>
@@ -152,7 +154,7 @@
               <!--Pie de pagina-->
               <div class="footer" style="background-color: lightgray; bottom: 0; position: fixed; width: 100%; border-width: 55%;">
                 <div class="row">
-                    
+
                 </div>
               </div>
               <!-- Fin Pie de pagina-->
