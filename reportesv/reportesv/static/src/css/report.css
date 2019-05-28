@@ -25,6 +25,9 @@ td, th {
   size: A4;
   margin: 1mm 1mm 1mm 1mm;
   @bottom-left{
+    position: absolute;
+    bottom: 0px;
+    width: :100%;
     content: "Pag. " counter(page) " de " counter(pages);
   }
 }
