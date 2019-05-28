@@ -509,8 +509,8 @@ class res_company(models.Model):
     @api.multi
     def get_stock_name(self, stock_location_id):
         sucursal= " "
-            if self and stock_location_id:
-                sucursal = self.env['stock_location'].search([('id','=',stock_location_id)],limit=1).name
-                return sucursal
-            else:
-                return sucursal
+        if self and stock_location_id:
+            sucursal = self.env['stock_location'].search([('id','=',stock_location_id)],limit=1).name
+            return sucursal
+        else:
+            return sucursal
