@@ -12,7 +12,7 @@ odoo.define('cryo_sv.ReceiptScreenWidget', function (require) {
 		render_receipt: function() {
 			this.$('.pos-receipt-container').html(QWeb.render('posticketsv', this.get_receipt_render_env()));
 		},
-	
+
 		get_iswallet: function () {
 			var order = this.pos.get_order();
 			var result=false;
@@ -23,6 +23,9 @@ odoo.define('cryo_sv.ReceiptScreenWidget', function (require) {
 					result=true;
 				}
 			}
+      if (order.to_invoice === true) {
+        result=true;
+      }
 			/*if (result==true){
 				if (typeof order.recibo_number === null){
 					this.pos.config.recibo_number=this.pos.config.recibo_number+1;
@@ -38,10 +41,10 @@ odoo.define('cryo_sv.ReceiptScreenWidget', function (require) {
 			return result;
 		 },
 	});
-	
-	
+
+
 	PaymentScreenWidget.include({
-		
+
 		validate_order: function(force_validation) {
 			var order = this.pos.get_order();
 			if (this.order_is_valid(force_validation)) {
@@ -53,6 +56,9 @@ odoo.define('cryo_sv.ReceiptScreenWidget', function (require) {
 						result=true;
 					}
 				}
+        if (order.to_invoice === true) {
+          result=true;
+        }
 				if (result==true){
 					if (order.recibo_number === null){
 						order.pos.config.recibo_number=this.pos.config.recibo_number+1;
@@ -65,15 +71,15 @@ odoo.define('cryo_sv.ReceiptScreenWidget', function (require) {
 						order.ticket_number=this.pos.config.ticket_number
 					}
 				}
-				
+
 				this.finalize_validation();
 			}
 		},
 	});
-	
-	
-	
-	
+
+
+
+
 	pos_model.Order = pos_model.Order.extend({
         init_from_JSON: function(json) {
 			var self = this;

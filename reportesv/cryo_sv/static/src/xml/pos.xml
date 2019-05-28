@@ -16,7 +16,7 @@
 					</div>
 					<span>------------------------------------</span>
 					<br />
-					TICKET # <t t-esc="order.recibo_number"/>
+					RECIBO # <t t-esc="order.recibo_number"/>
 					<br />
 					<span>------------------------------------</span>
 					<br />
@@ -46,7 +46,7 @@
 				</table>
 				<br />
 				<table class='receipt-total'  style="width:90% !important">
-					<tr>
+					<!--tr>
 						<td>subtotal:</td>
 						<td class="pos-right-align">
 							<t t-esc="widget.format_currency(order.get_total_without_tax())"/>
@@ -69,7 +69,7 @@
 								<t t-esc="widget.format_currency(order.get_total_discount())"/>
 							</td>
 						</t>
-					</tr>
+					</tr-->
 					<tr class="emph">
 						<td>total:</td>
 						<td class="pos-right-align">
@@ -122,7 +122,7 @@
 					</div>
 					<span>------------------------------------</span>
 					<br />
-					TRANSACTION # <t t-esc="order.ticket_number"/>
+					TICKET # <t t-esc="order.ticket_number"/>
 					<br />
 					<span>------------------------------------</span>
 					<br />
@@ -152,7 +152,7 @@
 				</table>
 				<br />
 				<table class='receipt-total' style="width:90% !important">
-					<tr>
+					<!--tr>
 						<td > subtotal:</td>
 						<td  class="pos-right-align">
 							<t t-esc="widget.format_currency(order.get_total_without_tax())"/>
@@ -175,7 +175,7 @@
 								<t t-esc="widget.format_currency(order.get_total_discount())"/>
 							</td>
 						</t>
-					</tr>
+					</tr-->
 					<tr class="emph">
 						<td>total:</td>
 						<td class="pos-right-align">

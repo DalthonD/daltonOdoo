@@ -21,11 +21,8 @@ class CryoCustomer(models.Model):
         if (self.customer== True):
             if(self.name==False):
                 raise ValidationError("Debe asignar un nombre al cliente")
-            if(self.mobile==False):
-                raise ValidationError("Debe ingresar el telefono mobil del cliente")
             if(self.city==False):
                 raise ValidationError("Debe ingresar la ciudad del cliente")
             if(self.email==False):
                 raise ValidationError("Debe ingresar el email del cliente")
     
-

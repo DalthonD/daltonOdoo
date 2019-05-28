@@ -14,5 +14,6 @@ from .import sales_details_pdf_template
 from .import pos_config
 from .import all_summary_report
 from .import stock_location
+from .import account_invoice
 
 # vim:expandtab:smartindent:tabstop=4:softtabstop=4:shiftwidth=4:

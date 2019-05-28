@@ -24,7 +24,7 @@ class cryo_sv_pos_session(models.Model):
     _inherit = 'pos.session'
     ticket_number=fields.Integer("Proximo ticket")
     recibo_number=fields.Integer("Proximo recibo")
-    
+
     @api.model
     def create(self, values):
         res = super(cryo_sv_pos_session, self).create(values)
@@ -41,7 +41,7 @@ class cryo_sv_pos_order(models.Model):
     _inherit = 'pos.order'
     ticket_number=fields.Integer("Numero ticket")
     recibo_number=fields.Integer("Numero recibo")
-    
+
     @api.model
     def create_from_ui(self, orders):
         order_ids = super(cryo_sv_pos_order,self).create_from_ui(orders)
@@ -58,3 +58,37 @@ class cryo_sv_pos_order(models.Model):
                 config.write({'recibo_number':order_data.get('recibo_number')})
         return order_ids
 
+class cryo_sv_wallet_pricelist(models.Model):
+    _name='cryo.wallet.amount'
+    name= fields.Char("Rangos de recarga")
+    comment=fields.Text("Description")
+    amount=fields.Float("Monto de la recarga")
+    start_date=fields.Date("Fecha de inicio")
+    end_date=fields.Date("Fecha de inicio")
+    pricelist=fields.Many2one('product.pricelist',string='Listas de precios',help='Numeracion de recibos')
+
+class cryo_sv_wallet_amount(models.Model):
+    _inherit = 'pos.wallet.transaction'
+    prueba= fields.Char("Prueba de recarga")
+
+    @api.model
+    def create(self, values):
+        res = super(cryo_sv_wallet_amount, self).create(values)
+        if (values['payment_type']=='CREDIT'):
+            prices=False
+            lst=self.env['cryo.wallet.amount'].search([('id','>',0)])
+            lst.sorted(key=lambda r: r.amount)
+            for am in lst:
+                saldo=values['amount']
+                if (saldo>=am.amount):
+                    prices=am.pricelist
+            if (prices!=False):
+                cliente=self.env['res.partner'].search([("id",'=',values['partner_id'])],limit=1)
+                cliente.property_product_pricelist=prices.id
+        else:
+            wallet = self.env['pos.wallet'].search([("id",'=',values['wallet_id'])],limit=1)
+            if wallet:
+                saldo=values['amount']
+                if (wallet.amount<=saldo):
+                    cliente=self.env['res.partner'].search([("id",'=',values['partner_id'])],limit=1)
+                    cliente.property_product_pricelist=1
