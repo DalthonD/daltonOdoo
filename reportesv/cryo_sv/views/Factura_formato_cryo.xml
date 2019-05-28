@@ -3,6 +3,12 @@
     <template id ='account_invoice_formato_cryo'>
       <t t-call="web.html_container">
         <t t-call="web.basic_layout">
+
+          <!--Variables a utilizar-->
+          <t t-set="totalExentas" t-value="float(0.00)"/>
+          <t t-set="totalNosujetas" t-value="float(0.00)"/>
+          <!---->
+
           <t t-foreach="docs" t-as="doc">
             <div class="page" style="position:absolute;top:64px;left:20px;width:530px;height:130px;">
               <div style="position:absolute;top:130px;left:0px;width:530px;">
@@ -59,29 +65,29 @@
                           <span t-esc="table_line.quantity" class="small"/>
                         </td>
                         <td>
-                          <span t-field="table_line.price_subtotal" t-if="table_line.price_subtotal == table_line.sv_total_con_iva" style="position:absolute; left:470px;"/>
+                          <span t-field="table_line.sv_total_con_iva" t-if="table_line.price_subtotal != table_line.price_total" style="position:absolute; left:470px;"/>
                         </td>
                         <td>
-                          <span t-field="table_line.price_subtotal" t-if="table_line.price_subtotal != table_line.sv_total_con_iva" style="position:absolute; left:470px;"/>
+                          <span t-field="table_line.price_subtotal" t-if="table_line.price_subtotal == table_line.price_total" style="position:absolute; left:440px;"/>
                         </td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
                 <div style="position:absolute;top:630px;left:0px;width:530px;height:110px;"/>
-                <span t-field="doc.date_invoice" class="small" style="position:absolute;top:6px;left:400px;width:70px;color:black;"/>
-                <span t-field="doc.partner_id.name" class="small" style="position:absolute;top:30px;left:80px;width:250px;color:black;"/>
+                <span t-field="doc.date_invoice" class="small" style="position:absolute;top:2px;left:380px;width:70px;color:black;"/>
+                <span t-field="doc.partner_id.name" class="small" style="position:absolute;top:20px;left:80px;width:250px;color:black;"/>
                 <span t-field="doc.partner_id.street" class="small" style="position:absolute;top:58px;left:97px;width:120px;color:black;"/>
-                <span t-field="doc.partner_id.city" class="small" style="position:absolute;top:90px;left:400px;width:120px;color:black;"/>
+                <span t-field="doc.partner_id.city" class="small" style="position:absolute;top:82px;left:380px;width:120px;color:black;"/>
                 <span t-field="doc.partner_id.x_nit" class="small" style="position:absolute;top:115px;left:72px;width:120px;color:black;"/>
                 <span t-field="docs.payment_term_id.name" class="small" style="position:absolute;top:115px;left:287px;width:120px;color:black;"/>
                 <span t-field="doc.x_letras" class="small" style="position:absolute;top:657px;left:30px;width:60%;color:black;"/>
                 <!--span t-field="doc.amount_total" t-if="doc.amount_untaxed == doc.amount_total" class="small" style="position:absolute;top:657px;left:470px;width:65px;color:black;"/-->
-                <span class="small" style="position:absolute;top:675px;left:470px;width:50px;color:black;">0</span>
-                <span class="small" style="position:absolute;top:700px;left:470px;width:50px;color:black;">0</span>
-                <span t-field="doc.amount_total" t-if="doc.amount_untaxed != doc.amount_total" class="small" style="position:absolute;top:700px;left:460px;width:50px;color:black; display:none"/>
+                <span t-field="doc.gravado" class="small" style="position:absolute;top:650px;left:470px;width:65px;color:black;"/>
+                <span t-field="doc.nosujeto" class="small" style="position:absolute;top:675px;left:470px;width:50px;color:black;"/>
+                <span t-field="doc.exento" class="small" style="position:absolute;top:700px;left:470px;width:50px;color:black;"/>
+                <!--span t-field="doc.amount_total" t-if="doc.amount_untaxed != doc.amount_total" class="small" style="position:absolute;top:700px;left:460px;width:50px;color:black; display:none"/-->
                 <span t-field="doc.amount_total" class="small" style="position:absolute;top:730px;left:470px;width:65px;color:black;"/>
-                <span t-field="doc.amount_total" class="small" style="position:absolute;top:657px;left:470px;width:65px;color:black;"/>
               </div>
             </t>
           </t>

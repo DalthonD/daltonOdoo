@@ -30,7 +30,7 @@
                 border-spacing: 0px;
               }
               .spacing-line{
-                line-height: 100pt
+                line-height: 7pt
               }
               .pagenumber:before {
                 content: counter(page);
@@ -163,7 +163,7 @@
                 </tr>
               </table>
             <!--/t-->
-              <table class="table table-bordered" align="right">
+              <table align="right">
                 <tr style="width: 100%;">
                   <td style="text-align: right;">
                     <table class="table table-bordered" style="border: 1.5px solid black; border-collapse: collapse; padding: 0px;">
