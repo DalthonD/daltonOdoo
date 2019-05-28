@@ -110,7 +110,7 @@ BEGIN
   IF lnTerna = 1 THEN
     lcRetorno := 'CERO';
   END IF;
-  lcRetorno := RTRIM(COALESCE(lcRetorno,'CERO')) || ' CON ' || LTRIM(COALESCE(lnFraccion::varchar,'CERO')) || '/100 ';
+  lcRetorno := RTRIM(COALESCE(lcRetorno,'CERO')) || ' CON ' || LTRIM(COALESCE(lnFraccion::varchar,'CERO')) || '0/100 ';
 RETURN lcRetorno;
 END;
 $body$

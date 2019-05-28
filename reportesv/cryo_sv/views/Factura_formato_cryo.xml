@@ -85,7 +85,7 @@
                 <!--span t-field="doc.amount_total" t-if="doc.amount_untaxed == doc.amount_total" class="small" style="position:absolute;top:657px;left:470px;width:65px;color:black;"/-->
                 <span t-field="doc.gravado" class="small" style="position:absolute;top:650px;left:470px;width:65px;color:black;"/>
                 <span t-field="doc.nosujeto" class="small" style="position:absolute;top:675px;left:470px;width:50px;color:black;"/>
-                <span t-field="doc.exento" class="small" style="position:absolute;top:700px;left:470px;width:50px;color:black;"/>
+                <span t-field="doc.excento" class="small" style="position:absolute;top:700px;left:470px;width:50px;color:black;"/>
                 <!--span t-field="doc.amount_total" t-if="doc.amount_untaxed != doc.amount_total" class="small" style="position:absolute;top:700px;left:460px;width:50px;color:black; display:none"/-->
                 <span t-field="doc.amount_total" class="small" style="position:absolute;top:730px;left:470px;width:65px;color:black;"/>
               </div>
