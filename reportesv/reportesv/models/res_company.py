@@ -336,7 +336,9 @@ class res_company(models.Model):
         var_grupo :=0;
         FOR var_r IN (select ROW_NUMBER () OVER (ORDER BY f.date_invoice,coalesce(F.reference,F.number))  as Registro
         ,left(coalesce(F.reference,F.number),p_series_lenght) as Serie
-        ,cast(right(coalesce(F.reference,F.number),(length(coalesce(F.reference,F.number))-p_series_lenght)) as Integer) as correlativo
+        ,CASE WHEN textregexeq(right(coalesce(F.reference,F.number),length(coalesce(F.reference,F.number))-p_series_lenght),'^[[:digit:]]+(\.[[:digit:]]+)?$') = TRUE THEN
+			cast(right(coalesce(F.reference,F.number),(length(coalesce(F.reference,F.number))-p_series_lenght)) as Integer)
+		ELSE F.ID *1000 end as correlativo
         ,F.date_invoice as fecha
         ,case
         when F.state='cancel' then 'ANULADA'
@@ -349,7 +351,7 @@ class res_company(models.Model):
         and F.state<>'draft' and F.company_id=p_company_id
         and F.type in ('out_invoice')
         and ((F.sv_no_tax is null ) or (F.sv_no_tax=false))
-        and afp.sv_contribuyente=False
+        --and afp.sv_contribuyente=False
         order by fecha,factura )
         LOOP
         invoice_id := var_r.id;
