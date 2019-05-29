@@ -8,7 +8,6 @@
           <t t-set="totalExentas" t-value="float(0.00)"/>
           <t t-set="totalNosujetas" t-value="float(0.00)"/>
           <!---->
-
           <t t-foreach="docs" t-as="doc">
             <div class="page" style="position:absolute;top:64px;left:20px;width:530px;height:130px;">
               <div style="position:absolute;top:130px;left:0px;width:530px;">
