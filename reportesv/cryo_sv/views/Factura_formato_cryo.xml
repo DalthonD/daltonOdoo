@@ -68,7 +68,7 @@
                           <span t-field="table_line.sv_total_con_iva" t-if="table_line.price_subtotal != table_line.price_total" style="position:absolute; left:470px;"/>
                         </td>
                         <td>
-                          <span t-field="table_line.price_subtotal" t-if="table_line.price_subtotal == table_line.price_total" style="position:absolute; left:440px;"/>
+                          <span t-field="table_line.price_subtotal" t-if="table_line.price_subtotal == table_line.price_total" style="position:absolute; left:420px;"/>
                         </td>
                       </tr>
                     </tbody>
