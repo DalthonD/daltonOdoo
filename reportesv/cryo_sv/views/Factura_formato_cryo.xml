@@ -69,7 +69,7 @@
                         </td>
                         <td>
                           <!--span t-field="table_line.price_subtotal" t-if="table_line.price_subtotal == table_line.price_total" style="position:absolute; left:440px;"/-->
-                          <span t-field="table_line.price_subtotal" style="position:absolute; left:440px;"/>
+                          <span t-field="table_line.price_subtotal" style="position:absolute; left:420px;"/>
                         </td>
                       </tr>
                     </tbody>
