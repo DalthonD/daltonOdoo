@@ -458,7 +458,7 @@ class res_company(models.Model):
         and date_part('month',COALESCE(ai.sv_fecha_tax,ai.date_invoice))=  {2}
         and ai.type='out_invoice'
         and ((ai.sv_no_tax is null ) or (ai.sv_no_tax=false))
-        and afp.sv_contribuyente=False
+        --and afp.sv_contribuyente=False
         and ai.state in ('open','paid')
 
         union
@@ -482,7 +482,7 @@ class res_company(models.Model):
         and date_part('month',COALESCE(ai.sv_fecha_tax,ai.date_invoice))= {2}
         and ai.type='out_invoice'
         and ((ai.sv_no_tax is null ) or (ai.sv_no_tax=false))
-        and afp.sv_contribuyente=False
+        --and afp.sv_contribuyente=False
         and ai.state in ('cancel')
         )S )SS group by SS.fecha, SS.sucursal,SS.Grupo,SS.estado order by SS.fecha,SS.sucursal,SS.Grupo)""".format(company_id,date_year,date_month,sv_invoice_serie_size)
         tools.drop_view_if_exists(self._cr, 'strategiksv_reportesv_consumer_report')
